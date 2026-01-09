@@ -1,1 +1,46 @@
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
 
+body {
+  background: #f4f6f9;
+  color: #1f2937;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+.topbar {
+  height: 56px;
+  background: #0f172a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.topbar .brand {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.shell {
+  display: flex;
+  min-height: calc(100vh - 56px);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+  width: 260px;
+  background: #
