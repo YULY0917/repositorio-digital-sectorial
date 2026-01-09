@@ -2,52 +2,43 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Repositorio digital sectorial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
 <header class="topbar">
-  <button class="burger" id="btnMenu" aria-label="Abrir menú" aria-expanded="false">☰</button>
   <div class="brand">Repositorio digital sectorial</div>
+
+  <div class="searchbar">
+    <div class="label">Buscar</div>
+    <div class="search">
+      🔎
+      <input id="searchInput" placeholder="Buscar (ej: convenio, anexos, reglas...)" />
+    </div>
+  </div>
 </header>
 
-<div class="layout">
-  <!-- Menú lateral -->
-  <aside class="sidebar" id="sidebar">
-    <nav class="nav" id="menu"></nav>
-  </aside>
+<div class="shell">
+  <aside class="sidebar" id="menu"></aside>
 
-  <!-- Contenido -->
   <main class="main">
     <div class="card">
-      <h1>Inicio</h1>
+      <h1 class="h1">Inicio</h1>
       <p class="lead">Acceso rápido a los documentos y secciones del repositorio.</p>
     </div>
 
-    <div class="card">
-      <h2>Buscar</h2>
+    <div class="card" style="margin-top:16px">
+      <h2 class="h2">Accesos</h2>
 
-      <div class="searchRow">
-        <span class="icon">🔎</span>
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="Buscar (ej: convenio, anexos, reglas...)"
-          autocomplete="off"
-        />
+      <div class="quicklist" id="quickList">
+        <!-- app.js llena esto -->
       </div>
 
-      <ul class="results" id="searchResults">
-        <li><a href="paginas/convenio.html">Convenio de Adhesión</a></li>
-        <li><a href="paginas/anexos-tecnicos.html">Anexos Técnicos</a></li>
-        <li><a href="paginas/anexos-provision.html">Anexos de provisión de datos</a></li>
-        <li><a href="paginas/anexos-consumo.html">Anexos de consumo de datos</a></li>
-        <li><a href="paginas/reglas-uso.html">Reglas de Uso</a></li>
-      </ul>
-
-      <p class="muted">Tip: escribe una palabra clave y se filtrarán las opciones.</p>
+      <p class="muted" style="margin-top:10px">
+        Tip: escribe una palabra clave en el buscador superior y se filtrarán las opciones.
+      </p>
     </div>
   </main>
 </div>
