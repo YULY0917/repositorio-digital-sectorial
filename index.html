@@ -2,52 +2,52 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Repositorio Digital Sectorial</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Repositorio digital sectorial</title>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
 <header class="topbar">
-  <div class="brand">Repositorio Digital Sectorial</div>
+  <button class="burger" id="btnMenu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <div class="brand">Repositorio digital sectorial</div>
 </header>
 
-<div class="shell">
-  <aside class="sidebar">
-    <nav class="nav">
-      <a class="nav-link active" href="index.html">Inicio</a>
-      <a class="nav-link" href="paginas/convenio.html">Convenio de Adhesión</a>
-      <a class="nav-link" href="paginas/anexos-tecnicos.html">Anexos Técnicos</a>
-      <a class="nav-link sub" href="paginas/anexo-provision.html">Anexos de Provisión de Datos</a>
-      <a class="nav-link sub" href="paginas/anexo-consumo.html">Anexos de Consumo de Datos</a>
-      <a class="nav-link" href="paginas/reglas-uso.html">Reglas de Uso</a>
-    </nav>
+<div class="layout">
+  <!-- Menú lateral -->
+  <aside class="sidebar" id="sidebar">
+    <nav class="nav" id="menu"></nav>
   </aside>
 
+  <!-- Contenido -->
   <main class="main">
     <div class="card">
-      <h1 class="h1">Inicio</h1>
-      <p class="lead">Repositorio Digital Sectorial del Nodo L&amp;P.</p>
+      <h1>Inicio</h1>
+      <p class="lead">Acceso rápido a los documentos y secciones del repositorio.</p>
     </div>
 
-    <!-- BUSCADOR -->
     <div class="card">
-      <h2 class="h2">Buscar</h2>
+      <h2>Buscar</h2>
 
-      <div class="searchbox">
-        🔎
-        <input id="homeSearch" type="search" placeholder="Buscar (ej: convenio, anexos, reglas)..." />
+      <div class="searchRow">
+        <span class="icon">🔎</span>
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Buscar (ej: convenio, anexos, reglas...)"
+          autocomplete="off"
+        />
       </div>
 
-      <div class="home-list" id="homeList" style="margin-top:14px">
-        <a class="search-item" href="paginas/convenio.html">Convenio de Adhesión</a>
-        <a class="search-item" href="paginas/anexos-tecnicos.html">Anexos Técnicos</a>
-        <a class="search-item" href="paginas/anexo-provision.html">Anexos de Provisión de Datos</a>
-        <a class="search-item" href="paginas/anexo-consumo.html">Anexos de Consumo de Datos</a>
-        <a class="search-item" href="paginas/reglas-uso.html">Reglas de Uso</a>
-      </div>
+      <ul class="results" id="searchResults">
+        <li><a href="paginas/convenio.html">Convenio de Adhesión</a></li>
+        <li><a href="paginas/anexos-tecnicos.html">Anexos Técnicos</a></li>
+        <li><a href="paginas/anexos-provision.html">Anexos de provisión de datos</a></li>
+        <li><a href="paginas/anexos-consumo.html">Anexos de consumo de datos</a></li>
+        <li><a href="paginas/reglas-uso.html">Reglas de Uso</a></li>
+      </ul>
 
-      <p class="muted" style="margin-top:12px">Escribe y se filtrarán las opciones.</p>
+      <p class="muted">Tip: escribe una palabra clave y se filtrarán las opciones.</p>
     </div>
   </main>
 </div>
