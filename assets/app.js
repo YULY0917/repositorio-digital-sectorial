@@ -1,144 +1,134 @@
-// ==== Menú (estructura solicitada) ====
-const MENU = [
+// === MAPA DEL SITIO ===
+const SITE = [
+  { title: "Inicio", href: "/repositorio-digital-sectorial/index.html", id: "inicio", desc: "Página principal del repositorio." },
+
+  { title: "Convenio de Adhesión", href: "/repositorio-digital-sectorial/paginas/convenio.html", id: "convenio", desc: "Convenio de adhesión y antecedentes." },
+
   {
-    title: "", // sin título arriba
-    items: [
-      { label: "Inicio", href: "index.html" },
+    title: "Anexos Técnicos",
+    href: "/repositorio-digital-sectorial/paginas/anexos-tecnicos.html",
+    id: "anexos-tecnicos",
+    desc: "Estructura y anexos técnicos del repositorio.",
+    children: [
+      { title: "Anexos de provisión de datos", href: "/repositorio-digital-sectorial/paginas/anexos-provision.html", id: "anexos-provision", desc: "Documentos para provisión de datos." },
+      { title: "Anexos de consumo de datos", href: "/repositorio-digital-sectorial/paginas/anexos-consumo.html", id: "anexos-consumo", desc: "Documentos para consumo de datos." },
     ]
   },
-  {
-    title: "CONVENIO DE ADHESIÓN",
-    items: [
-      { label: "Convenio de Adhesión", href: "paginas/convenio.html" },
-    ]
-  },
-  {
-    title: "ANEXOS TÉCNICOS",
-    items: [
-      { label: "Anexos Técnicos", href: "paginas/anexos-tecnicos.html" },
-      { label: "Anexos de provisión de datos", href: "paginas/anexos-provision.html", sub: true },
-      { label: "Anexos de consumo de datos", href: "paginas/anexos-consumo.html", sub: true },
-    ]
-  },
-  {
-    title: "REGLAS DE USO",
-    items: [
-      { label: "Reglas de Uso", href: "paginas/reglas-uso.html" },
-    ]
-  }
+
+  { title: "Reglas de Uso", href: "/repositorio-digital-sectorial/paginas/reglas-uso.html", id: "reglas-uso", desc: "Reglas de uso del repositorio." },
 ];
 
+// Detecta basePath de GitHub Pages (repo name)
+function getRepoBase() {
+  // Espera URLs tipo: https://usuario.github.io/repositorio-digital-sectorial/...
+  const parts = location.pathname.split("/").filter(Boolean);
+  if (parts.length >= 1) return "/" + parts[0]; // "/repositorio-digital-sectorial"
+  return "";
+}
+
+function toHref(href) {
+  // hrefs en SITE vienen con /repositorio-digital-sectorial/...
+  // Si el repo cambia, lo ajusta automáticamente usando el base actual.
+  const base = getRepoBase();
+  const cleaned = href.replace(/^\/[^/]+/, base);
+  return cleaned;
+}
+
+function currentPath() {
+  return location.pathname;
+}
+
 function buildMenu() {
-  const menuEl = document.getElementById("menu");
-  if (!menuEl) return;
+  const menu = document.getElementById("menu");
+  if (!menu) return;
 
-  // Detecta si estamos dentro de /paginas/ para ajustar rutas relativas
-  const inPaginas = window.location.pathname.includes("/paginas/");
-  const fixHref = (href) => {
-    // desde paginas/* => index.html está en ../index.html y assets en ../assets/
-    if (inPaginas) {
-      if (href === "index.html") return "../index.html";
-      if (href.startsWith("paginas/")) return "../" + href;
-      return href;
+  const path = currentPath();
+
+  const wrap = document.createElement("div");
+
+  SITE.forEach(item => {
+    const a = document.createElement("a");
+    a.href = toHref(item.href);
+    a.textContent = item.title;
+
+    // activo
+    const isActive = path === new URL(a.href, location.origin).pathname;
+    if (isActive) a.classList.add("active");
+
+    wrap.appendChild(a);
+
+    if (item.children && item.children.length) {
+      const sub = document.createElement("div");
+      sub.className = "sub";
+
+      item.children.forEach(ch => {
+        const sa = document.createElement("a");
+        sa.href = toHref(ch.href);
+        sa.textContent = ch.title;
+
+        const subActive = path === new URL(sa.href, location.origin).pathname;
+        if (subActive) sa.classList.add("active");
+
+        sub.appendChild(sa);
+      });
+
+      wrap.appendChild(sub);
     }
-    // desde raíz
-    return href;
-  };
+  });
 
-  menuEl.innerHTML = "";
+  menu.innerHTML = "";
+  menu.appendChild(wrap);
+}
 
-  MENU.forEach(section => {
-    const wrap = document.createElement("div");
-    wrap.className = "section";
+function buildQuickList() {
+  const list = document.getElementById("quickList");
+  if (!list) return;
 
-    if (section.title) {
-      const t = document.createElement("div");
-      t.className = "sectionTitle";
-      t.textContent = section.title;
-      wrap.appendChild(t);
-    }
+  const flat = [];
+  SITE.forEach(i => {
+    if (i.id !== "inicio") flat.push(i);
+    if (i.children) i.children.forEach(c => flat.push(c));
+  });
 
-    // items
-    const subWrap = document.createElement("div");
-    section.items.forEach(item => {
-      const a = document.createElement("a");
-      a.textContent = item.label;
-      a.href = fixHref(item.href);
+  list.innerHTML = "";
 
-      if (item.sub) {
-        subWrap.classList.add("sub");
-      }
+  flat.forEach(it => {
+    const row = document.createElement("a");
+    row.className = "quickitem";
+    row.href = toHref(it.href);
+    row.dataset.title = (it.title || "").toLowerCase();
+    row.dataset.desc = (it.desc || "").toLowerCase();
 
-      // active
-      const current = window.location.pathname.replace(/\/$/, "");
-      const aPath = new URL(a.href, window.location.origin).pathname.replace(/\/$/, "");
-      if (current.endsWith(aPath)) {
-        a.classList.add("active");
-      }
+    row.innerHTML = `
+      <div class="left">
+        <div class="title">${it.title}</div>
+        <div class="desc">${it.desc || ""}</div>
+      </div>
+      <div class="go">Abrir</div>
+    `;
 
-      // si es sub, lo metemos en contenedor sub
-      if (item.sub) {
-        // crea sub si no existe al final
-        let sub = wrap.querySelector(".sub");
-        if (!sub) {
-          sub = document.createElement("div");
-          sub.className = "sub";
-          wrap.appendChild(sub);
-        }
-        sub.appendChild(a);
-      } else {
-        wrap.appendChild(a);
-      }
-    });
-
-    menuEl.appendChild(wrap);
+    list.appendChild(row);
   });
 }
 
-// ==== Buscador (solo en index.html) ====
-function setupSearch() {
+function wireSearch() {
   const input = document.getElementById("searchInput");
-  const list = document.getElementById("searchResults");
+  const list = document.getElementById("quickList");
   if (!input || !list) return;
 
-  const items = Array.from(list.querySelectorAll("li"));
-
   input.addEventListener("input", () => {
-    const q = input.value.trim().toLowerCase();
-    items.forEach(li => {
-      const text = li.innerText.toLowerCase();
-      li.style.display = text.includes(q) ? "" : "none";
+    const q = (input.value || "").trim().toLowerCase();
+
+    [...list.querySelectorAll(".quickitem")].forEach(el => {
+      const t = el.dataset.title || "";
+      const d = el.dataset.desc || "";
+      const ok = !q || t.includes(q) || d.includes(q);
+      el.style.display = ok ? "flex" : "none";
     });
   });
 }
 
-// ==== Menú móvil (hamburguesa) ====
-function setupMobileMenu(){
-  const btn = document.getElementById("btnMenu");
-  const sidebar = document.getElementById("sidebar");
-  if (!btn || !sidebar) return;
-
-  const close = () => {
-    sidebar.classList.remove("open");
-    btn.setAttribute("aria-expanded", "false");
-  };
-
-  btn.addEventListener("click", () => {
-    const open = sidebar.classList.toggle("open");
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-  });
-
-  // cierra al hacer click en un link
-  sidebar.addEventListener("click", (e) => {
-    if (e.target && e.target.tagName === "A") close();
-  });
-
-  // cierra con ESC
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
-  });
-}
-
+// Init
 buildMenu();
-setupSearch();
-setupMobileMenu();
+buildQuickList();
+wireSearch();
