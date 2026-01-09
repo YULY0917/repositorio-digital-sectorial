@@ -118,3 +118,45 @@ body{
     font-size: 30px;
   }
 }
+/* =========================
+   RESPONSIVE (CELULAR)
+========================= */
+@media (max-width: 768px) {
+
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+  }
+
+  .right {
+    display: none;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  main {
+    padding: 16px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
+
