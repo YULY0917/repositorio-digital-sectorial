@@ -1,27 +1,32 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Convenio de Adhesión</title>
-  <link rel="stylesheet" href="../assets/style.css">
+  <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body>
 
-<div class="shell">
-  <aside class="sidebar">
-    <a class="menu-link" href="../index.html">Inicio</a>
-    <a class="menu-link active" href="convenio.html">Convenio de Adhesión</a>
-    <a class="menu-link" href="anexos-tecnicos.html">Anexos Técnicos</a>
-    <a class="menu-link sub" href="anexos-provision-datos.html">Anexos de provisión de datos</a>
-    <a class="menu-link sub" href="anexos-consumo-datos.html">Anexos de consumo de datos</a>
-    <a class="menu-link" href="reglas-uso.html">Reglas de Uso</a>
+<header class="topbar">
+  <button class="burger" id="btnMenu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <div class="brand">Repositorio digital sectorial</div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <nav class="nav" id="menu"></nav>
   </aside>
 
   <main class="main">
-    <h1>Convenio de Adhesión</h1>
-    <p>Contenido del convenio.</p>
+    <div class="card">
+      <h1>Convenio de Adhesión</h1>
+      <p class="lead">Aquí irá el contenido del convenio y enlaces a documentos.</p>
+      <p class="muted">Luego agregamos la descarga de documentos (PDF) sin 404.</p>
+    </div>
   </main>
 </div>
 
+<script src="../assets/app.js"></script>
 </body>
 </html>
