@@ -4,22 +4,23 @@
   <meta charset="utf-8">
   <title>Convenio de Adhesión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/style.css?v=2">
+  <link rel="stylesheet" href="../assets/style.css?v=8">
 </head>
 <body>
 
 <header class="topbar">
-    <button class="burger" aria-label="Abrir menú" type="button">☰</button>
+  <button class="burger" type="button" aria-label="Abrir menú">☰</button>
+
   <div class="brand">
-    <div class="brand-logo">
-      <img src="../assets/img/Logo.png" alt="Logo Nodo L&P">
-    </div>
+    <img src="../assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
     <div class="brand-title">Repositorio Digital Sectorial</div>
   </div>
 
+  <div class="spacer"></div>
+
   <div class="searchwrap">
-    🔎
-    <input id="search" type="search" placeholder="Buscar (ej: convenio, anexos, reglas...)">
+    <span class="icon">🔎</span>
+    <input id="search" type="search" placeholder="Buscar (ej: convenio, anexos, reglas...)" />
   </div>
 </header>
 
@@ -40,11 +41,39 @@
   <main class="main">
     <section class="card">
       <h1>Convenio de Adhesión</h1>
-      <p>Contenido del convenio.</p>
+
+      <p>
+        En esta sección se encuentra disponible el documento oficial del Convenio de Adhesión
+        del Repositorio Digital Sectorial del Nodo Laboral y Previsional.
+      </p>
+
+      <div class="doc-box">
+        <p><strong>Documento oficial:</strong></p>
+
+        <a class="doc-link"
+           href="../docs/Convenio-Sectorial-Nodo.pdf"
+           target="_blank"
+           rel="noopener">
+          📄 Descargar Convenio de Adhesión (PDF)
+        </a>
+      </div>
+
+      <hr style="margin:28px 0;">
+
+      <h2>Vista previa del documento</h2>
+
+      <iframe
+        src="../docs/Convenio-Sectorial-Nodo.pdf"
+        width="100%"
+        height="760"
+        style="border:1px solid rgba(0,0,0,.15); border-radius:10px;"
+        title="Vista previa Convenio de Adhesión">
+      </iframe>
+
     </section>
   </main>
 </div>
 
-<script src="../assets/app.js"></script>
+<script src="../assets/app.js?v=8"></script>
 </body>
 </html>
