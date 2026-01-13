@@ -9,44 +9,40 @@
 <body>
 
 <header class="topbar">
-  <div class="brand">Repositorio digital sectorial</div>
+  <div class="brand">
+    <img src="assets/img/Logo.png" alt="Nodo L&P" class="brand-logo">
+    <span class="brand-title">Repositorio digital sectorial</span>
+  </div>
 
-  <div class="searchbar">
-    <div class="label">Buscar</div>
-    <div class="search">
-      🔎
-      <input id="searchInput" placeholder="Buscar (ej: convenio, anexos, reglas...)" />
-    </div>
+  <div class="search">
+    🔎
+    <input type="text" placeholder="Buscar (ej: convenio, anexos, reglas...)">
   </div>
 </header>
 
 <div class="shell">
-  <aside class="sidebar" id="menu"></aside>
+  <aside class="sidebar">
+    <nav>
+      <a class="active" href="index.html">Inicio</a>
+      <a href="paginas/convenio.html">Convenio de Adhesión</a>
+      <a href="paginas/anexos-tecnicos.html">Anexos Técnicos</a>
+      <a href="paginas/reglas-uso.html">Reglas de Uso</a>
+    </nav>
+  </aside>
 
   <main class="main">
-    <!-- BLOQUE PRINCIPAL DE INICIO -->
     <div class="card">
-      <h1 class="h1">Inicio</h1>
-
-      <!-- 👇 AQUÍ VA TU INTRODUCCIÓN -->
-      <p class="lead">
-        Este repositorio digital sectorial concentra la documentación asociada al
-        Convenio de Adhesión, Anexos Técnicos y Reglas de Uso del Nodo L&amp;P.
+      <h1>Inicio</h1>
+      <p>
+        Repositorio Digital Sectorial del Nodo Laboral y Previsional (L&amp;P).
       </p>
-
       <p class="muted">
-        Aquí podrás publicar, consultar y mantener actualizada la documentación oficial
-        asociada al intercambio y consumo de datos del sector.
+        Este espacio centraliza la documentación oficial asociada al convenio,
+        anexos técnicos y reglas de uso del repositorio.
       </p>
-
-      <!-- Puedes borrar o cambiar estos textos cuando quieras -->
     </div>
-
-    <!-- 👇 NO HAY MÁS SECCIONES EN INICIO -->
   </main>
 </div>
 
-<script src="assets/app.js"></script>
 </body>
 </html>
-
