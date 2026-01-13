@@ -22,34 +22,28 @@ body{
   gap:20px;
 }
 
+/* Contenedor marca (logo + título) */
 .brand{
   display:flex;
   align-items:center;
   gap:12px;
 }
 
-/* ====== LOGO MENÚ IZQUIERDO (sidebrand) ====== */
-.sidebrand-logo{
-  width: 56px;
-  height: 56px;
-  background: rgba(255,255,255,.10);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex: 0 0 auto;
+/* ✅ LOGO CUADRADO en TOPBAR (barra negra) */
+.brand img{
+  width:40px;
+  height:40px;
+  object-fit:contain;      /* no recorta */
+  display:block;
+  background:rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:6px;             /* “badge” bonito */
 }
 
-.sidebrand-logo img{
-  width: 90%;
-  height: 90%;
-  object-fit: contain; /* NO recorta */
-  display: block;
-}
-
+/* Título */
 .brand-title{
   font-weight:600;
+  white-space:nowrap;
 }
 
 /* ================= SEARCH ================= */
@@ -59,6 +53,9 @@ body{
   background:rgba(255,255,255,.12);
   padding:6px 12px;
   border-radius:999px;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 .searchwrap input{
@@ -81,6 +78,8 @@ body{
   background:#1e73be;
   padding:20px;
 }
+
+/* ================= MENÚ ================= */
 
 .menu{
   display:flex;
