@@ -7,9 +7,12 @@
 }
 
 :root{
-  --topbar-h: 92px;      /* ✅ altura suficiente para logo grande */
+  --topbar-h: 92px;
   --sidebar-w: 270px;
-  --logo-size: 82px;     /* ✅ logo grande */
+
+  /* ✅ LOGO horizontal: se controla por ALTURA */
+  --logo-h: 64px;
+  --logo-h-mobile: 52px;
 }
 
 body{
@@ -17,11 +20,11 @@ body{
   color:#0b1a33;
 }
 
-/* ================= TOPBAR ================= */
+/* ================= TOPBAR (BLANCA) ================= */
 .topbar{
   height:var(--topbar-h);
-  background:#fff;               /* ✅ blanco */
-  color:#000;                    /* ✅ texto negro */
+  background:#fff;
+  color:#000;
   display:flex;
   align-items:center;
   padding:0 18px;
@@ -34,12 +37,12 @@ body{
   border-bottom:1px solid rgba(0,0,0,.08);
 }
 
-/* hamburguesa (solo móvil) */
+/* ✅ hamburguesa: SOLO móvil */
 .burger{
-  display:none;                  /* desktop oculto */
+  display:none;
   border:none;
   background:transparent;
-  color:#000;                    /* ✅ negro */
+  color:#000;
   font-size:30px;
   line-height:1;
   cursor:pointer;
@@ -52,23 +55,18 @@ body{
   gap:14px;
 }
 
-/* ✅ LOGO TOPBAR (FIX DEFINITIVO) */
+/* ✅ FIX DEFINITIVO LOGO (HORIZONTAL, GRANDE) */
 .brand img{
-  width:var(--logo-size);
-  height:var(--logo-size);
+  height:var(--logo-h);
+  width:auto;               /* ✅ clave */
+  max-width:240px;          /* evita que se coma todo */
   object-fit:contain;
   display:block;
 
-  /* ✅ sin padding (el padding lo achica mucho) */
-  padding:0 !important;
-
-  /* ✅ fondo suave opcional */
-  background:rgba(0,0,0,.05);
-  border-radius:14px;
-
-  /* ✅ si tu PNG trae mucho margen blanco, esto lo aprovecha mejor */
-  transform:scale(1.22);
-  transform-origin:center;
+  /* ✅ sin fondo ni padding (para que se vea grande) */
+  background:transparent;
+  padding:0;
+  border-radius:0;
 }
 
 .brand-title,
@@ -76,7 +74,7 @@ body{
   font-weight:750;
   white-space:nowrap;
   font-size:18px;
-  color:#000;                    /* ✅ negro */
+  color:#000;
 }
 
 .spacer{ flex:1; }
@@ -84,7 +82,7 @@ body{
 /* ================= BUSCADOR ================= */
 .searchwrap{
   margin-left:auto;
-  background:rgba(0,0,0,.06);   /* ✅ gris claro en fondo blanco */
+  background:rgba(0,0,0,.06);
   padding:10px 14px;
   border-radius:999px;
   display:flex;
@@ -99,7 +97,7 @@ body{
   background:none;
   border:none;
   outline:none;
-  color:#000;                    /* ✅ negro */
+  color:#000;
   width:280px;
 }
 
@@ -113,7 +111,7 @@ body{
   min-height:calc(100vh - var(--topbar-h));
 }
 
-/* ================= SIDEBAR ================= */
+/* ================= SIDEBAR (IZQUIERDA, FIJA) ================= */
 .sidebar{
   width:var(--sidebar-w);
   background:#1e73be;
@@ -142,9 +140,7 @@ body{
   transition:background .15s ease;
 }
 
-.menu a:hover{
-  background:rgba(255,255,255,.15);
-}
+.menu a:hover{ background:rgba(255,255,255,.15); }
 
 .menu a.active{
   background:rgba(255,255,255,.25);
@@ -196,15 +192,14 @@ body{
 @media (max-width: 900px){
   :root{
     --topbar-h: 80px;
-    --logo-size: 64px;
-    --sidebar-w: 270px;
+    --logo-h: var(--logo-h-mobile);
   }
 
-  .burger{ display:inline-flex; } /* ✅ solo móvil */
+  .burger{ display:inline-flex; }
 
   .searchwrap input{ width:150px; }
 
-  /* off-canvas */
+  /* menú off-canvas */
   .sidebar{
     position:fixed;
     top:0;
@@ -215,13 +210,8 @@ body{
     transition:transform .2s ease;
   }
 
-  body.menu-open .sidebar{
-    transform:translateX(0);
-  }
-
-  body.menu-open .overlay{
-    display:block;
-  }
+  body.menu-open .sidebar{ transform:translateX(0); }
+  body.menu-open .overlay{ display:block; }
 
   .main{ padding:18px; }
 }
