@@ -1,39 +1,43 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Repositorio Digital Sectorial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ✅ En raíz NO va ../ -->
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
 <header class="topbar">
+  <button class="burger" type="button" aria-label="Abrir menú">☰</button>
+
   <div class="brand">
-    <img src="assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
+    <!-- ✅ Logo en assets/img/Logo.png -->
+    <img class="brand-logo" src="assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
     <div class="title">Repositorio Digital Sectorial</div>
   </div>
 
   <div class="spacer"></div>
 
   <div class="searchwrap">
-    <div class="label">Buscar</div>
-    <div class="searchpill">
-      <span class="icon">🔎</span>
-      <input id="search" type="search" placeholder="Buscar (ej: convenio, anexos, reglas...)" />
-    </div>
+    <span class="icon">🔎</span>
+    <input id="search" type="search" placeholder="Buscar (ej: convenio, anexos, reglas...)" />
   </div>
 </header>
+
+<div class="overlay"></div>
 
 <div class="shell">
   <aside class="sidebar">
     <nav class="menu">
-      <a href="/repositorio-digital-sectorial/index.html">Inicio</a>
-      <a href="/repositorio-digital-sectorial/paginas/convenio.html">Convenio de Adhesión</a>
-      <a href="/repositorio-digital-sectorial/paginas/anexos-tecnicos.html">Anexos Técnicos</a>
-      <a href="/repositorio-digital-sectorial/paginas/anexos-provision-datos.html">Anexos de provisión de datos</a>
-      <a href="/repositorio-digital-sectorial/paginas/anexos-consumo-datos.html">Anexos de consumo de datos</a>
-      <a href="/repositorio-digital-sectorial/paginas/reglas-uso.html">Reglas de Uso</a>
+      <a class="active" href="index.html">Inicio</a>
+      <a href="paginas/convenio.html">Convenio de Adhesión</a>
+      <a href="paginas/anexos-tecnicos.html">Anexos Técnicos</a>
+      <a class="sub" href="paginas/anexos-provision-datos.html">Anexos de Provisión de Datos</a>
+      <a class="sub" href="paginas/anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
+      <a href="paginas/reglas-uso.html">Reglas de Uso</a>
     </nav>
   </aside>
 
@@ -41,11 +45,12 @@
     <section class="card">
       <h1 class="h1">Inicio</h1>
       <p class="lead">Repositorio Digital Sectorial del Nodo Laboral y Previsional (L&amp;P).</p>
-      <!-- aquí puedes escribir tu introducción después -->
+      <p class="muted">Aquí luego podrás agregar una introducción a la wiki.</p>
     </section>
   </main>
 </div>
 
+<!-- ✅ En raíz NO va ../ -->
 <script src="assets/app.js"></script>
 </body>
 </html>
