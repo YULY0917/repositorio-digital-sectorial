@@ -1,40 +1,64 @@
-/* ===== Topbar ===== */
-.topbar{
-  position: sticky;
-  top:0;
-  z-index:50;
-  height: var(--topbar-h);
-  display:flex;
-  align-items:center;
-  gap:16px;
-  padding: 0 18px;
-
-  color:#fff;
-  background: linear-gradient(135deg, #061b2e, #0a2c4b 55%, #0b3a65);
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+/* Sidebar */
+.sidebar {
+  background: #1f76bf;
+  padding: 18px 14px;
+  color: #fff;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-width: 260px;
+.side-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
 }
 
-.brand img{
-  height:38px;
-  width:auto;
-  display:block;
-  border-radius:10px;
-  background:#fff;
-  padding:4px;
+.side-logo img{
+  width: 64px;
+  height: 64px;          /* cuadrado */
+  object-fit: cover;     /* recorta si el logo no es cuadrado */
+  border-radius: 10px;
+  background: rgba(255,255,255,.12);
+  padding: 6px;
 }
 
-.brand .title{
-  font-weight:800;
-  letter-spacing:.2px;
-  font-size:16px;
-  line-height:1.1;
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* (si quieres que NO salga el texto "Buscar" al lado del input, no lo uses en HTML) */
+.nav-item, .nav-sub {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+  padding: 12px 12px;
+  font-weight: 600;
+}
+
+.nav-sub {
+  margin-left: 14px;
+  padding-left: 12px;
+  font-weight: 600;
+  opacity: .95;
+  position: relative;
+}
+
+.nav-sub::before{
+  content:"";
+  position:absolute;
+  left:-10px;
+  top:10px;
+  bottom:10px;
+  width:2px;
+  background: rgba(255,255,255,.25);
+  border-radius:2px;
+}
+
+.nav-item:hover, .nav-sub:hover {
+  background: rgba(255,255,255,.14);
+}
+
+.nav-item.active, .nav-sub.active {
+  background: rgba(255,255,255,.18);
+}
