@@ -39,7 +39,7 @@ body{
 
 /* ✅ hamburguesa: SOLO móvil */
 .burger{
-  display:none;
+  display:none;                 /* desktop oculto */
   border:none;
   background:transparent;
   color:#000;
@@ -59,11 +59,10 @@ body{
 .brand img{
   height:var(--logo-h);
   width:auto;               /* ✅ clave */
-  max-width:240px;          /* evita que se coma todo */
+  max-width:260px;          /* evita que se coma todo */
   object-fit:contain;
   display:block;
 
-  /* ✅ sin fondo ni padding (para que se vea grande) */
   background:transparent;
   padding:0;
   border-radius:0;
@@ -77,6 +76,7 @@ body{
   color:#000;
 }
 
+/* empuja el buscador a la derecha */
 .spacer{ flex:1; }
 
 /* ================= BUSCADOR ================= */
@@ -140,78 +140,8 @@ body{
   transition:background .15s ease;
 }
 
-.menu a:hover{ background:rgba(255,255,255,.15); }
-
-.menu a.active{
-  background:rgba(255,255,255,.25);
-  font-weight:700;
+.menu a:hover{
+  background:rgba(255,255,255,.15);
 }
 
-/* ✅ Submenú Provisión/Consumo */
-.menu a.sub{
-  padding-left:40px;
-  font-size:.96em;
-  opacity:.95;
-  position:relative;
-}
-
-.menu a.sub::before{
-  content:"";
-  position:absolute;
-  left:20px;
-  top:10px;
-  bottom:10px;
-  width:2px;
-  background:rgba(255,255,255,.35);
-  border-radius:2px;
-}
-
-/* ================= CONTENIDO ================= */
-.main{
-  flex:1;
-  padding:24px;
-}
-
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:28px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-/* ================= OVERLAY (móvil) ================= */
-.overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  z-index:1200;
-}
-
-/* ================= RESPONSIVE (CELULAR) ================= */
-@media (max-width: 900px){
-  :root{
-    --topbar-h: 80px;
-    --logo-h: var(--logo-h-mobile);
-  }
-
-  .burger{ display:inline-flex; }
-
-  .searchwrap input{ width:150px; }
-
-  /* menú off-canvas */
-  .sidebar{
-    position:fixed;
-    top:0;
-    left:0;
-    height:100vh;
-    z-index:1300;
-    transform:translateX(-105%);
-    transition:transform .2s ease;
-  }
-
-  body.menu-open .sidebar{ transform:translateX(0); }
-  body.menu-open .overlay{ display:block; }
-
-  .main{ padding:18px; }
-}
+.me
