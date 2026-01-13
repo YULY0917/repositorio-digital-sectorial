@@ -29,19 +29,21 @@ body{
 }
 
 .brand-logo{
-  width:40px;
-  height:40px;
-  background:rgba(255,255,255,.08);
-  border-radius:8px;
+  width:56px;
+  height:56px;
+  background:rgba(255,255,255,.10);
+  border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
+  overflow:hidden; /* evita que se salga */
 }
 
 .brand-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+  width:90%;
+  height:90%;
+  object-fit:contain; /* muestra el logo completo */
+  display:block;
 }
 
 .brand-title{
