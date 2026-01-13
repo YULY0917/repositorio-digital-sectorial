@@ -33,13 +33,13 @@ body{
 
 /* ✅ LOGO MÁS PEQUEÑO (solo cambia tamaño) */
 .brand img{
-  width:24px;              /* <- antes 28/32 */
-  height:24px;             /* <- antes 28/32 */
+  width:42px;              /* <- antes 28/32 */
+  height:42px;             /* <- antes 28/32 */
   object-fit:contain;
   display:block;
   background:rgba(255,255,255,.12);
-  border-radius:6px;
-  padding:2px;
+  border-radius:8px;
+  padding:4px;
 }
 
 /* Título */
