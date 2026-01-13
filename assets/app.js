@@ -1,134 +1,106 @@
-// === MAPA DEL SITIO ===
-const SITE = [
-  { title: "Inicio", href: "/repositorio-digital-sectorial/index.html", id: "inicio", desc: "Página principal del repositorio." },
+(function () {
+  // Detecta si estamos dentro de /paginas/
+  const inPaginas = window.location.pathname.includes("/paginas/");
+  const base = inPaginas ? ".." : ".";
 
-  { title: "Convenio de Adhesión", href: "/repositorio-digital-sectorial/paginas/convenio.html", id: "convenio", desc: "Convenio de adhesión y antecedentes." },
+  // Elementos
+  const sidebar = document.getElementById("sidebar");
+  const search = document.getElementById("search");
+  const results = document.getElementById("searchResults");
 
-  {
-    title: "Anexos Técnicos",
-    href: "/repositorio-digital-sectorial/paginas/anexos-tecnicos.html",
-    id: "anexos-tecnicos",
-    desc: "Estructura y anexos técnicos del repositorio.",
-    children: [
-      { title: "Anexos de provisión de datos", href: "/repositorio-digital-sectorial/paginas/anexos-provision.html", id: "anexos-provision", desc: "Documentos para provisión de datos." },
-      { title: "Anexos de consumo de datos", href: "/repositorio-digital-sectorial/paginas/anexos-consumo.html", id: "anexos-consumo", desc: "Documentos para consumo de datos." },
-    ]
-  },
+  if (!sidebar) return;
 
-  { title: "Reglas de Uso", href: "/repositorio-digital-sectorial/paginas/reglas-uso.html", id: "reglas-uso", desc: "Reglas de uso del repositorio." },
-];
+  // Menú: EXACTAMENTE como lo quieres
+  const menuItems = [
+    { label: "Inicio", href: `${base}/index.html` },
+    { label: "Convenio de Adhesión", href: `${base}/paginas/convenio.html` },
+    {
+      label: "Anexos Técnicos",
+      href: `${base}/paginas/anexos-tecnicos.html`,
+      children: [
+        { label: "Anexos de Provisión de Datos", href: `${base}/paginas/anexos-provision.html` },
+        { label: "Anexos de Consumo de Datos", href: `${base}/paginas/anexos-consumo.html` },
+      ],
+    },
+    { label: "Reglas de Uso", href: `${base}/paginas/reglas-uso.html` },
+  ];
 
-// Detecta basePath de GitHub Pages (repo name)
-function getRepoBase() {
-  // Espera URLs tipo: https://usuario.github.io/repositorio-digital-sectorial/...
-  const parts = location.pathname.split("/").filter(Boolean);
-  if (parts.length >= 1) return "/" + parts[0]; // "/repositorio-digital-sectorial"
-  return "";
-}
+  // Render sidebar con LOGO + MENÚ (siempre)
+  sidebar.innerHTML = `
+    <div class="logoWrap">
+      <img src="${base}/assets/Logo.png" alt="Logo Nodo L&P" />
+      <div class="logoTitle">Repositorio Digital Sectorial</div>
+    </div>
+    <nav class="menu" id="menu"></nav>
+  `;
 
-function toHref(href) {
-  // hrefs en SITE vienen con /repositorio-digital-sectorial/...
-  // Si el repo cambia, lo ajusta automáticamente usando el base actual.
-  const base = getRepoBase();
-  const cleaned = href.replace(/^\/[^/]+/, base);
-  return cleaned;
-}
+  const menuEl = document.getElementById("menu");
 
-function currentPath() {
-  return location.pathname;
-}
+  // Helper: marca activo si coincide pathname
+  const current = window.location.pathname;
 
-function buildMenu() {
-  const menu = document.getElementById("menu");
-  if (!menu) return;
+  function isActive(href) {
+    // Compara solo el final de la ruta (para evitar problemas con github.io)
+    const a = href.split("/").pop();
+    const b = current.split("/").pop();
+    return a === b;
+  }
 
-  const path = currentPath();
-
-  const wrap = document.createElement("div");
-
-  SITE.forEach(item => {
+  // Construir menú
+  menuItems.forEach(item => {
     const a = document.createElement("a");
-    a.href = toHref(item.href);
-    a.textContent = item.title;
-
-    // activo
-    const isActive = path === new URL(a.href, location.origin).pathname;
-    if (isActive) a.classList.add("active");
-
-    wrap.appendChild(a);
+    a.href = item.href;
+    a.textContent = item.label;
+    if (isActive(item.href)) a.classList.add("active");
+    menuEl.appendChild(a);
 
     if (item.children && item.children.length) {
       const sub = document.createElement("div");
       sub.className = "sub";
-
       item.children.forEach(ch => {
-        const sa = document.createElement("a");
-        sa.href = toHref(ch.href);
-        sa.textContent = ch.title;
-
-        const subActive = path === new URL(sa.href, location.origin).pathname;
-        if (subActive) sa.classList.add("active");
-
-        sub.appendChild(sa);
+        const ca = document.createElement("a");
+        ca.href = ch.href;
+        ca.textContent = ch.label;
+        if (isActive(ch.href)) ca.classList.add("active");
+        sub.appendChild(ca);
       });
-
-      wrap.appendChild(sub);
+      menuEl.appendChild(sub);
     }
   });
 
-  menu.innerHTML = "";
-  menu.appendChild(wrap);
-}
-
-function buildQuickList() {
-  const list = document.getElementById("quickList");
-  if (!list) return;
-
-  const flat = [];
-  SITE.forEach(i => {
-    if (i.id !== "inicio") flat.push(i);
-    if (i.children) i.children.forEach(c => flat.push(c));
-  });
-
-  list.innerHTML = "";
-
-  flat.forEach(it => {
-    const row = document.createElement("a");
-    row.className = "quickitem";
-    row.href = toHref(it.href);
-    row.dataset.title = (it.title || "").toLowerCase();
-    row.dataset.desc = (it.desc || "").toLowerCase();
-
-    row.innerHTML = `
-      <div class="left">
-        <div class="title">${it.title}</div>
-        <div class="desc">${it.desc || ""}</div>
-      </div>
-      <div class="go">Abrir</div>
-    `;
-
-    list.appendChild(row);
-  });
-}
-
-function wireSearch() {
-  const input = document.getElementById("searchInput");
-  const list = document.getElementById("quickList");
-  if (!input || !list) return;
-
-  input.addEventListener("input", () => {
-    const q = (input.value || "").trim().toLowerCase();
-
-    [...list.querySelectorAll(".quickitem")].forEach(el => {
-      const t = el.dataset.title || "";
-      const d = el.dataset.desc || "";
-      const ok = !q || t.includes(q) || d.includes(q);
-      el.style.display = ok ? "flex" : "none";
+  // Buscador (solo si existe en la topbar)
+  if (search && results) {
+    // Crea lista plana de búsqueda
+    const flat = [];
+    menuItems.forEach(i => {
+      flat.push({ label: i.label, href: i.href });
+      (i.children || []).forEach(c => flat.push({ label: c.label, href: c.href }));
     });
-  });
-}
 
-// Init
-buildMenu();
-buildQuickList();
-wireSearch();
+    function render(list) {
+      results.innerHTML = "";
+      list.forEach(x => {
+        const row = document.createElement("div");
+        row.style.padding = "10px 12px";
+        row.style.borderTop = "1px solid #e5e7eb";
+        row.innerHTML = `<a href="${x.href}" style="text-decoration:none;color:#0f172a;font-weight:700">${x.label}</a>`;
+        results.appendChild(row);
+      });
+      results.style.display = list.length ? "block" : "none";
+    }
+
+    search.addEventListener("input", () => {
+      const q = search.value.trim().toLowerCase();
+      if (!q) return render([]);
+      const filtered = flat.filter(x => x.label.toLowerCase().includes(q));
+      render(filtered);
+    });
+
+    // Cierra resultados al hacer click fuera
+    document.addEventListener("click", (e) => {
+      if (!results.contains(e.target) && e.target !== search) {
+        results.style.display = "none";
+      }
+    });
+  }
+})();
