@@ -1,4 +1,5 @@
-/* ================= RESET GLOBAL ================= */
+/* ================= RESET ================= */
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -20,37 +21,31 @@ body{
   display:flex;
   align-items:center;
   padding:0 20px;
-  gap:16px;
+  gap:20px;
 }
 
-/* ===== FORZAR LOGO EN TOPBAR (NO IMPORTA EL HTML) ===== */
-.topbar img{
-  width:26px !important;
-  height:26px !important;
-  max-width:26px !important;
-  max-height:26px !important;
-  object-fit:contain !important;
-  display:block !important;
-  background:rgba(255,255,255,.12) !important;
-  border-radius:6px !important;
-  padding:3px !important;
-}
-
-/* Contenedor marca */
+/* Marca (logo + título) */
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
-  min-width:0;
+  gap:12px;
 }
 
-/* Título (funciona con .title o .brand-title) */
-.brand-title,
-.brand .title{
+/* ✅ LOGO MÁS PEQUEÑO (solo cambia tamaño) */
+.brand img{
+  width:24px;              /* <- antes 28/32 */
+  height:24px;             /* <- antes 28/32 */
+  object-fit:contain;
+  display:block;
+  background:rgba(255,255,255,.12);
+  border-radius:6px;
+  padding:2px;
+}
+
+/* Título */
+.brand-title{
   font-weight:600;
   white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 
 /* ================= BUSCADOR ================= */
@@ -70,7 +65,7 @@ body{
   border:none;
   outline:none;
   color:#fff;
-  width:240px;
+  width:260px;
 }
 
 .searchwrap input::placeholder{
@@ -94,14 +89,39 @@ body{
   flex-direction:column;
 }
 
-/* ===== FORZAR LOGO EN SIDEBAR ===== */
-.sidebar img{
-  max-width:44px !important;
-  max-height:44px !important;
-  width:auto !important;
-  height:auto !important;
-  object-fit:contain !important;
-  display:block !important;
+/* ===== Logo dentro del menú izquierdo ===== */
+
+.sidebrand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.sidebrand-logo{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:rgba(255,255,255,.12);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+
+.sidebrand-logo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.sidebrand-title{
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  line-height:1.2;
 }
 
 /* ================= MENÚ ================= */
@@ -118,7 +138,6 @@ body{
   padding:10px 14px;
   border-radius:8px;
   transition:background .15s ease;
-  display:block;
 }
 
 .menu a:hover{
@@ -130,10 +149,11 @@ body{
   font-weight:600;
 }
 
+/* Subniveles */
 .menu a.sub{
   padding-left:32px;
   font-size:.95em;
-  opacity:.95;
+  opacity:.9;
 }
 
 /* ================= CONTENIDO ================= */
@@ -150,34 +170,26 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-.h1{
-  font-size:28px;
-  margin-bottom:8px;
+/* ================= OCULTAR HAMBURGUESA (solo esto) ================= */
+
+/* Si el botón tiene class="burger" */
+.burger{
+  display:none !important;
 }
 
-.lead{
-  color:#4a5b78;
-}
-
-/* ================= OCULTAR HAMBURGUESA (SIN EXCEPCIONES) ================= */
-
-.burger,
-button,
-.topbar button,
-.topbar [aria-label],
-.topbar [class*="burger"],
-.topbar [aria-label*="men"],
-.topbar [aria-label*="Men"]{
+/* Si el botón NO tiene clase, pero está en la topbar */
+.topbar button{
   display:none !important;
 }
 
 /* ================= RESPONSIVE ================= */
 
-@media (max-width:900px){
+@media (max-width: 900px){
   .sidebar{
     width:220px;
   }
+
   .searchwrap input{
-    width:160px;
+    width:180px;
   }
 }
