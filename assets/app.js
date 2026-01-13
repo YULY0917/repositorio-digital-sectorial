@@ -1,77 +1,48 @@
-/* assets/app.js
-   - Construye el menú izquierdo (sidebar) con rutas absolutas (evita 404).
-   - Marca como "active" el link de la página actual.
-   - (Opcional) Buscador: filtra links del menú si existe #search en la topbar.
-*/
-
 (function () {
-  // Cambia esto SOLO si tu repo tiene otro nombre
-  const BASE = "/repositorio-digital-sectorial";
+  const burger = document.querySelector(".burger");
+  const overlay = document.querySelector(".overlay");
+  const search = document.getElementById("search");
 
-  const MENU = [
-    { type: "item", label: "Inicio", href: `${BASE}/index.html` },
+  // Abrir/cerrar menú en móvil
+  function openMenu() { document.body.classList.add("menu-open"); }
+  function closeMenu(){ document.body.classList.remove("menu-open"); }
 
-    { type: "item", label: "Convenio de Adhesión", href: `${BASE}/paginas/convenio.html` },
+  if (burger) burger.addEventListener("click", () => {
+    document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
+  });
+  if (overlay) overlay.addEventListener("click", closeMenu);
 
-    { type: "item", label: "Anexos Técnicos", href: `${BASE}/paginas/anexos-tecnicos.html` },
-    { type: "sub",  label: "Anexos de provisión de datos", href: `${BASE}/paginas/anexos-provision-datos.html` },
-    { type: "sub",  label: "Anexos de consumo de datos",   href: `${BASE}/paginas/anexos-consumo-datos.html` },
-
-    { type: "item", label: "Reglas de Uso", href: `${BASE}/paginas/reglas-uso.html` },
-  ];
-
-  function buildMenuHTML() {
-    return `
-      <div class="side-head">
-        <div class="side-logo">
-          <img src="${BASE}/assets/img/Logo.png" alt="Nodo Laboral y Previsional">
-        </div>
-      </div>
-
-      <nav class="nav">
-        ${MENU.map(m => {
-          const cls = m.type === "sub" ? "nav-sub" : "nav-item";
-          return `<a class="${cls}" href="${m.href}">${m.label}</a>`;
-        }).join("")}
-      </nav>
-    `;
-  }
-
+  // Marcar link activo según URL
   function markActiveLinks() {
-    const current = window.location.pathname;
-    document.querySelectorAll(".nav a").forEach(a => {
-      // active exact match o match con /index.html cuando estás en /
-      const href = a.getAttribute("href");
-      if (!href) return;
-
-      const same =
-        current === href ||
-        (current.endsWith("/") && href.endsWith("/index.html")) ||
-        (current.endsWith("/index.html") && href.endsWith("/index.html"));
-
-      if (same) a.classList.add("active");
+    const path = location.pathname.split("/").pop(); // ej: reglas-uso.html
+    document.querySelectorAll(".menu a").forEach(a => {
+      const href = (a.getAttribute("href") || "").split("/").pop();
+      if (href && href === path) a.classList.add("active");
+      // caso index (cuando estás en /index.html o /)
+      if (!path && href === "index.html") a.classList.add("active");
     });
   }
 
+  // Buscador: filtra links del menú por texto y data-keywords
   function setupSearch() {
-    const input = document.getElementById("search");
-    if (!input) return;
+    if (!search) return;
 
-    input.addEventListener("input", () => {
-      const q = input.value.trim().toLowerCase();
-      document.querySelectorAll(".nav a").forEach(a => {
-        const text = a.textContent.toLowerCase();
-        a.style.display = text.includes(q) ? "" : "none";
+    const links = Array.from(document.querySelectorAll(".menu a"));
+    const norm = (s) => (s || "")
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+
+    search.addEventListener("input", () => {
+      const q = norm(search.value.trim());
+      links.forEach(a => {
+        const text = norm(a.textContent);
+        const kw = norm(a.getAttribute("data-keywords"));
+        const show = !q || text.includes(q) || kw.includes(q);
+        a.style.display = show ? "" : "none";
       });
     });
   }
 
-  // --- Render ---
-  const menuEl = document.getElementById("menu");
-  if (menuEl) {
-    menuEl.innerHTML = buildMenuHTML();
-    markActiveLinks();
-  }
-
+  markActiveLinks();
   setupSearch();
 })();
