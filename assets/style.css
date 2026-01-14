@@ -64,6 +64,7 @@ body{
   background:#f1f4f9;
   padding:6px 10px;
   border-radius:20px;
+  position:relative; /* para panel de resultados */
 }
 
 .searchwrap input{
@@ -111,7 +112,7 @@ body{
   font-weight:700;
 }
 
-/* subniveles */
+/* subniveles (blindado) */
 .menu a.sub{
   padding-left:36px !important;
   font-size:13.5px;
@@ -160,50 +161,12 @@ h1{
 }
 
 /* =========================================================
-   TABLAS
-========================================================= */
-.table-wrap{
-  overflow-x:auto;
-}
-
-.table{
-  width:100%;
-  border-collapse:separate;
-  border-spacing:0;
-}
-
-.table thead th{
-  background:#f3f6fb;
-  padding:14px 12px;
-  font-size:13px;
-  text-transform:uppercase;
-  border-bottom:1px solid rgba(0,0,0,.12);
-}
-
-.table tbody td{
-  padding:14px 12px;
-  border-bottom:1px solid rgba(0,0,0,.08);
-  vertical-align:middle;
-}
-
-.table tbody tr:last-child td{
-  border-bottom:none;
-}
-
-.cell-center{
-  text-align:center;
-}
-
-.oae-name{
-  font-weight:600;
-}
-
-/* =========================================================
    BOTONES
 ========================================================= */
 .btn{
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:6px;
   padding:8px 14px;
   border-radius:12px;
@@ -296,11 +259,118 @@ h1{
 }
 
 /* =========================================================
+   TABLAS - FIX FINAL (ESTABILIZA TODO)
+========================================================= */
+.table-wrap{
+  margin-top:18px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed; /* 🔒 clave para que no “salten” */
+}
+
+.table thead th{
+  background:#f3f6fb;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(0,0,0,.10);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+}
+
+.table tbody td{
+  padding:16px 16px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  vertical-align:middle;
+}
+
+.table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+/* OAEs (4 columnas) */
+.table-oaes{
+  min-width:980px;
+}
+
+.table-oaes thead th:nth-child(1),
+.table-oaes tbody td:nth-child(1){
+  text-align:left;
+  width:52%;
+}
+
+.table-oaes thead th:nth-child(2),
+.table-oaes tbody td:nth-child(2){
+  text-align:center;
+  width:16%;
+}
+
+.table-oaes thead th:nth-child(3),
+.table-oaes tbody td:nth-child(3){
+  text-align:center;
+  width:16%;
+}
+
+.table-oaes thead th:nth-child(4),
+.table-oaes tbody td:nth-child(4){
+  text-align:center;
+  width:16%;
+}
+
+.oae-name{
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+/* Convenio/Reglas (2 columnas) */
+.table-convenio thead th:nth-child(1),
+.table-convenio tbody td:nth-child(1){
+  text-align:left;
+  width:70%;
+}
+
+.table-convenio thead th:nth-child(2),
+.table-convenio tbody td:nth-child(2){
+  text-align:center;
+  width:30%;
+}
+
+/* =========================================================
+   ANEXOS TÉCNICOS (bloques bonitos)
+========================================================= */
+.anexo-item{
+  margin-top:16px;
+  padding:16px 18px;
+  background:#f3f6fb;
+  border-left:4px solid #1e73be;
+  border-radius:10px;
+}
+
+.anexo-label{
+  display:inline-block;
+  font-weight:700;
+  font-size:14px;
+  color:#1e73be;
+  margin-bottom:6px;
+}
+
+.anexo-desc{
+  margin-top:6px;
+  font-size:14.5px;
+  line-height:1.5;
+  color:#0b1a33;
+}
+
+/* =========================================================
    OVERLAY + MOBILE
 ========================================================= */
-.overlay{
-  display:none;
-}
+.overlay{ display:none; }
 
 body.menu-open .overlay{
   display:block;
@@ -326,15 +396,14 @@ body.menu-open .overlay{
     left:0;
   }
 
-  .shell{
-    flex-direction:column;
-  }
+  .main{ padding:16px; }
 
-  .main{
-    padding:16px;
-  }
+  .searchwrap input{ width:140px; }
 
-  .searchwrap input{
-    width:140px;
+  /* tablas: scroll horizontal en móvil */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
   }
+  .table{ min-width:720px; }
 }
