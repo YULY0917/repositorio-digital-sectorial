@@ -1,74 +1,358 @@
-/* ================= FIX SOLO PARA TABLA DE CONVENIO ================= */
-/* (Evita centrado/morado por estilos externos) */
-
-.card .table-wrap{
-  margin-top:18px !important;
-  border:1px solid rgba(0,0,0,.10) !important;
-  border-radius:12px !important;
-  overflow:hidden !important;
-  background:#fff !important;
+/* ================= RESET ================= */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:system-ui, Arial, sans-serif;
 }
 
-.card table.table{
-  width:100% !important;
-  border-collapse:collapse !important;
-  text-align:left !important;
+/* ================= VARIABLES ================= */
+:root{
+  --topbar-h: 92px;
+  --sidebar-w: 270px;
+  --logo-h: 64px;
+  --logo-h-mobile: 52px;
 }
 
-.card table.table thead th{
-  text-align:left !important;
-  font-weight:700 !important;
-  padding:14px 16px !important;
-  background:#f3f6fb !important;
-  border-bottom:1px solid rgba(0,0,0,.08) !important;
-  font-size:14px !important;
+/* ================= BASE ================= */
+body{
+  background:#f2f5f8;
+  color:#0b1a33;
 }
 
-.card table.table tbody td{
-  text-align:left !important;
-  padding:14px 16px !important;
-  border-bottom:1px solid rgba(0,0,0,.06) !important;
-  font-size:14px !important;
-  vertical-align:middle !important;
+/* ================= TOPBAR ================= */
+.topbar{
+  height:var(--topbar-h);
+  background:#fff;
+  color:#000;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  gap:16px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:1px solid rgba(0,0,0,.08);
 }
 
-.card table.table tbody tr:last-child td{
-  border-bottom:none !important;
+/* Hamburguesa (solo móvil) */
+.burger{
+  display:none;
+  border:none;
+  background:transparent;
+  color:#000;
+  font-size:30px;
+  line-height:1;
+  cursor:pointer;
 }
 
-/* Columna acción a la derecha */
-.card .td-actions{
-  text-align:right !important;
-  white-space:nowrap !important;
+/* Marca */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
-/* Encabezado en 2 filas (Acción arriba / Documento abajo) */
-.card .thead-2rows th{
-  background:#f3f6fb !important;
-  border-bottom:1px solid rgba(0,0,0,.08) !important;
-  font-weight:700 !important;
-  font-size:14px !important;
-  padding:10px 16px !important;
+.brand img{
+  height:var(--logo-h);
+  width:auto;
+  max-width:260px;
+  object-fit:contain;
+  display:block;
 }
 
-.card .th-empty{ color:transparent !important; }
-.card .th-action{ text-align:right !important; }
-.card .th-doc{ text-align:left !important; }
-
-/* Botón (evita link morado/subrayado) */
-.card a.btn{
-  display:inline-block !important;
-  padding:10px 14px !important;
-  border-radius:8px !important;
-  text-decoration:none !important;
-  font-weight:650 !important;
-  border:1px solid rgba(0,0,0,.10) !important;
-  background:#fff !important;
-  color:#0b1a33 !important;
+.brand-title{
+  font-weight:750;
+  font-size:18px;
+  white-space:nowrap;
+  color:#000;
 }
 
-.card a.btn-primary{
-  background:#1e73be !important;
-  border-color:#1e73be !important;
-  color:#fff !important;
+.spacer{ flex:1; }
+
+/* ================= BUSCADOR ================= */
+.searchwrap{
+  margin-left:auto;
+  background:rgba(0,0,0,.06);
+  padding:10px 14px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid rgba(0,0,0,.10);
+}
+
+.searchwrap .icon{ line-height:1; }
+
+.searchwrap input{
+  background:none;
+  border:none;
+  outline:none;
+  color:#000;
+  width:280px;
+}
+
+.searchwrap input::placeholder{
+  color:rgba(0,0,0,.55);
+}
+
+/* ================= LAYOUT ================= */
+.shell{
+  display:flex;
+  min-height:calc(100vh - var(--topbar-h));
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar{
+  width:var(--sidebar-w);
+  background:#1e73be;
+  padding:18px 16px;
+  display:flex;
+  flex-direction:column;
+
+  position:sticky;
+  top:var(--topbar-h);
+  height:calc(100vh - var(--topbar-h));
+  overflow:auto;
+}
+
+/* ================= MENÚ ================= */
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.menu a{
+  color:#fff;
+  text-decoration:none;
+  padding:11px 14px;
+  border-radius:10px;
+  transition:background .15s ease;
+}
+
+.menu a:hover{
+  background:rgba(255,255,255,.15);
+}
+
+.menu a.active{
+  background:rgba(255,255,255,.25);
+  font-weight:700;
+}
+
+/* Submenú */
+.menu a.sub{
+  padding-left:40px;
+  font-size:.96em;
+  opacity:.95;
+  position:relative;
+}
+
+.menu a.sub::before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:10px;
+  bottom:10px;
+  width:2px;
+  background:rgba(255,255,255,.35);
+  border-radius:2px;
+}
+
+/* ================= CONTENIDO ================= */
+.main{
+  flex:1;
+  padding:24px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:28px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Espacio título */
+.card h1{
+  margin-bottom:18px;
+}
+
+/* Texto introductorio */
+.intro-text{
+  margin-bottom:26px;
+  font-size:15px;
+  line-height:1.6;
+}
+
+/* ================= BOTONES ================= */
+.btn{
+  display:inline-block;
+  padding:10px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:650;
+  border:1px solid rgba(0,0,0,.10);
+  background:#fff;
+  color:#0b1a33;
+  transition:filter .15s ease;
+}
+
+.btn:hover{ filter:brightness(.97); }
+
+.btn-primary{
+  background:#1e73be;
+  border-color:#1e73be;
+  color:#fff;
+}
+
+.btn-primary:hover{ filter:brightness(.95); }
+
+/* ================= TABLA NORMAL ================= */
+.table-wrap{
+  margin-top:18px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table thead th{
+  text-align:left;
+  font-weight:700;
+  padding:14px 16px;
+  background:#f3f6fb;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  font-size:14px;
+}
+
+.table tbody td{
+  padding:14px 16px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  font-size:14px;
+  vertical-align:middle;
+}
+
+.table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+.td-actions{
+  text-align:right;
+  white-space:nowrap;
+}
+
+/* ===== THEAD en 2 filas (Acción arriba / Documento abajo) ===== */
+.thead-2rows th{
+  background:#f3f6fb;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  font-weight:700;
+  font-size:14px;
+}
+
+.thead-2rows tr:first-child th,
+.thead-2rows tr:last-child th{
+  padding:10px 16px;
+}
+
+.th-empty{ color:transparent; }
+.th-action{ text-align:right; }
+.th-doc{ text-align:left; }
+
+/* ================= TABLA MATRIZ (ANEXOS) ================= */
+.matrix-wrap{
+  margin-top:18px;
+  overflow-x:auto;
+}
+
+.matrix{
+  width:100%;
+  min-width:980px;
+  border-collapse:collapse;
+  background:#fff;
+  border:3px solid #000;
+}
+
+.matrix th,
+.matrix td{
+  border:2px solid #000;
+  padding:14px 12px;
+  font-size:12px;
+  vertical-align:middle;
+}
+
+.matrix thead th{
+  text-align:center;
+  font-weight:700;
+  background:#fff;
+}
+
+.matrix-lefthead{ width:280px; }
+
+.matrix-rowhead{
+  width:280px;
+  text-align:left;
+  font-weight:700;
+}
+
+.matrix tbody th,
+.matrix tbody td{
+  height:70px;
+}
+
+.matrix a{
+  display:inline-block;
+  padding:8px 10px;
+  border:2px solid #000;
+  border-radius:6px;
+  text-decoration:none;
+  font-weight:700;
+  color:#000;
+}
+
+/* ================= OVERLAY (móvil) ================= */
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:1200;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px){
+  :root{
+    --topbar-h: 80px;
+    --logo-h: var(--logo-h-mobile);
+  }
+
+  .burger{ display:inline-flex; }
+  .searchwrap input{ width:150px; }
+
+  .sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100vh;
+    z-index:1300;
+    transform:translateX(-105%);
+    transition:transform .2s ease;
+  }
+
+  body.menu-open .sidebar{ transform:translateX(0); }
+  body.menu-open .overlay{ display:block; }
+
+  .main{ padding:18px; }
+
+  /* Tabla normal en móvil */
+  .table thead{ display:none; }
+  .table, .table tbody, .table tr, .table td{ display:block; width:100%; }
+  .table tbody tr{ border-bottom:1px solid rgba(0,0,0,.08); padding:10px 0; }
+  .table tbody td{ border-bottom:none; padding:10px 14px; }
+  .td-actions{ text-align:left; padding-top:0; }
 }
