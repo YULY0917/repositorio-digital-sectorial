@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const burger = document.getElementById("burger");
-  const overlay = document.getElementById("overlay");
+  const burger = document.querySelector(".burger");
+  const overlay = document.querySelector(".overlay");
 
   const closeMenu = () => document.body.classList.remove("menu-open");
 
