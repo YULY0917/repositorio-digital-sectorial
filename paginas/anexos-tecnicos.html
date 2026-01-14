@@ -1,76 +1,105 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Anexos Técnicos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../assets/style.css?v=96000" />
+  <link rel="stylesheet" href="../assets/style.css?v=97000">
 </head>
 <body>
 
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <button class="burger" type="button" aria-label="Abrir menú">☰</button>
+<!-- ================= TOPBAR ================= -->
+<header class="topbar">
+  <button class="burger" type="button" aria-label="Abrir menú">☰</button>
 
-    <div class="brand">
-      <img src="../assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional" />
-      <div class="brand-title">Repositorio Digital Sectorial</div>
-    </div>
-
-    <div class="spacer"></div>
-
-    <div class="searchwrap">
-      <span>🔎</span>
-      <input id="search" type="search" placeholder="Buscar (ej: suseso, anexo 1, reglas...)" />
-    </div>
-  </header>
-
-  <!-- overlay para móvil -->
-  <div class="overlay"></div>
-
-  <div class="shell">
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <nav class="menu">
-        <a href="../index.html">Inicio</a>
-        <a href="convenio.html">Convenio de Adhesión</a>
-        <a class="active" href="anexos-tecnicos.html">Anexos Técnicos</a>
-
-        <a class="sub" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
-        <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
-
-        <a href="reglas-uso.html">Reglas de Uso</a>
-      </nav>
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main">
-      <section class="card">
-        <h1>Anexos Técnicos</h1>
-
-        <p class="intro-text">
-          En esta sección se encuentran los Anexos Técnicos correspondientes al
-          Convenio de Adhesión del Nodo Laboral y Previsional.
-        </p>
-
-        <!-- ✅ BLOQUE ORDENADO (bonito) -->
-        <div class="anexo-item">
-          <span class="anexo-label">Anexo 1</span>
-          <p class="anexo-desc">
-            Incorporación a la Plataforma de Interoperabilidad del Sector Trabajo y
-            Previsión Social en calidad de Proveedor de Datos (alta proveedor).
-          </p>
-        </div>
-
-      </section>
-    </main>
-
+  <div class="brand">
+    <img src="../assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
+    <div class="brand-title">Repositorio Digital Sectorial</div>
   </div>
 
-  <!-- JS -->
-  <script src="../assets/app.js?v=96000"></script>
+  <div class="spacer"></div>
+
+  <div class="searchwrap">
+    <span>🔎</span>
+    <input id="search" type="search" placeholder="Buscar (ej: suseso, anexo 1, reglas...)">
+  </div>
+</header>
+
+<div class="overlay"></div>
+
+<!-- ================= LAYOUT ================= -->
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar">
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="convenio.html">Convenio de Adhesión</a>
+      <a class="active" href="anexos-tecnicos.html">Anexos Técnicos</a>
+
+      <a class="sub" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
+      <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
+
+      <a href="reglas-uso.html">Reglas de Uso</a>
+    </nav>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main">
+    <section class="card">
+
+      <h1>Anexos Técnicos</h1>
+
+      <p class="intro-text">
+        En esta sección se encuentran los Anexos Técnicos correspondientes al
+        Convenio de Adhesión del Nodo Laboral y Previsional.
+      </p>
+
+      <!-- ================= ANEXOS ================= -->
+
+      <div class="anexo-item">
+        <span class="anexo-label">Anexo 1</span>
+        <p class="anexo-desc">
+          Incorporación a la Plataforma de Interoperabilidad del Sector Trabajo y
+          Previsión Social en calidad de Proveedor de Datos (alta proveedor).
+        </p>
+      </div>
+
+      <div class="anexo-item">
+        <span class="anexo-label">Anexo 2</span>
+        <p class="anexo-desc">
+          Datos Habilitados por Proveedor, que considera las autorizaciones,
+          condiciones y restricciones para la provisión de información.
+        </p>
+      </div>
+
+      <div class="anexo-item">
+        <span class="anexo-label">Anexo 3</span>
+        <p class="anexo-desc">
+          Solicitud de Consumo de Datos, que define el procedimiento y los
+          requerimientos necesarios para el acceso a la información disponible.
+        </p>
+      </div>
+
+      <div class="anexo-item">
+        <span class="anexo-label">Anexo 4</span>
+        <p class="anexo-desc">
+          Datos Disponibles para Consumidor, que describe los conjuntos de datos
+          accesibles y sus características generales.
+        </p>
+      </div>
+
+      <!-- ================= FIN ANEXOS ================= -->
+
+    </section>
+  </main>
+
+</div>
+
+<!-- ================= JS ================= -->
+<script src="../assets/app.js?v=97000"></script>
 </body>
 </html>
+
