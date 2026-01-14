@@ -29,7 +29,6 @@ body{
   align-items:center;
   padding:0 18px;
   gap:16px;
-
   position:sticky;
   top:0;
   z-index:1000;
@@ -43,7 +42,6 @@ body{
   background:transparent;
   color:#000;
   font-size:30px;
-  line-height:1;
   cursor:pointer;
 }
 
@@ -93,10 +91,6 @@ body{
   width:280px;
 }
 
-.searchwrap input::placeholder{
-  color:rgba(0,0,0,.55);
-}
-
 /* ================= LAYOUT ================= */
 .shell{
   display:flex;
@@ -108,9 +102,6 @@ body{
   width:var(--sidebar-w);
   background:#1e73be;
   padding:18px 16px;
-  display:flex;
-  flex-direction:column;
-
   position:sticky;
   top:var(--topbar-h);
   height:calc(100vh - var(--topbar-h));
@@ -144,8 +135,6 @@ body{
 /* Submenú */
 .menu a.sub{
   padding-left:40px;
-  font-size:.96em;
-  opacity:.95;
   position:relative;
 }
 
@@ -157,7 +146,6 @@ body{
   bottom:10px;
   width:2px;
   background:rgba(255,255,255,.35);
-  border-radius:2px;
 }
 
 /* ================= CONTENIDO ================= */
@@ -173,12 +161,10 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-/* Espacio título */
 .card h1{
   margin-bottom:18px;
 }
 
-/* Texto introductorio */
 .intro-text{
   margin-bottom:26px;
   font-size:15px;
@@ -195,10 +181,7 @@ body{
   border:1px solid rgba(0,0,0,.10);
   background:#fff;
   color:#0b1a33;
-  transition:filter .15s ease;
 }
-
-.btn:hover{ filter:brightness(.97); }
 
 .btn-primary{
   background:#1e73be;
@@ -206,9 +189,7 @@ body{
   color:#fff;
 }
 
-.btn-primary:hover{ filter:brightness(.95); }
-
-/* ================= TABLA NORMAL ================= */
+/* ================= TABLA (FORMATO CONVENIO / ANEXOS) ================= */
 .table-wrap{
   margin-top:18px;
   border:1px solid rgba(0,0,0,.10);
@@ -223,18 +204,18 @@ body{
 }
 
 .table thead th{
-  text-align:left;
-  font-weight:700;
-  padding:14px 16px;
   background:#f3f6fb;
-  border-bottom:1px solid rgba(0,0,0,.08);
+  padding:14px 16px;
+  font-weight:700;
   font-size:14px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  text-align:left;
 }
 
 .table tbody td{
   padding:14px 16px;
-  border-bottom:1px solid rgba(0,0,0,.06);
   font-size:14px;
+  border-bottom:1px solid rgba(0,0,0,.06);
   vertical-align:middle;
 }
 
@@ -247,12 +228,9 @@ body{
   white-space:nowrap;
 }
 
-/* ===== THEAD en 2 filas (Acción arriba / Documento abajo) ===== */
+/* Encabezado en 2 filas (Acción arriba / Documento abajo) */
 .thead-2rows th{
   background:#f3f6fb;
-  border-bottom:1px solid rgba(0,0,0,.08);
-  font-weight:700;
-  font-size:14px;
 }
 
 .thead-2rows tr:first-child th,
@@ -264,58 +242,7 @@ body{
 .th-action{ text-align:right; }
 .th-doc{ text-align:left; }
 
-/* ================= TABLA MATRIZ (ANEXOS) ================= */
-.matrix-wrap{
-  margin-top:18px;
-  overflow-x:auto;
-}
-
-.matrix{
-  width:100%;
-  min-width:980px;
-  border-collapse:collapse;
-  background:#fff;
-  border:3px solid #000;
-}
-
-.matrix th,
-.matrix td{
-  border:2px solid #000;
-  padding:14px 12px;
-  font-size:12px;
-  vertical-align:middle;
-}
-
-.matrix thead th{
-  text-align:center;
-  font-weight:700;
-  background:#fff;
-}
-
-.matrix-lefthead{ width:280px; }
-
-.matrix-rowhead{
-  width:280px;
-  text-align:left;
-  font-weight:700;
-}
-
-.matrix tbody th,
-.matrix tbody td{
-  height:70px;
-}
-
-.matrix a{
-  display:inline-block;
-  padding:8px 10px;
-  border:2px solid #000;
-  border-radius:6px;
-  text-decoration:none;
-  font-weight:700;
-  color:#000;
-}
-
-/* ================= OVERLAY (móvil) ================= */
+/* ================= OVERLAY (MÓVIL) ================= */
 .overlay{
   display:none;
   position:fixed;
@@ -339,9 +266,9 @@ body{
     top:0;
     left:0;
     height:100vh;
-    z-index:1300;
     transform:translateX(-105%);
     transition:transform .2s ease;
+    z-index:1300;
   }
 
   body.menu-open .sidebar{ transform:translateX(0); }
@@ -349,10 +276,22 @@ body{
 
   .main{ padding:18px; }
 
-  /* Tabla normal en móvil */
+  /* Tabla en móvil */
   .table thead{ display:none; }
-  .table, .table tbody, .table tr, .table td{ display:block; width:100%; }
-  .table tbody tr{ border-bottom:1px solid rgba(0,0,0,.08); padding:10px 0; }
-  .table tbody td{ border-bottom:none; padding:10px 14px; }
-  .td-actions{ text-align:left; padding-top:0; }
+  .table, .table tbody, .table tr, .table td{
+    display:block;
+    width:100%;
+  }
+  .table tbody tr{
+    padding:10px 0;
+    border-bottom:1px solid rgba(0,0,0,.08);
+  }
+  .table tbody td{
+    border-bottom:none;
+    padding:10px 14px;
+  }
+  .td-actions{
+    text-align:left;
+    padding-top:0;
+  }
 }
