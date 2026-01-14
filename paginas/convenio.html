@@ -6,11 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS (ruta correcta desde /paginas/) -->
-  <link rel="stylesheet" href="../assets/style.css?v=21000">
+  <link rel="stylesheet" href="../assets/style.css?v=22000">
 </head>
 <body>
 
-<!-- ================= TOPBAR ================= -->
 <header class="topbar">
   <button class="burger" type="button" aria-label="Abrir menú">☰</button>
 
@@ -29,10 +28,8 @@
 
 <div class="overlay"></div>
 
-<!-- ================= LAYOUT ================= -->
 <div class="shell">
 
-  <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar">
     <nav class="menu">
       <a href="../index.html">Inicio</a>
@@ -44,7 +41,6 @@
     </nav>
   </aside>
 
-  <!-- ================= CONTENIDO ================= -->
   <main class="main">
     <section class="card">
 
@@ -55,26 +51,26 @@
         del Nodo Laboral y Previsional.
       </p>
 
-      <!-- ================= TABLA CONVENIO (CORRECTA) ================= -->
       <div class="table-wrap">
-        <table class="table">
+        <table class="table table-convenio">
+
+          <!-- fija los anchos para que el título quede centrado “sobre su columna” -->
+          <colgroup>
+            <col class="col-doc">
+            <col class="col-act">
+          </colgroup>
+
           <thead>
             <tr>
-              <!-- Encabezados centrados, y columnas fijas para que no se “corran” -->
-              <th style="text-align:center; width:75%;">DOCUMENTO</th>
-              <th style="text-align:center; width:25%;">ACCIÓN</th>
+              <th>DOCUMENTO</th>
+              <th>ACCIÓN</th>
             </tr>
           </thead>
 
           <tbody>
             <tr>
-              <!-- Texto del documento a la izquierda -->
-              <td style="text-align:left;">
-                Convenio Sectorial Nodo Laboral y Previsional
-              </td>
-
-              <!-- Botón centrado bajo ACCIÓN -->
-              <td style="text-align:center;">
+              <td>Convenio Sectorial Nodo Laboral y Previsional</td>
+              <td>
                 <a class="btn btn-primary"
                    href="../docs/Convenio-Sectorial-Nodo.pdf"
                    target="_blank"
@@ -84,6 +80,7 @@
               </td>
             </tr>
           </tbody>
+
         </table>
       </div>
 
@@ -91,7 +88,6 @@
   </main>
 </div>
 
-<!-- ================= JS ================= -->
-<script src="../assets/app.js?v=21000"></script>
+<script src="../assets/app.js?v=22000"></script>
 </body>
 </html>
