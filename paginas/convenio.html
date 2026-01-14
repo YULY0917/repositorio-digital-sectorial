@@ -1,30 +1,88 @@
-<div class="table-wrap">
-  <table class="table">
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Convenio de Adhesión</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ✅ OJO: en /paginas/ siempre va con ../ -->
+  <link rel="stylesheet" href="../assets/style.css?v=301">
+</head>
+<body>
 
-    <thead class="thead-2rows">
-      <tr>
-        <th class="th-empty"></th>
-        <th class="th-action">Acción</th>
-      </tr>
-      <tr>
-        <th class="th-doc">Documento</th>
-        <th class="th-empty"></th>
-      </tr>
-    </thead>
+<header class="topbar">
+  <button class="burger" type="button" aria-label="Abrir menú">☰</button>
 
-    <tbody>
-      <tr>
-        <td>Convenio Sectorial Nodo Laboral y Previsional</td>
-        <td class="td-actions">
-          <a class="btn btn-primary"
-             href="../docs/Convenio-Sectorial-Nodo.pdf"
-             target="_blank"
-             rel="noopener">
-            📄 Descargar
-          </a>
-        </td>
-      </tr>
-    </tbody>
+  <div class="brand">
+    <img src="../assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
+    <div class="brand-title">Repositorio Digital Sectorial</div>
+  </div>
 
-  </table>
+  <div class="spacer"></div>
+
+  <div class="searchwrap">
+    <span class="icon">🔎</span>
+    <input id="search" type="search" placeholder="Buscar (ej: convenio, anexos, reglas...)" />
+  </div>
+</header>
+
+<div class="overlay" aria-hidden="true"></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a class="active" href="convenio.html">Convenio de Adhesión</a>
+      <a href="anexos-tecnicos.html">Anexos Técnicos</a>
+      <a class="sub" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
+      <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
+      <a href="reglas-uso.html">Reglas de Uso</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <section class="card">
+
+      <h1>Convenio de Adhesión</h1>
+
+      <p class="intro-text">
+        En esta sección se encuentra disponible el documento oficial del Convenio de Adhesión del Nodo Laboral y Previsional.
+      </p>
+
+      <div class="table-wrap">
+        <table class="table">
+
+          <thead class="thead-2rows">
+            <tr>
+              <th class="th-empty"></th>
+              <th class="th-action">Acción</th>
+            </tr>
+            <tr>
+              <th class="th-doc">Documento</th>
+              <th class="th-empty"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Convenio Sectorial Nodo Laboral y Previsional</td>
+              <td class="td-actions">
+                <a class="btn btn-primary"
+                   href="../docs/Convenio-Sectorial-Nodo.pdf"
+                   target="_blank"
+                   rel="noopener">
+                  📄 Descargar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
+    </section>
+  </main>
 </div>
+
+<script src="../assets/app.js?v=301"></script>
+</body>
+</html>
