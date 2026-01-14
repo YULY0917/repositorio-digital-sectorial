@@ -1,226 +1,98 @@
-/* ================= RESET ================= */
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:system-ui, Arial, sans-serif;
-}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Anexos de Provisión de Datos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/style.css?v=FINAL">
+</head>
+<body>
 
-/* ================= VARIABLES ================= */
-:root{
-  --topbar-h:92px;
-  --sidebar-w:270px;
-  --logo-h:64px;
-  --logo-h-mobile:52px;
-}
+<header class="topbar">
+  <button class="burger">☰</button>
 
-/* ================= BASE ================= */
-body{
-  background:#f2f5f8;
-  color:#0b1a33;
-}
+  <div class="brand">
+    <img src="../assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
+    <div class="brand-title">Repositorio Digital Sectorial</div>
+  </div>
 
-/* ================= TOPBAR ================= */
-.topbar{
-  height:var(--topbar-h);
-  background:#fff;
-  display:flex;
-  align-items:center;
-  padding:0 18px;
-  gap:16px;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  border-bottom:1px solid rgba(0,0,0,.08);
-}
+  <div class="spacer"></div>
 
-.burger{
-  display:none;
-  border:none;
-  background:none;
-  font-size:28px;
-  cursor:pointer;
-}
+  <div class="searchwrap">
+    🔎 <input type="search" placeholder="Buscar (ej: anexos, datos)">
+  </div>
+</header>
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
+<div class="shell">
+  <aside class="sidebar">
+    <nav class="menu">
+      <a href="../index.html">Inicio</a>
+      <a href="convenio.html">Convenio de Adhesión</a>
+      <a href="anexos-tecnicos.html">Anexos Técnicos</a>
+      <a class="sub active" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
+      <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
+      <a href="reglas-uso.html">Reglas de Uso</a>
+    </nav>
+  </aside>
 
-.brand img{
-  height:var(--logo-h);
-  width:auto;
-  max-width:260px;
-}
+  <main class="main">
+    <section class="card">
 
-.brand-title{
-  font-size:18px;
-  font-weight:750;
-}
+      <h1>Anexos de Provisión de Datos</h1>
 
-.spacer{ flex:1; }
+      <p class="intro-text">
+        Anexos asociados a la provisión de datos del Nodo Laboral y Previsional.
+      </p>
 
-/* ================= BUSCADOR ================= */
-.searchwrap{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:#f1f3f6;
-  border:1px solid rgba(0,0,0,.12);
-}
+      <div class="table-wrap">
+        <div class="oaes-scroll">
+          <table class="table table-oaes">
+            <thead>
+              <tr>
+                <th class="col-oae">OAEs</th>
+                <th class="col-doc">Anexo 1</th>
+                <th class="col-doc">Anexo 2</th>
+                <th class="col-doc">Resolución SPS - OAE</th>
+              </tr>
+            </thead>
 
-.searchwrap input{
-  border:none;
-  background:none;
-  outline:none;
-  width:260px;
-}
+            <tbody>
+              <tr>
+                <td class="oae-name">SUPERINTENDENCIA DE PENSIONES (SP)</td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+              </tr>
 
-/* ================= LAYOUT ================= */
-.shell{
-  display:flex;
-  min-height:calc(100vh - var(--topbar-h));
-}
+              <tr>
+                <td class="oae-name">DIRECCIÓN DEL TRABAJO (DT)</td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+              </tr>
 
-/* ================= SIDEBAR ================= */
-.sidebar{
-  width:var(--sidebar-w);
-  background:#1e73be;
-  padding:18px 16px;
-  position:sticky;
-  top:var(--topbar-h);
-  height:calc(100vh - var(--topbar-h));
-}
+              <tr>
+                <td class="oae-name">INSTITUTO DE PREVISIÓN SOCIAL (IPS)</td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+              </tr>
 
-.menu{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
+              <tr>
+                <td class="oae-name">SUSESO</td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+                <td class="cell-center"><a class="btn btn-primary" href="#">Descargar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-.menu a{
-  color:#fff;
-  text-decoration:none;
-  padding:11px 14px;
-  border-radius:10px;
-}
+    </section>
+  </main>
+</div>
 
-.menu a:hover{ background:rgba(255,255,255,.15); }
-
-.menu a.active{
-  background:rgba(255,255,255,.25);
-  font-weight:700;
-}
-
-.menu a.sub{
-  padding-left:40px;
-  position:relative;
-}
-
-.menu a.sub::before{
-  content:"";
-  position:absolute;
-  left:20px;
-  top:10px;
-  bottom:10px;
-  width:2px;
-  background:rgba(255,255,255,.4);
-}
-
-/* ================= CONTENIDO ================= */
-.main{ flex:1; padding:24px; }
-
-.card{
-  background:#fff;
-  border-radius:16px;
-  padding:28px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-.card h1{ margin-bottom:18px; }
-
-.intro-text{
-  margin-bottom:26px;
-  line-height:1.6;
-}
-
-/* ================= BOTONES ================= */
-.btn{
-  display:inline-block;
-  padding:10px 14px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:650;
-  border:1px solid rgba(0,0,0,.1);
-}
-
-.btn-primary{
-  background:#1e73be;
-  color:#fff;
-  border-color:#1e73be;
-}
-
-/* ================= TABLAS ================= */
-.table-wrap{
-  margin-top:18px;
-  border:1px solid rgba(0,0,0,.12);
-  border-radius:12px;
-  overflow:hidden;
-  background:#fff;
-}
-
-.table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-.table thead th{
-  background:#f3f6fb;
-  padding:14px 16px;
-  font-size:12px;
-  text-transform:uppercase;
-  border-bottom:1px solid rgba(0,0,0,.1);
-}
-
-.table tbody td{
-  padding:18px 16px;
-  border-bottom:1px solid rgba(0,0,0,.08);
-  vertical-align:middle;
-}
-
-.table tbody tr:last-child td{ border-bottom:none; }
-
-/* ===== MATRIZ OAEs ===== */
-.oaes-scroll{ overflow-x:auto; }
-
-.table-oaes{ min-width:900px; }
-
-.col-oae{ width:38%; }
-
-.col-doc{
-  width:20.5%;
-  text-align:center;
-  white-space:nowrap;
-}
-
-.oae-name{ font-weight:650; }
-
-.cell-center{ text-align:center; }
-
-/* ================= RESPONSIVE ================= */
-@media (max-width:900px){
-  .burger{ display:block; }
-  .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    height:100vh;
-    transform:translateX(-105%);
-    transition:.2s;
-    z-index:1200;
-  }
-  body.menu-open .sidebar{ transform:translateX(0); }
-}
+<script src="../assets/app.js?v=FINAL"></script>
+</body>
+</html>
