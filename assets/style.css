@@ -11,7 +11,7 @@
   --topbar-h: 92px;
   --sidebar-w: 270px;
   --logo-h: 64px;
-  --logo-h-mobile: 52px;
+  --logo-h-mobile: 48px;
   --primary:#1e73be;
   --bg:#f2f5f8;
   --card:#ffffff;
@@ -61,7 +61,7 @@ body{
 
 .brand-title{
   font-size:18px;
-  font-weight:750;
+  font-weight:700;
   white-space:nowrap;
 }
 
@@ -168,7 +168,7 @@ body{
   padding:10px 14px;
   border-radius:10px;
   text-decoration:none;
-  font-weight:650;
+  font-weight:600;
   border:1px solid rgba(0,0,0,.1);
 }
 
@@ -211,6 +211,20 @@ body{
   border-bottom:none;
 }
 
+/* ================= TABLA CONVENIO / REGLAS ================= */
+.table-convenio{
+  table-layout:fixed;
+}
+
+.table-convenio col.col-doc{ width:72%; }
+.table-convenio col.col-act{ width:28%; }
+
+.table-convenio thead th:nth-child(1){ text-align:left; }
+.table-convenio thead th:nth-child(2){ text-align:center; }
+
+.table-convenio tbody td:nth-child(1){ text-align:left; }
+.table-convenio tbody td:nth-child(2){ text-align:center; }
+
 /* ================= TABLA OAEs ================= */
 .oaes-scroll{
   overflow-x:auto;
@@ -227,29 +241,8 @@ body{
   white-space:nowrap;
 }
 
-.oae-name{ font-weight:650; }
+.oae-name{ font-weight:600; }
 .cell-center{ text-align:center; }
-
-/* ================= TABLA CONVENIO (CORRECCIÓN REAL) ================= */
-/* OBJETIVO:
-   - DOCUMENTO alineado a la izquierda (como el texto)
-   - ACCIÓN centrado sobre el botón
-   - Evitar que DOCUMENTO se vaya al centro visual de la tarjeta
-*/
-.table-convenio{
-  table-layout:fixed;
-}
-
-.table-convenio col.col-doc{ width:72%; }
-.table-convenio col.col-act{ width:28%; }
-
-/* Encabezados */
-.table-convenio thead th:nth-child(1){ text-align:left; }     /* DOCUMENTO a la izquierda */
-.table-convenio thead th:nth-child(2){ text-align:center; }   /* ACCIÓN centrado */
-
-/* Celdas */
-.table-convenio tbody td:nth-child(1){ text-align:left; }     /* texto a la izquierda */
-.table-convenio tbody td:nth-child(2){ text-align:center; }   /* botón centrado */
 
 /* ================= OVERLAY ================= */
 .overlay{
@@ -260,17 +253,30 @@ body{
   z-index:1200;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE / MÓVIL ================= */
 @media (max-width:900px){
+
   :root{
     --topbar-h:80px;
-    --logo-h:var(--logo-h-mobile);
   }
 
+  /* topbar */
   .burger{ display:block; }
 
-  .searchwrap input{ width:150px; }
+  .brand img{
+    height:var(--logo-h-mobile);
+    max-width:180px;
+  }
 
+  .brand-title{
+    font-size:16px;
+    white-space:normal;
+    line-height:1.1;
+  }
+
+  .searchwrap{ display:none; }
+
+  /* sidebar móvil */
   .sidebar{
     position:fixed;
     top:0;
@@ -290,4 +296,19 @@ body{
   }
 
   .main{ padding:18px; }
+
+  /* tablas en móvil */
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .table{
+    min-width:520px;
+  }
+
+  .btn{
+    padding:9px 12px;
+    font-size:14px;
+  }
 }
