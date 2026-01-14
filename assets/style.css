@@ -1,52 +1,331 @@
 /* =========================================================
-   FIX: Centrado de encabezados y celdas para tabla Provisión (5 columnas)
-   Tabla: <table class="table table-oaes-5">
+   RESET
 ========================================================= */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:system-ui, Arial, sans-serif;
+}
 
-/* Asegura que sea estable y no se desconfigure */
+body{
+  background:#f2f5f8;
+  color:#0b1a33;
+  line-height:1.45;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+.topbar{
+  height:64px;
+  background:#fff;
+  color:#0b1a33;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:0 16px;
+  border-bottom:1px solid rgba(0,0,0,.1);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.burger{
+  display:none;
+  border:none;
+  background:transparent;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* ---------- BRAND (LOGO + TEXTO) ---------- */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+/* Logo más grande pero contenido */
+.brand img{
+  height:50px;
+  max-height:56px;
+  width:auto;
+}
+
+/* Texto más legible */
+.brand-title{
+  font-weight:700;
+  font-size:17px;
+  line-height:1.1;
+  white-space:nowrap;
+}
+
+.spacer{ flex:1; }
+
+/* =========================================================
+   BUSCADOR
+========================================================= */
+.searchwrap{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:#f1f4f9;
+  padding:6px 10px;
+  border-radius:20px;
+  position:relative;
+}
+
+.searchwrap input{
+  border:none;
+  background:transparent;
+  outline:none;
+  font-size:14px;
+  width:220px;
+}
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+.shell{
+  display:flex;
+  min-height:calc(100vh - 64px);
+}
+
+.sidebar{
+  width:260px;
+  background:#1e73be;
+  color:#fff;
+  padding:16px 12px;
+}
+
+.menu{
+  display:flex;
+  flex-direction:column;
+}
+
+.menu a{
+  color:#fff;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:14px;
+}
+
+.menu a:hover{
+  background:rgba(255,255,255,.15);
+}
+
+.menu a.active{
+  background:rgba(255,255,255,.25);
+  font-weight:700;
+}
+
+/* Subniveles (Provisión/Consumo) */
+.menu a.sub{
+  padding-left:36px !important;
+  font-size:13.5px;
+  position:relative;
+}
+
+.menu a.sub::before{
+  content:"";
+  position:absolute;
+  left:18px;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.5);
+  transform:translateY(-50%);
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+.main{
+  flex:1;
+  padding:24px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:24px;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+}
+
+h1{
+  font-size:26px;
+  margin-bottom:12px;
+}
+
+.intro-text{
+  margin-bottom:24px;
+  font-size:15px;
+}
+
+/* =========================================================
+   BOTONES
+========================================================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:8px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:600;
+  white-space:nowrap;
+  min-width:120px;
+}
+
+.btn-primary{
+  background:#1e73be;
+  color:#fff;
+}
+
+.btn-primary:hover{
+  background:#155a98;
+}
+
+/* =========================================================
+   TABLAS (ESTABLES)
+========================================================= */
+.table-wrap{
+  margin-top:18px;
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+.table thead th{
+  background:#f3f6fb;
+  padding:14px 16px;
+  border-bottom:1px solid rgba(0,0,0,.10);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+}
+
+.table tbody td{
+  padding:16px 16px;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  vertical-align:middle;
+}
+
+.table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+/* Convenio / Reglas (2 columnas) */
+.table-convenio thead th:nth-child(1),
+.table-convenio tbody td:nth-child(1){
+  text-align:left;
+  width:70%;
+}
+
+.table-convenio thead th:nth-child(2),
+.table-convenio tbody td:nth-child(2){
+  text-align:center;
+  width:30%;
+}
+
+/* Provisión (5 columnas) */
 .table-oaes-5{
   min-width:1100px;
   table-layout:fixed;
 }
-
-/* Anchos por columna */
 .table-oaes-5 thead th:nth-child(1),
 .table-oaes-5 tbody td:nth-child(1){
   width:44%;
   text-align:left;
 }
-
-.table-oaes-5 thead th:nth-child(2),
-.table-oaes-5 tbody td:nth-child(2),
-.table-oaes-5 thead th:nth-child(3),
-.table-oaes-5 tbody td:nth-child(3),
-.table-oaes-5 thead th:nth-child(4),
-.table-oaes-5 tbody td:nth-child(4),
-.table-oaes-5 thead th:nth-child(5),
-.table-oaes-5 tbody td:nth-child(5){
-  width:14%;
-}
-
-/* ✅ Encabezados centrados (ANEXO 1, ANEXO 2, RES...) */
 .table-oaes-5 thead th:nth-child(2),
 .table-oaes-5 thead th:nth-child(3),
 .table-oaes-5 thead th:nth-child(4),
 .table-oaes-5 thead th:nth-child(5){
   text-align:center;
+  width:14%;
 }
-
-/* ✅ Celdas centradas (botones y guiones) */
 .table-oaes-5 tbody td:nth-child(2),
 .table-oaes-5 tbody td:nth-child(3),
 .table-oaes-5 tbody td:nth-child(4),
 .table-oaes-5 tbody td:nth-child(5){
   text-align:center;
+  width:14%;
+}
+.oae-name{ font-weight:700; }
+
+/* =========================================================
+   ANEXOS TÉCNICOS – BLOQUES
+========================================================= */
+.anexo-item{
+  margin-top:16px;
+  padding:16px 18px;
+  background:#f3f6fb;
+  border-left:4px solid #1e73be;
+  border-radius:10px;
+}
+.anexo-label{
+  display:inline-block;
+  font-weight:700;
+  font-size:14px;
+  color:#1e73be;
+  margin-bottom:6px;
+}
+.anexo-desc{
+  margin-top:6px;
+  font-size:14.5px;
+  line-height:1.5;
+  color:#0b1a33;
 }
 
-/* Botón siempre centrado y consistente */
-.table-oaes-5 td .btn{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  min-width:120px;
+/* =========================================================
+   OVERLAY + MOBILE
+========================================================= */
+.overlay{ display:none; }
+
+body.menu-open .overlay{
+  display:block;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:900;
+}
+
+@media (max-width:900px){
+  .burger{ display:block; }
+
+  .sidebar{
+    position:fixed;
+    left:-280px;
+    top:64px;
+    height:calc(100vh - 64px);
+    transition:left .25s ease;
+    z-index:1000;
+  }
+
+  body.menu-open .sidebar{
+    left:0;
+  }
+
+  .main{ padding:16px; }
+
+  .searchwrap input{ width:140px; }
+
+  .table-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .table{ min-width:720px; }
 }
