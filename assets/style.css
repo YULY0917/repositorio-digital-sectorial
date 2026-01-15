@@ -85,7 +85,7 @@ a:hover{ text-decoration:underline; }
 }
 
 .brand img{
-  height:64px;            /* ✅ Logo más grande */
+  height:64px;            /* ✅ Logo grande en desktop */
   width:auto;
   display:block;
   object-fit:contain;
@@ -94,7 +94,7 @@ a:hover{ text-decoration:underline; }
 .brand .title,
 .brand .brand-title{
   font-weight:800;
-  font-size:20px;         /* más institucional */
+  font-size:20px;         /* institucional */
   letter-spacing:.2px;
   color:var(--text);
   white-space:nowrap;
@@ -148,7 +148,7 @@ a:hover{ text-decoration:underline; }
   background:#fff;
   border-radius:999px;
   cursor:pointer;
-  display:none; /* se muestra por JS cuando hay texto */
+  display:none; /* lo muestra JS cuando hay texto */
   align-items:center;
   justify-content:center;
   color:#64748b;
@@ -171,7 +171,7 @@ a:hover{ text-decoration:underline; }
   display:none; /* JS lo cambia a block */
 }
 
-/* Cabecera + items del buscador (clases del app.js) */
+/* Cabecera + items del buscador */
 #searchResults .sr-head{
   font-weight:800;
   font-size:13px;
@@ -253,7 +253,7 @@ a:hover{ text-decoration:underline; }
   padding:26px 26px;
 }
 
-/* Headings (✅ más institucional, no gigante) */
+/* Headings (✅ institucional, no gigante) */
 .card h1,
 .card .h1{
   margin:0 0 12px 0;
@@ -352,7 +352,6 @@ a:hover{ text-decoration:underline; }
 
 .doc-table tbody tr:last-child td{ border-bottom:none; }
 
-/* alineación de columnas desde la 2 en adelante */
 .doc-table th:nth-child(n+2),
 .doc-table td:nth-child(n+2){
   text-align:center;
@@ -374,20 +373,20 @@ a:hover{ text-decoration:underline; }
   z-index:40;
 }
 
-/* ✅ compatible con tu JS (overlay.show) Y con body.menu-open */
+/* compatible con tu JS (overlay.show) y body.menu-open */
 .overlay.show,
 body.menu-open .overlay{
   opacity:1;
   pointer-events:auto;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= RESPONSIVE (tablet/móvil) ================= */
 @media (max-width: 980px){
   :root{ --sidebar-w: 300px; }
 
   .burger{ display:flex; }
 
-  .brand img{ height:56px; } /* móvil: grande pero no gigante */
+  .brand img{ height:56px; }
   .brand .title,
   .brand .brand-title{ font-size:16px; }
 
@@ -397,7 +396,7 @@ body.menu-open .overlay{
     width:min(520px, 58vw);
   }
 
-  /* Sidebar off-canvas (✅ compatible con body.menu-open y sidebar.open) */
+  /* Sidebar off-canvas */
   .sidebar{
     position:fixed;
     top:var(--topbar-h);
@@ -420,11 +419,73 @@ body.menu-open .overlay{
   .card p, .card .lead{ font-size:15px; }
 }
 
-@media (max-width: 520px){
-  .topbar{ padding:12px 14px; }
-  .brand{ min-width:0; }
-  .brand .title,
-  .brand .brand-title{ display:none; } /* solo logo */
+/* =========================================
+   FIX CELULAR: TOPBAR EN 2 FILAS + BUSCADOR FULL
+   ========================================= */
+@media (max-width: 640px){
+
+  /* Topbar: permite 2 filas (fila 1: burger+logo / fila 2: buscador) */
+  .topbar{
+    flex-wrap:wrap;
+    height:auto;                 /* ✅ deja de forzar altura */
+    padding:12px 14px;
+    gap:10px;
+  }
+
+  /* Orden: burger + logo arriba */
+  .burger{ order:1; }
+
+  .brand{
+    order:2;
+    min-width:0;
+    flex:1;
+  }
+
+  .brand img{
+    height:54px;                 /* ✅ logo bien en celular */
+  }
+
+  /* Buscador abajo, ancho completo */
+  .searchwrap{
+    order:3;
+    width:100%;
+    margin-left:0;
+  }
+
+  #search,
   .searchwrap input[type="search"],
-  #search{ width:62vw; }
+  .searchwrap input[type="text"]{
+    width:100%;
+    max-width:none;
+  }
+
+  /* Resultados del buscador: ancho completo */
+  #searchResults,
+  .search-results{
+    left:0;
+    right:0;
+    width:100%;
+  }
+
+  /* Contenido más cómodo */
+  .main{ padding:14px; }
+  .card{ padding:18px; }
+
+  .card h1, .card .h1{ font-size:26px; }
+  .card p, .card .lead{ font-size:15px; }
+
+  /* Tablas: scroll horizontal limpio en celular */
+  .table-wrap{
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .doc-table{ min-width: 720px; }
+}
+
+/* Sidebar móvil: que no dependa de una altura fija de topbar */
+@media (max-width: 980px){
+  .sidebar{
+    top:0;
+    height:100vh;
+  }
 }
