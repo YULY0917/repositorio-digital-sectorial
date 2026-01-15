@@ -1,171 +1,148 @@
 /* =====================================================
-   RESET
+   RESET BÁSICO
 ===================================================== */
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-}
-
-:root{
-  --bg:#f2f5f8;
-  --white:#ffffff;
-  --ink:#0b1a33;
-  --muted:#5b6b82;
-  --line:#d9e0ea;
-
-  --brand:#1e73be;
-  --brand-dark:#155c97;
-
-  --radius:16px;
-  --shadow:0 8px 24px rgba(0,0,0,.08);
-
-  /* Tipografías (NORMALIZADAS) */
-  --fs-base:15px;
-  --fs-h1:34px;
-  --fs-lead:16px;
 }
 
 body{
-  background:var(--bg);
-  color:var(--ink);
-  font-size:var(--fs-base);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background:#f4f6f9;
+  color:#0b1a33;
+  line-height:1.5;
 }
 
 /* =====================================================
    TOPBAR
 ===================================================== */
 .topbar{
-  position:sticky;
-  top:0;
-  z-index:50;
-  height:78px;
-  background:#fff;
-  border-bottom:1px solid var(--line);
+  background:#ffffff;
+  height:72px;
   display:flex;
   align-items:center;
-  gap:16px;
-  padding:0 18px;
+  justify-content:space-between;
+  padding:0 24px;
+  border-bottom:1px solid #e4e9f1;
 }
 
-/* Hamburguesa SOLO móvil */
-.burger{
-  display:none;
-  width:40px;
-  height:40px;
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:10px;
-  cursor:pointer;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-}
-
-/* Marca */
+/* =====================================================
+   LOGO
+===================================================== */
 .brand{
   display:flex;
   align-items:center;
   gap:14px;
-  min-width:300px;
 }
 
-/* ✅ LOGO MÁS GRANDE */
 .brand img{
-  width:84px;
-  height:84px;
-  object-fit:contain;
-  display:block;
+  width:120px;
+  height:auto;
 }
 
 .brand-title{
-  font-size:20px;
-  font-weight:800;
-  letter-spacing:-.3px;
-  white-space:nowrap;
+  font-size:22px;
+  font-weight:700;
+  color:#0b1a33;
 }
 
 /* =====================================================
-   BUSCADOR (solo estilos, NO lógica)
+   BUSCADOR
 ===================================================== */
 .searchwrap{
-  margin-left:auto;
-  position:relative;
   display:flex;
   align-items:center;
-  gap:10px;
-  border:1px solid var(--line);
+  gap:8px;
+  background:#ffffff;
+  border:1px solid #ccd6e3;
   border-radius:999px;
-  padding:10px 14px;
-  background:#fff;
-  min-width:320px;
+  padding:10px 18px;
+  min-width:380px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
 }
 
 .searchwrap input{
-  width:100%;
   border:none;
   outline:none;
-  font-size:15px;
+  font-size:14px;
+  width:100%;
 }
 
-.search-results{
-  position:absolute;
-  top:52px;
-  right:0;
-  width:min(520px, 90vw);
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:14px;
-  box-shadow:var(--shadow);
-  display:none;
-  z-index:100;
+.searchwrap button{
+  background:none;
+  border:none;
+  cursor:pointer;
+  font-size:16px;
 }
-
-.search-results.active{ display:block; }
 
 /* =====================================================
-   LAYOUT
+   RESULTADOS BUSCADOR
 ===================================================== */
-.shell{
+.search-results{
+  position:absolute;
+  top:80px;
+  right:24px;
+  background:#ffffff;
+  border:1px solid #d9e0ea;
+  border-radius:14px;
+  width:360px;
+  max-height:420px;
+  overflow-y:auto;
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
+  z-index:9999;
+}
+
+.search-results strong{
+  display:block;
+  padding:10px 16px;
+  font-size:14px;
+}
+
+.search-results a{
+  display:block;
+  padding:10px 16px;
+  font-size:14px;
+  color:#1e73be;
+  text-decoration:none;
+  border-top:1px solid #eef2f7;
+}
+
+.search-results a:hover{
+  background:#f4f8fd;
+  color:#155c97;
+}
+
+/* =====================================================
+   LAYOUT GENERAL
+===================================================== */
+.layout{
   display:flex;
-  min-height:calc(100vh - 78px);
+  min-height:calc(100vh - 72px);
 }
 
 /* =====================================================
    SIDEBAR
 ===================================================== */
 .sidebar{
-  width:300px;
-  background:var(--brand);
-  padding:20px;
+  width:260px;
+  background:#1e73be;
+  padding:24px 16px;
 }
 
-.menu{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.menu a{
-  color:#fff;
+.sidebar a{
+  display:block;
+  padding:12px 16px;
+  color:#ffffff;
   text-decoration:none;
-  padding:14px 16px;
-  border-radius:12px;
-  font-weight:700;
+  border-radius:10px;
+  margin-bottom:8px;
+  font-weight:500;
 }
 
-.menu a:hover{
-  background:rgba(255,255,255,.15);
-}
-
-.menu a.active{
+.sidebar a.active,
+.sidebar a:hover{
   background:rgba(255,255,255,.25);
-}
-
-.menu a.sub{
-  margin-left:16px;
-  font-weight:600;
 }
 
 /* =====================================================
@@ -173,27 +150,73 @@ body{
 ===================================================== */
 .main{
   flex:1;
-  padding:24px;
+  padding:32px;
 }
 
 .card{
-  background:#fff;
-  border-radius:var(--radius);
-  padding:28px;
-  box-shadow:var(--shadow);
+  background:#ffffff;
+  border-radius:18px;
+  padding:32px;
+  box-shadow:0 10px 28px rgba(0,0,0,.08);
 }
 
-.h1, h1{
-  font-size:var(--fs-h1);
-  line-height:1.15;
+/* =====================================================
+   TÍTULOS
+===================================================== */
+h1{
+  font-size:36px;
+  margin-bottom:16px;
+}
+
+h2{
+  font-size:24px;
   margin-bottom:12px;
 }
 
-.lead, .intro-text{
-  font-size:var(--fs-lead);
-  line-height:1.6;
-  color:var(--muted);
-  margin-bottom:18px;
+.intro-text{
+  font-size:15px;
+  color:#44526b;
+  margin-bottom:24px;
+}
+
+/* =====================================================
+   TABLAS (MUY IMPORTANTE – NO SE ROMPEN)
+===================================================== */
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#ffffff;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+thead{
+  background:#f3f6fb;
+}
+
+th, td{
+  padding:14px 16px;
+  text-align:left;
+  font-size:14px;
+  border-bottom:1px solid #e6ebf3;
+}
+
+th{
+  font-weight:700;
+  color:#0b1a33;
+  text-align:center;
+}
+
+td{
+  color:#0b1a33;
+}
+
+td.center{
+  text-align:center;
 }
 
 /* =====================================================
@@ -202,182 +225,38 @@ body{
 .btn{
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:8px;
+  gap:6px;
   padding:10px 16px;
-  background:var(--brand);
-  color:#fff;
-  border-radius:12px;
-  font-weight:800;
+  background:#1e73be;
+  color:#ffffff;
   text-decoration:none;
+  border-radius:999px;
   font-size:14px;
-  min-width:110px;
+  font-weight:600;
 }
 
 .btn:hover{
-  background:var(--brand-dark);
+  background:#155c97;
 }
 
 /* =====================================================
-   TABLAS (ESTABLES – NO SE ROMPEN)
+   RESPONSIVE
 ===================================================== */
-.table-wrap{
-  margin-top:16px;
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
-  background:#fff;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  table-layout:fixed;
-}
-
-thead th{
-  background:#f6f9fd;
-  padding:14px 12px;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.4px;
-  border-bottom:1px solid var(--line);
-  text-align:center;
-}
-
-tbody td{
-  padding:16px 12px;
-  border-bottom:1px solid #edf1f7;
-  text-align:center;
-  font-size:14px;
-}
-
-tbody tr:last-child td{
-  border-bottom:none;
-}
-
-/* Primera columna izquierda */
-thead th:first-child,
-tbody td:first-child{
-  text-align:left;
-  font-weight:800;
-}
-
-.dash{
-  color:#7a8799;
-  font-weight:700;
-}
-
-/* =====================================================
-   ANEXOS TÉCNICOS (SIN TABLAS)
-===================================================== */
-.anexo-list{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  margin-top:18px;
-}
-
-.anexo-item{
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:18px;
-  background:#fff;
-}
-
-.anexo-tag{
-  font-size:12px;
-  font-weight:900;
-  color:var(--brand);
-  text-transform:uppercase;
-  margin-bottom:6px;
-}
-
-.anexo-title{
-  font-size:20px;
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.anexo-desc{
-  font-size:15px;
-  line-height:1.55;
-  color:var(--muted);
-}
-
-/* =====================================================
-   OVERLAY + RESPONSIVE
-===================================================== */
-.overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.35);
-  z-index:40;
-}
-
-/* Tablet */
-@media (max-width: 980px){
-  .brand img{
-    width:70px;
-    height:70px;
-  }
-
-  .brand-title{
-    font-size:16px;
-  }
-
-  .h1, h1{
-    font-size:28px;
-  }
-}
-
-/* Móvil */
-@media (max-width: 860px){
-  .burger{ display:flex; }
+@media (max-width: 900px){
 
   .sidebar{
-    position:fixed;
-    top:78px;
-    left:-320px;
-    height:calc(100vh - 78px);
-    width:300px;
-    z-index:60;
-    transition:left .2s ease;
+    display:none;
   }
 
-  body.menu-open .sidebar{
-    left:0;
-  }
-
-  body.menu-open .overlay{
-    display:block;
-  }
-
-  .shell{
-    display:block;
-  }
-
-  .table-wrap{
-    overflow:auto;
-  }
-
-  table{
-    min-width:860px;
-  }
-}
-
-/* Móvil chico */
-@media (max-width: 520px){
-  .brand-title{ display:none; }
-
-  .brand img{
-    width:60px;
-    height:60px;
+  .main{
+    padding:20px;
   }
 
   .searchwrap{
-    min-width:200px;
+    min-width:220px;
+  }
+
+  .brand img{
+    width:90px;
   }
 }
-
