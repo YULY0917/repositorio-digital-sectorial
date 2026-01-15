@@ -7,7 +7,7 @@
   const clearBtn = document.querySelector(".search-clear");
   const resultsBox = document.getElementById("searchResults");
 
-  // ====== Menú móvil (✅ estable) ======
+  // ====== Menú móvil (✅ estable: body.menu-open) ======
   function openMenu() {
     document.body.classList.add("menu-open");
     if (sidebar) sidebar.classList.add("open");
@@ -37,7 +37,6 @@
   });
 
   // ====== Buscador global ======
-  // Agrega aquí todo lo que quieres que el buscador encuentre (páginas + PDFs)
   const DOCS = [
     // Páginas
     { title: "Convenio de Adhesión", section: "Página", url: "convenio.html", keywords: "convenio adhesion" },
@@ -89,7 +88,6 @@
   }
 
   function resolveUrl(url){
-    // Si ya viene como ../docs/... lo dejamos.
     if (url.startsWith("../docs/")) return url;
     return url;
   }
@@ -151,7 +149,6 @@
     input.addEventListener("input", onChange);
     input.addEventListener("focus", onChange);
 
-    // cerrar resultados al hacer click fuera
     document.addEventListener("click", (e) => {
       const inside = e.target.closest(".searchwrap");
       if (!inside) hideResults();
