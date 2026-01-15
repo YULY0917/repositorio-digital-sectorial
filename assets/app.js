@@ -1,289 +1,192 @@
 (function () {
-  // =========================
-  // Config
-  // =========================
-  const REPO_BASE = "/repositorio-digital-sectorial"; // <-- tu repo en GitHub Pages
+  // ========= Helpers =========
+  const norm = (s) => (s || "")
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 
-  // Índice global de documentos (AJUSTABLE)
-  // tags: palabras por las que debe encontrar (oae, anexo, etc.)
-  const DOCS = [
-    // Convenio
-    {
-      title: "Convenio Sectorial Nodo Laboral y Previsional",
-      section: "Convenio de Adhesión",
-      tags: "convenio adhesion nodo laboral previsional",
-      url: `${REPO_BASE}/docs/Convenio-Sectorial-Nodo.pdf`,
-      type: "pdf",
-    },
-
-    // Reglas de Uso
-    {
-      title: "Reglas de Uso del Repositorio Digital Sectorial",
-      section: "Reglas de Uso",
-      tags: "reglas uso repositorio digital sectorial nodo laboral previsional",
-      url: `${REPO_BASE}/docs/Reglas_de_uso.pdf`,
-      type: "pdf",
-    },
-
-    // Provisión de Datos (Anexo 1 y 2)
-    {
-      title: "SP - Anexo 1 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "sp superintendencia de pensiones anexo 1 provision datos",
-      url: `${REPO_BASE}/docs/SP_Anexo1.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "SP - Anexo 2 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "sp superintendencia de pensiones anexo 2 provision datos",
-      url: `${REPO_BASE}/docs/SP_Anexo2.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "SUSESO - Anexo 1 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "suseso superintendencia de seguridad social anexo 1 provision datos",
-      url: `${REPO_BASE}/docs/SUSESO_Anexo1.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "SUSESO - Anexo 2 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "suseso superintendencia de seguridad social anexo 2 provision datos",
-      url: `${REPO_BASE}/docs/SUSESO_Anexo2.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "DT - Anexo 1 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "dt direccion del trabajo anexo 1 provision datos",
-      url: `${REPO_BASE}/docs/DT_Anexo1.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "DT - Anexo 2 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "dt direccion del trabajo anexo 2 provision datos",
-      url: `${REPO_BASE}/docs/DT_Anexo2.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "IPS - Anexo 1 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "ips instituto de prevision social anexo 1 provision datos",
-      url: `${REPO_BASE}/docs/IPS_Anexo1.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "IPS - Anexo 2 (Provisión de Datos)",
-      section: "Anexos de Provisión de Datos",
-      tags: "ips instituto de prevision social anexo 2 provision datos",
-      url: `${REPO_BASE}/docs/IPS_Anexo2.pdf`,
-      type: "pdf",
-    },
-
-    // Consumo de Datos (Anexo 3 y 4)
-    {
-      title: "SP - Anexo 3 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "sp superintendencia de pensiones anexo 3 consumo datos",
-      url: `${REPO_BASE}/docs/SP_Anexo3.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "SP - Anexo 4 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "sp superintendencia de pensiones anexo 4 consumo datos",
-      url: `${REPO_BASE}/docs/SP_Anexo4.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "SUSESO - Anexo 3 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "suseso superintendencia de seguridad social anexo 3 consumo datos",
-      url: `${REPO_BASE}/docs/SUSESO_Anexo3.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "SUSESO - Anexo 4 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "suseso superintendencia de seguridad social anexo 4 consumo datos",
-      url: `${REPO_BASE}/docs/SUSESO_Anexo4.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "DT - Anexo 3 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "dt direccion del trabajo anexo 3 consumo datos",
-      url: `${REPO_BASE}/docs/DT_Anexo3.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "DT - Anexo 4 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "dt direccion del trabajo anexo 4 consumo datos",
-      url: `${REPO_BASE}/docs/DT_Anexo4.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "IPS - Anexo 3 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "ips instituto de prevision social anexo 3 consumo datos",
-      url: `${REPO_BASE}/docs/IPS_Anexo3.pdf`,
-      type: "pdf",
-    },
-    {
-      title: "IPS - Anexo 4 (Consumo de Datos)",
-      section: "Anexos de Consumo de Datos",
-      tags: "ips instituto de prevision social anexo 4 consumo datos",
-      url: `${REPO_BASE}/docs/IPS_Anexo4.pdf`,
-      type: "pdf",
-    },
-  ];
-
-  // =========================
-  // Helpers
-  // =========================
-  const norm = (s) =>
-    (s || "")
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .trim();
-
-  function ensureOverlay() {
-    let overlay = document.querySelector(".overlay");
-    if (!overlay) {
-      overlay = document.createElement("div");
-      overlay.className = "overlay";
-      document.body.appendChild(overlay);
-    }
-    return overlay;
+  // ========= Asegurar overlay =========
+  let overlay = document.querySelector(".overlay");
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "overlay";
+    document.body.appendChild(overlay);
   }
 
-  function openMenu() {
-    document.body.classList.add("menu-open");
-  }
-  function closeMenu() {
-    document.body.classList.remove("menu-open");
+  // ========= Asegurar burger =========
+  let burger = document.querySelector(".burger");
+  const topbar = document.querySelector(".topbar");
+
+  if (!burger && topbar) {
+    burger = document.createElement("button");
+    burger.className = "burger";
+    burger.type = "button";
+    burger.setAttribute("aria-label", "Abrir menú");
+    burger.textContent = "☰";
+    topbar.insertBefore(burger, topbar.firstChild);
   }
 
-  // =========================
-  // Menu mobile
-  // =========================
-  const burger = document.querySelector(".burger");
-  const overlay = ensureOverlay();
+  function openMenu() { document.body.classList.add("menu-open"); }
+  function closeMenu(){ document.body.classList.remove("menu-open"); }
 
   if (burger) {
     burger.addEventListener("click", () => {
       document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
     });
   }
-  overlay.addEventListener("click", closeMenu);
+  if (overlay) overlay.addEventListener("click", closeMenu);
 
-  // Marcar link activo
+  // ========= Marcar link activo =========
   (function markActiveLinks() {
-    const path = location.pathname.split("/").pop();
-    document.querySelectorAll(".menu a").forEach((a) => {
+    const path = location.pathname.split("/").pop(); // ej: reglas-uso.html
+    document.querySelectorAll(".menu a").forEach(a => {
       const href = (a.getAttribute("href") || "").split("/").pop();
       if (href && href === path) a.classList.add("active");
       if (!path && href === "index.html") a.classList.add("active");
     });
   })();
 
-  // =========================
-  // Search UI
-  // =========================
+  // ========= Buscador Global =========
+  // Soporta:
+  // - input con id="search"
+  // - o cualquier input dentro de .searchwrap
   const searchInput =
     document.getElementById("search") ||
-    document.querySelector(".searchwrap input");
+    document.querySelector(".searchwrap input[type='search'], .searchwrap input");
 
-  if (!searchInput) return;
+  const searchWrap = document.querySelector(".searchwrap");
 
-  // contenedor resultados
-  let resultsBox = document.querySelector(".search-results");
-  if (!resultsBox) {
-    resultsBox = document.createElement("div");
-    resultsBox.className = "search-results";
-    // lo insertamos justo después del buscador
-    const wrap = searchInput.closest(".searchwrap") || searchInput.parentElement;
-    wrap.style.position = "relative";
-    wrap.appendChild(resultsBox);
+  if (!searchInput || !searchWrap) return;
+
+  // Crear panel resultados si no existe
+  let panel = document.querySelector(".search-results");
+  if (!panel) {
+    panel = document.createElement("div");
+    panel.className = "search-results";
+    panel.innerHTML = `
+      <div class="sr-head">
+        <strong>Resultados</strong>
+        <button type="button" class="sr-close" aria-label="Cerrar">×</button>
+      </div>
+      <div class="sr-body"></div>
+    `;
+    searchWrap.appendChild(panel);
+  }
+  const body = panel.querySelector(".sr-body");
+  const closeBtn = panel.querySelector(".sr-close");
+
+  function panelOpen() { panel.classList.add("open"); }
+  function panelClose() {
+    panel.classList.remove("open");
+    body.innerHTML = "";
   }
 
-  function hideResults() {
-    resultsBox.innerHTML = "";
-    resultsBox.classList.remove("open");
-  }
-
-  function renderResults(items, q) {
-    if (!items.length) {
-      resultsBox.innerHTML = `<div class="sr-empty">Sin resultados para <b>${q}</b></div>`;
-      resultsBox.classList.add("open");
-      return;
-    }
-
-    const html = items
-      .slice(0, 15)
-      .map((d) => {
-        const isPdf = d.type === "pdf";
-        return `
-          <a class="sr-item" href="${d.url}" target="${isPdf ? "_blank" : "_self"}" rel="noopener">
-            <div class="sr-title">${d.title}</div>
-            <div class="sr-meta">${d.section}</div>
-          </a>
-        `;
-      })
-      .join("");
-
-    resultsBox.innerHTML = html;
-    resultsBox.classList.add("open");
-  }
-
-  function searchDocs(query) {
-    const q = norm(query);
-    if (!q || q.length < 2) {
-      hideResults();
-      return;
-    }
-
-    const scored = DOCS.map((d) => {
-      const hay = norm(`${d.title} ${d.section} ${d.tags}`);
-      let score = 0;
-
-      // score básico
-      if (hay.includes(q)) score += 3;
-
-      // score por tokens
-      const tokens = q.split(/\s+/).filter(Boolean);
-      tokens.forEach((t) => {
-        if (hay.includes(t)) score += 1;
-      });
-
-      return { d, score };
-    })
-      .filter((x) => x.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .map((x) => x.d);
-
-    renderResults(scored, query.trim());
-  }
-
-  searchInput.addEventListener("input", (e) => searchDocs(e.target.value));
-
-  // cerrar resultados con Escape
-  searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      searchInput.value = "";
-      hideResults();
-      searchInput.blur();
-    }
+  if (closeBtn) closeBtn.addEventListener("click", () => {
+    searchInput.value = "";
+    panelClose();
   });
 
-  // cerrar resultados al click afuera
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") panelClose();
+  });
+
+  // ========= Índice global de documentos (AJÚSTALO SI CAMBIAS NOMBRES) =========
+  // Cada item: title (lo que se muestra), page (dónde está listado), file (ruta PDF), tags (para buscar)
+  const DOCS = [
+    // Convenio
+    {
+      title: "Convenio Sectorial Nodo Laboral y Previsional",
+      page: "paginas/convenio.html",
+      file: "docs/Convenio-Sectorial-Nodo.pdf",
+      tags: "convenio adhesion nodo laboral previsional"
+    },
+
+    // Reglas de uso
+    {
+      title: "Reglas de Uso del Repositorio Digital Sectorial",
+      page: "paginas/reglas-uso.html",
+      file: "docs/Reglas_de_uso.pdf",
+      tags: "reglas uso repositorio"
+    },
+
+    // Provisión (Anexo 1-2)
+    { title: "SP - Anexo 1 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/SP_Anexo1.pdf", tags: "sp superintendencia pensiones anexo 1 provision" },
+    { title: "SP - Anexo 2 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/SP_Anexo2.pdf", tags: "sp superintendencia pensiones anexo 2 provision" },
+
+    { title: "DT - Anexo 1 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/DT_Anexo1.pdf", tags: "dt direccion trabajo anexo 1 provision" },
+    { title: "DT - Anexo 2 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/DT_Anexo2.pdf", tags: "dt direccion trabajo anexo 2 provision" },
+
+    { title: "SUSESO - Anexo 1 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/SUSESO_Anexo1.pdf", tags: "suseso seguridad social anexo 1 provision" },
+    { title: "SUSESO - Anexo 2 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/SUSESO_Anexo2.pdf", tags: "suseso seguridad social anexo 2 provision" },
+
+    { title: "IPS - Anexo 1 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/IPS_Anexo1.pdf", tags: "ips instituto prevision social anexo 1 provision" },
+    { title: "IPS - Anexo 2 (Provisión de Datos)", page: "paginas/anexos-provision-datos.html", file: "docs/IPS_Anexo2.pdf", tags: "ips instituto prevision social anexo 2 provision" },
+
+    // Consumo (Anexo 3-4)
+    { title: "SP - Anexo 3 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/SP_Anexo3.pdf", tags: "sp superintendencia pensiones anexo 3 consumo" },
+    { title: "SP - Anexo 4 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/SP_Anexo4.pdf", tags: "sp superintendencia pensiones anexo 4 consumo" },
+
+    { title: "DT - Anexo 3 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/DT_Anexo3.pdf", tags: "dt direccion trabajo anexo 3 consumo" },
+    { title: "DT - Anexo 4 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/DT_Anexo4.pdf", tags: "dt direccion trabajo anexo 4 consumo" },
+
+    { title: "SUSESO - Anexo 3 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/SUSESO_Anexo3.pdf", tags: "suseso seguridad social anexo 3 consumo" },
+    { title: "SUSESO - Anexo 4 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/SUSESO_Anexo4.pdf", tags: "suseso seguridad social anexo 4 consumo" },
+
+    { title: "IPS - Anexo 3 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/IPS_Anexo3.pdf", tags: "ips instituto prevision social anexo 3 consumo" },
+    { title: "IPS - Anexo 4 (Consumo de Datos)", page: "paginas/anexos-consumo-datos.html", file: "docs/IPS_Anexo4.pdf", tags: "ips instituto prevision social anexo 4 consumo" },
+  ];
+
+  // ========= Render resultados =========
+  function renderResults(q) {
+    body.innerHTML = "";
+
+    if (!q) { panelClose(); return; }
+
+    const nq = norm(q);
+
+    const hits = DOCS
+      .map(d => ({ ...d, _hay: norm(d.title + " " + d.tags) }))
+      .filter(d => d._hay.includes(nq))
+      .slice(0, 30);
+
+    if (!hits.length) {
+      body.innerHTML = `<div class="sr-empty">Sin resultados para “${q}”.</div>`;
+      panelOpen();
+      return;
+    }
+
+    const frag = document.createDocumentFragment();
+
+    hits.forEach(d => {
+      const a = document.createElement("a");
+      a.className = "sr-item";
+      // Link a la página donde está el documento (mantienes navegación por menú)
+      a.href = d.page;
+      a.innerHTML = `
+        <div class="sr-title">${d.title}</div>
+        <div class="sr-meta">${d.page.replace("paginas/","")}</div>
+      `;
+      frag.appendChild(a);
+    });
+
+    body.appendChild(frag);
+    panelOpen();
+  }
+
+  // ========= Eventos =========
+  searchInput.addEventListener("input", () => {
+    renderResults(searchInput.value);
+  });
+
+  searchInput.addEventListener("focus", () => {
+    if (searchInput.value.trim()) renderResults(searchInput.value);
+  });
+
+  // Cerrar si clic fuera del buscador
   document.addEventListener("click", (e) => {
-    const wrap = searchInput.closest(".searchwrap") || searchInput.parentElement;
-    if (!wrap.contains(e.target)) hideResults();
+    const within = searchWrap.contains(e.target);
+    if (!within) panelClose();
   });
+
 })();
