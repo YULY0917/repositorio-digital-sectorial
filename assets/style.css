@@ -1,307 +1,413 @@
-/* ================================================= */
-/* RESET Y BASE                                      */
-/* ================================================= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ================= RESET ================= */
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:system-ui, Arial, sans-serif;
 }
 
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Ubuntu, sans-serif;
-  background: #f3f6fb;
-  color: #0b1a33;
-  line-height: 1.5;
+body{
+  background:#f2f5f8;
+  color:#0b1a33;
 }
 
-/* ================================================= */
-/* TOPBAR                                           */
-/* ================================================= */
-.topbar {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #e6e6e6;
+/* ================= TOPBAR ================= */
+.topbar{
+  height:72px;
+  background:#fff;
+  color:#0b1a33;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  gap:14px;
+  border-bottom:1px solid rgba(0,0,0,.08);
 }
 
-.burger {
-  font-size: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
+/* Burger (solo móvil, lo controla media query) */
+.burger{
+  display:none;
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  font-size:22px;
+  line-height:1;
+  padding:10px 12px;
+  border-radius:10px;
+}
+.burger:hover{
+  background:rgba(0,0,0,.06);
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+/* Marca (logo + título) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width: 240px;
 }
 
-.brand img {
-  height: 48px;
-  max-width: 100%;
-  object-fit: contain;
+/* Compatibilidad: a veces usas .brand-logo */
+.brand-logo{
+  width:54px;
+  height:54px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.brand-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:6px;
+  display:block;
 }
 
-.brand-title {
-  font-weight: 700;
-  font-size: 18px;
+/* Compatibilidad: a veces usas .brand img directo */
+.brand img{
+  width:54px;
+  height:54px;
+  object-fit:contain;
+  display:block;
 }
 
-.spacer {
-  flex: 1;
+/* Título */
+.brand-title{
+  font-weight:700;
+  font-size:18px;
+  white-space:nowrap;
 }
 
-.searchwrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+/* Separador flexible si lo necesitas */
+.spacer{ flex:1; }
+
+/* ================= BUSCADOR ================= */
+.searchwrap{
+  margin-left:auto;
+  position:relative;                 /* clave para dropdown */
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.searchwrap input {
-  padding: 6px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+/* icono lupa dentro del wrap (si lo pones como texto) */
+.searchwrap > span{
+  opacity:.7;
 }
 
-/* ================================================= */
-/* LAYOUT                                           */
-/* ================================================= */
-.shell {
-  display: flex;
-  min-height: calc(100vh - 64px);
-}
-
-.sidebar {
+/* input */
+.searchwrap input{
   width: 260px;
-  background: #1e6bb8;
-  padding: 16px;
+  max-width: 46vw;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.18);
+  outline:none;
+  font-size:14px;
+  background:#fff;
+  color:#0b1a33;
+}
+.searchwrap input::placeholder{
+  color:rgba(0,0,0,.45);
+}
+.searchwrap input:focus{
+  border-color: rgba(31,111,209,.65);
+  box-shadow: 0 0 0 3px rgba(31,111,209,.15);
 }
 
-.menu a {
-  display: block;
-  padding: 10px 14px;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 8px;
-  margin-bottom: 6px;
+/* botón X limpiar (si lo renderiza el navegador) */
+.searchwrap input[type="search"]::-webkit-search-cancel-button{
+  cursor:pointer;
 }
 
-.menu a:hover {
-  background: rgba(255, 255, 255, 0.15);
+/* ===== Panel de resultados ===== */
+.search-results{
+  position:absolute;
+  top: calc(100% + 10px);
+  right:0;
+  width: min(560px, 92vw);
+  max-height: 360px;
+  overflow:auto;
+  background:#fff;
+  border-radius:14px;
+  border:1px solid rgba(0,0,0,.12);
+  box-shadow:0 16px 38px rgba(0,0,0,.16);
+  padding:8px;
+  display:none;
+  z-index:9999;
+}
+.search-results.open{ display:block; }
+
+.search-results .sr-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:6px 8px 10px;
+}
+.search-results .sr-head strong{
+  font-size:13px;
+}
+.search-results .sr-close{
+  border:0;
+  background:transparent;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+  padding:6px 10px;
+  border-radius:10px;
+}
+.search-results .sr-close:hover{
+  background:rgba(0,0,0,.06);
 }
 
-.menu a.active {
-  background: rgba(255, 255, 255, 0.25);
-  font-weight: 700;
+/* Item */
+.search-results .sr-item{
+  display:block;
+  padding:10px 12px;
+  border-radius:12px;
+  color:#0b1a33 !important;
+  text-decoration:none !important;
+  border:1px solid transparent;
+}
+.search-results .sr-item:hover{
+  background:#f3f6fb;
+  border-color:rgba(0,0,0,.06);
 }
 
-.menu a.sub {
-  padding-left: 26px;
+.search-results .sr-title{
+  font-weight:800;
+  font-size:13px;
+  line-height:1.2;
+}
+.search-results .sr-meta{
+  font-size:12px;
+  color:#64748b;
+  margin-top:4px;
+}
+.search-results .sr-empty{
+  padding:10px 12px;
+  color:#64748b;
+  font-size:13px;
 }
 
-.main {
-  flex: 1;
-  padding: 24px;
+/* ================= LAYOUT ================= */
+.shell{
+  display:flex;
+  min-height:calc(100vh - 72px);
 }
 
-/* ================================================= */
-/* CARD                                             */
-/* ================================================= */
-.card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+/* ================= SIDEBAR ================= */
+.sidebar{
+  width:260px;
+  background:#1e73be;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
 }
 
-.card h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
+/* bloque logo + título dentro del sidebar */
+.sidebrand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
 }
 
-.intro-text {
-  margin-bottom: 24px;
-  color: #334155;
+.sidebrand-logo{
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:rgba(255,255,255,.12);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
 }
 
-/* ================================================= */
-/* TABLAS (CONVENIO / PROVISIÓN / CONSUMO / REGLAS)  */
-/* ================================================= */
-.table-wrap {
-  overflow-x: auto;
+.sidebrand-logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  padding:6px;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
+.sidebrand-title{
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  line-height:1.2;
 }
 
-thead {
-  background: #f4f7fb;
+/* ================= MENÚ ================= */
+.menu{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
 }
 
-th,
-td {
-  padding: 16px;
-  border-bottom: 1px solid #e6e6e6;
-  vertical-align: middle;
-  font-size: 14px;
+.menu a{
+  color:#fff;
+  text-decoration:none;
+  padding:10px 14px;
+  border-radius:10px;
+  transition:background .15s ease;
 }
 
-th {
-  font-weight: 800;
-  text-transform: uppercase;
-  text-align: center;
+.menu a:hover{
+  background:rgba(255,255,255,.15);
 }
 
-td {
-  text-align: center;
+.menu a.active{
+  background:rgba(255,255,255,.25);
+  font-weight:700;
 }
 
-td:first-child {
-  text-align: left;
-  font-weight: 600;
+/* Subniveles */
+.menu a.sub{
+  padding-left:32px;
+  font-size:.95em;
+  opacity:.95;
 }
 
-tr:last-child td {
-  border-bottom: none;
+/* ================= CONTENIDO ================= */
+.main{
+  flex:1;
+  padding:24px;
 }
 
-.dash {
-  color: #999;
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:28px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
-/* ================================================= */
-/* BOTONES (UNIFICADOS)                              */
-/* ================================================= */
-.btn,
-.btn-primary,
-.btn-abrir {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 16px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-  text-decoration: none;
-  background: #1e6bb8;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
+.card h1{
+  font-size:40px;
+  margin-bottom:14px;
 }
 
-.btn:hover,
-.btn-primary:hover,
-.btn-abrir:hover {
-  background: #155a9c;
+.intro-text{
+  margin-top:8px;
+  margin-bottom:18px;
+  color:#334155;
+  line-height:1.55;
 }
 
-/* ================================================= */
-/* ANEXOS TÉCNICOS (CARDS – SIN TABLAS)              */
-/* ================================================= */
-.tech-list {
-  margin-top: 18px;
-  display: grid;
-  gap: 14px;
+/* ================= TABLAS (para convenio/provisión/consumo/reglas) ================= */
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border-radius:14px;
 }
 
-.tech-item {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
-  padding: 18px 20px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+.doc-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
 }
 
-.tech-head {
-  display: flex;
-  flex-direction: column;
+.doc-table thead th{
+  background:#f6f9fd;
+  font-size:12px;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  color:#0b1a33;
+  padding:14px 14px;
+  border-bottom:1px solid rgba(0,0,0,.10);
 }
 
-.tech-badge {
-  display: block;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  border: none;
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #1e6bb8;
-  margin-bottom: 6px;
+.doc-table tbody td{
+  padding:18px 14px;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  vertical-align:middle;
 }
 
-.tech-title {
-  font-weight: 900;
-  font-size: 18px;
-  margin: 0 0 6px;
-  color: #0b1a33;
+.doc-table tbody tr:last-child td{
+  border-bottom:none;
 }
 
-.tech-desc {
-  color: #334155;
-  font-size: 14px;
+.action-cell{
+  text-align:center;
+  white-space:nowrap;
 }
 
-.tech-actions {
-  margin-top: 12px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+/* Botón estándar (Abrir/Descargar) */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:12px;
+  border:0;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14px;
+  cursor:pointer;
 }
 
-/* ================================================= */
-/* RESPONSIVE                                       */
-/* ================================================= */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 220px;
+.btn-primary{
+  background:#1e73be;
+  color:#fff !important;
+}
+
+.btn-primary:hover{
+  filter:brightness(0.95);
+  text-decoration:none !important;
+}
+
+/* ================= OVERLAY (móvil) ================= */
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:9998;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px){
+  .burger{ display:inline-flex; align-items:center; justify-content:center; }
+
+  .searchwrap input{
+    width:180px;
+    max-width:46vw;
+  }
+
+  /* Sidebar móvil tipo "offcanvas" */
+  .sidebar{
+    position:fixed;
+    top:72px;
+    left:0;
+    height:calc(100vh - 72px);
+    transform:translateX(-110%);
+    transition:transform .2s ease;
+    z-index:9999;
+    width:min(280px, 84vw);
+  }
+
+  body.menu-open .sidebar{
+    transform:translateX(0);
+  }
+
+  body.menu-open .overlay{
+    display:block;
   }
 }
 
-@media (max-width: 768px) {
-  .shell {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    order: 2;
-  }
-
-  .main {
-    padding: 16px;
-  }
-
-  th,
-  td {
-    padding: 12px;
-    font-size: 13px;
-  }
-
-  .brand-title {
-    font-size: 16px;
-  }
-
-  .brand img {
-    height: 40px;
-  }
-
-  .card h1 {
-    font-size: 24px;
-  }
-
-  .tech-title {
-    font-size: 16px;
-  }
+@media (max-width: 520px){
+  .brand-title{ font-size:16px; }
+  .brand{ min-width: 200px; }
+  .brand-logo{ width:48px; height:48px; }
 }
