@@ -15,13 +15,6 @@
   }
   if (overlay) overlay.addEventListener("click", closeMenu);
 
-  // Cierra el menú al navegar (móvil)
-  document.querySelectorAll(".menu a").forEach(a => {
-    a.addEventListener("click", () => {
-      if (window.matchMedia("(max-width: 980px)").matches) closeMenu();
-    });
-  });
-
   // ===== ACTIVO EN MENU =====
   const current = location.pathname.split("/").pop();
   document.querySelectorAll(".menu a").forEach(a => {
@@ -29,49 +22,51 @@
     if (href && href === current) a.classList.add("active");
   });
 
+  // ===== VERSIONAMIENTO AUTOMATICO (ULTIMO COMMIT) =====
+  (function () {
+    const el = document.getElementById("siteVersion");
+    if (!el) return;
+
+    const owner = "yuly0917";
+    const repo = "repositorio-digital-sectorial";
+    const branch = "main";
+
+    fetch(`https://api.github.com/repos/${owner}/${repo}/commits/${branch}`, {
+      cache: "no-store"
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (!data || !data.commit || !data.commit.committer || !data.commit.committer.date) {
+          el.textContent = "—";
+          return;
+        }
+
+        const date = new Date(data.commit.committer.date);
+        const formatted = date.toLocaleDateString("es-CL", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        });
+
+        el.textContent = formatted;
+      })
+      .catch(() => {
+        el.textContent = "—";
+      });
+  })();
+
   // ===== BUSCADOR GLOBAL (estable) =====
   const input = document.getElementById("search");
   const clearBtn = document.querySelector(".search-clear") || document.querySelector(".clear-btn");
   const resultsBox = document.getElementById("searchResults") || document.querySelector(".search-results");
 
+  // Si una página no tiene buscador, NO cortamos todo el script
   if (!input || !resultsBox) return;
 
   const inPaginas = location.pathname.includes("/paginas/");
   const PAGE_PREFIX = inPaginas ? "" : "paginas/";
   const DOC_PREFIX  = inPaginas ? "../docs/" : "docs/";
   const HOME_URL    = inPaginas ? "../index.html" : "index.html";
-
-  // Helpers para PDFs por OAE (mismo nombre que ya usas en tus páginas)
-  const OAES = ["SP", "SUSESO", "DT", "IPS"];
-  const pdfDocs = [];
-
-  // Convenio
-  pdfDocs.push({
-    title: "Convenio Sectorial Nodo Laboral y Previsional (PDF)",
-    section: "PDF",
-    url: DOC_PREFIX + "Convenio-Sectorial-Nodo.pdf",
-    keywords: "convenio adhesion documento oficial pdf"
-  });
-
-  // Sets de datos
-  pdfDocs.push({
-    title: "Sets de datos disponibles (4 OAEs) – Fase 1 (PDF)",
-    section: "PDF",
-    url: DOC_PREFIX + "Sets_datos_disponibles_4_OAEs_Fase1.pdf",
-    keywords: "sets datos disponibles dt ips suseso sp fase 1 pdf"
-  });
-
-  // Anexos 1-4 por OAE (según tus links actuales)
-  OAES.forEach(oae => {
-    ["1", "2", "3", "4"].forEach(n => {
-      pdfDocs.push({
-        title: `${oae} – Anexo ${n} (PDF)`,
-        section: "PDF",
-        url: DOC_PREFIX + `${oae}_Anexo${n}.pdf`,
-        keywords: `${oae} anexo ${n} pdf provision consumo datos`
-      });
-    });
-  });
 
   const STATIC_DOCS = [
     // Páginas
@@ -87,8 +82,8 @@
     { title:"Datos disponibles", section:"Página", url: PAGE_PREFIX + "datos-disponibles.html", keywords:"datos disponibles sets catalogo ips dt suseso sp fase 1" },
     { title:"Documentos Nodo", section:"Página", url: PAGE_PREFIX + "documentos-nodo.html", keywords:"documentos nodo manual procedimiento soporte" },
 
-    // PDFs (globales + anexos por OAE)
-    ...pdfDocs
+    // PDFs
+    { title:"Sets de datos disponibles (4 OAEs) – Fase 1", section:"PDF", url: DOC_PREFIX + "Sets_datos_disponibles_4_OAEs_Fase1.pdf", keywords:"sets datos disponibles dt ips suseso sp fase 1" }
   ];
 
   // Indexa también el menú (y sus data-keywords)
@@ -99,15 +94,7 @@
     return { title, section:"Menú", url, keywords };
   });
 
-  // Deduplicación simple por URL
-  const seen = new Set();
-  const DOCS = [...STATIC_DOCS, ...menuDocs].filter(d => {
-    const key = (d.url || "").trim();
-    if (!key) return false;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  const DOCS = [...STATIC_DOCS, ...menuDocs];
 
   function norm(s){
     return (s||"")
@@ -136,8 +123,8 @@
     const hits = DOCS.filter(d => norm(d.title + " " + d.section + " " + d.keywords).includes(q));
 
     const head = `<div class="sr-title">Resultados para <b>${qRaw}</b> (${hits.length})</div>`;
-    const rows = hits.slice(0, 30).map(it => {
-      const isPdf = (it.url || "").toLowerCase().endsWith(".pdf");
+    const rows = hits.slice(0, 20).map(it => {
+      const isPdf = it.url.toLowerCase().endsWith(".pdf");
       const target = isPdf ? ` target="_blank" rel="noopener"` : "";
       return `<a href="${it.url}"${target}><b>${it.title}</b><br><small>${it.section}</small></a>`;
     }).join("");
