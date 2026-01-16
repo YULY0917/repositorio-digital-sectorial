@@ -1,19 +1,14 @@
 (function () {
-  const sidebar = document.querySelector(".sidebar");
-  const overlay = document.querySelector(".overlay");
   const burger = document.querySelector(".burger");
+  const overlay = document.querySelector(".overlay");
 
   const input = document.getElementById("search");
   const clearBtn = document.querySelector(".search-clear");
   const resultsBox = document.getElementById("searchResults");
 
-  // ====== MENU MOVIL (CLAVE) ======
-  function openMenu() {
-    document.body.classList.add("menu-open");
-  }
-  function closeMenu() {
-    document.body.classList.remove("menu-open");
-  }
+  // ===== MENU MOVIL (CLAVE) =====
+  function openMenu(){ document.body.classList.add("menu-open"); }
+  function closeMenu(){ document.body.classList.remove("menu-open"); }
 
   burger?.addEventListener("click", () => {
     document.body.classList.contains("menu-open") ? closeMenu() : openMenu();
@@ -21,23 +16,22 @@
 
   overlay?.addEventListener("click", closeMenu);
 
-  // Cerrar menú al hacer click en un link (móvil)
+  // Cerrar menú al tocar un link en móvil
   document.querySelectorAll(".menu a").forEach(a => {
     a.addEventListener("click", () => {
       if (window.innerWidth <= 980) closeMenu();
     });
   });
 
-  // ====== ACTIVO EN MENU ======
+  // ===== Link activo =====
   const current = location.pathname.split("/").pop();
   document.querySelectorAll(".menu a").forEach(a => {
     const href = (a.getAttribute("href") || "").split("/").pop();
     if (href && href === current) a.classList.add("active");
   });
 
-  // ====== BUSCADOR ======
+  // ===== Buscador =====
   const DOCS = [
-    // páginas (las resolvemos según si estás en raíz o en /paginas)
     { title:"Inicio", section:"Página", url:"index.html", keywords:"inicio home" },
     { title:"Convenio de Adhesión", section:"Página", url:"convenio.html", keywords:"convenio adhesion" },
     { title:"Anexos Técnicos", section:"Página", url:"anexos-tecnicos.html", keywords:"anexos tecnicos" },
@@ -45,7 +39,6 @@
     { title:"Anexos de Consumo de Datos", section:"Página", url:"anexos-consumo-datos.html", keywords:"consumo datos anexo 3 anexo 4" },
     { title:"Reglas de Uso", section:"Página", url:"reglas-uso.html", keywords:"reglas uso" },
 
-    // PDFs (rutas relativas desde /paginas)
     { title:"Convenio Sectorial Nodo Laboral y Previsional", section:"PDF", url:"../docs/Convenio-Sectorial-Nodo.pdf", keywords:"convenio pdf" },
     { title:"Reglas de Uso del Repositorio Digital Sectorial", section:"PDF", url:"../docs/Reglas_de_uso.pdf", keywords:"reglas uso pdf" }
   ];
@@ -57,7 +50,7 @@
       .trim();
   }
 
-  // Si estás en raíz, las páginas están en /paginas/...
+  // En raíz, las páginas están dentro de /paginas/
   const inRoot = !location.pathname.includes("/paginas/");
   function pageHref(url){
     if (url.endsWith(".html") && inRoot && url !== "index.html") return "paginas/" + url;
@@ -73,10 +66,7 @@
   function renderResults(items, q){
     if (!resultsBox) return;
 
-    if (!q){
-      hideResults();
-      return;
-    }
+    if (!q){ hideResults(); return; }
 
     const head = `<div class="sr-head">Resultados para <b>${q}</b> (${items.length})</div>`;
     const rows = items.slice(0, 12).map(it => {
@@ -105,11 +95,7 @@
       if (clearBtn){
         clearBtn.style.display = q ? "inline-flex" : "none";
       }
-
-      if (!q){
-        hideResults();
-        return;
-      }
+      if (!q){ hideResults(); return; }
 
       const hits = DOCS.filter(d => {
         const hay = norm(d.title + " " + d.section + " " + d.keywords);
