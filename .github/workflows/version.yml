@@ -36,4 +36,3 @@ jobs:
           git add assets/version.json
           git commit -m "chore: update version.json" || exit 0
           git push
-
