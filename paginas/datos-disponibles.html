@@ -18,7 +18,7 @@
 
   <div class="searchwrap">
     <span class="icon">🔎</span>
-    <input id="search" type="search" placeholder="Buscar (ej: IPS, DT, SUSESO, SP)" />
+    <input id="search" type="search" placeholder="Buscar (ej: IPS, DT, SUSESO, SP, anexo 2)" />
     <button class="search-clear clear-btn" type="button" aria-label="Limpiar búsqueda" style="display:none;">×</button>
     <div id="searchResults" class="search-results"></div>
   </div>
@@ -29,21 +29,29 @@
 <div class="shell">
   <aside class="sidebar">
     <nav class="menu">
-      <a href="../index.html">Inicio</a>
-      <a href="convenio.html">Convenio de Adhesión</a>
-      <a href="datos-disponibles.html">Datos disponibles</a>
-      <a href="documentos-nodo.html">Documentos Nodo</a>
-      <a href="anexos-tecnicos.html">Anexos Técnicos</a>
-      <a class="sub" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
-      <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
-      <a href="reglas-uso.html">Reglas de Uso</a>
+      <a href="../index.html" data-keywords="inicio home">Inicio</a>
+
+      <a href="convenio.html" data-keywords="convenio adhesion">Convenio de Adhesión</a>
+
+      <a href="anexos-tecnicos.html" data-keywords="anexos tecnicos anexo 1 anexo 2 anexo 3 anexo 4">Anexos Técnicos</a>
+      <a class="sub" href="anexos-provision-datos.html" data-keywords="provision datos proveedor anexo 1 anexo 2 ips dt suseso sp">
+        Anexos de Provisión de Datos
+      </a>
+      <a class="sub" href="anexos-consumo-datos.html" data-keywords="consumo datos consumidor anexo 3 anexo 4 ips dt suseso sp">
+        Anexos de Consumo de Datos
+      </a>
+
+      <a href="reglas-uso.html" data-keywords="reglas uso">Reglas de Uso</a>
+
+      <a href="datos-disponibles.html" data-keywords="datos disponibles sets ips dt suseso sp fase 1">Datos disponibles</a>
+      <a href="documentos-nodo.html" data-keywords="documentos nodo manual soporte procedimiento">Documentos Nodo</a>
     </nav>
   </aside>
 
   <main class="main">
     <section class="card">
       <h1 class="h1">Datos disponibles</h1>
-      <p class="lead">Sets de datos disponibles (4 OAEs) – Fase 1.</p>
+      <p class="lead">En esta sección se encuentra disponible el documento de sets de datos disponibles (Fase 1).</p>
 
       <div class="doc-table">
         <table>
