@@ -1,7 +1,7 @@
-/* ===============================
+/* =========================================================
    REPOSITORIO DIGITAL SECTORIAL
-   CSS ESTABLE + MOBILE OK + VERSION
-   =============================== */
+   STYLE FINAL ESTABLE
+   ========================================================= */
 
 :root{
   --bg:#f6f8fb;
@@ -22,6 +22,7 @@
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
+/* ================= RESET ================= */
 *{ box-sizing:border-box; }
 html, body{ height:100%; }
 html{ scrollbar-gutter: stable; }
@@ -29,8 +30,8 @@ html{ scrollbar-gutter: stable; }
 body{
   margin:0;
   font-family:var(--font);
-  color:var(--text);
   background:var(--bg);
+  color:var(--text);
   line-height:1.45;
 }
 
@@ -54,20 +55,15 @@ a:hover{ text-decoration:underline; }
 }
 
 .burger{
-  appearance:none;
+  display:none;
   border:1px solid var(--line);
   background:#fff;
   height:40px;
   width:44px;
   border-radius:12px;
-  display:none;
-  align-items:center;
-  justify-content:center;
   cursor:pointer;
-  box-shadow:0 4px 10px rgba(15,23,42,.06);
 }
-.burger:active{ transform:scale(.98); }
-.burger span{ font-size:20px; line-height:1; }
+.burger span{ font-size:20px; }
 
 .brand{
   display:flex;
@@ -77,89 +73,66 @@ a:hover{ text-decoration:underline; }
 }
 .brand img{
   height:56px;
-  width:auto;
-  display:block;
   object-fit:contain;
 }
-.brand .brand-title{
+.brand-title{
   font-weight:800;
   font-size:20px;
-  letter-spacing:.2px;
-  color:var(--text);
   white-space:nowrap;
 }
 
 /* ================= BUSCADOR ================= */
 .searchwrap{
   margin-left:auto;
+  position:relative;
   display:flex;
   align-items:center;
   gap:10px;
-  position:relative;
 }
-.searchwrap .icon{ font-size:18px; color:#64748b; }
+.searchwrap .icon{ color:#64748b; }
 
 #search{
-  width:min(520px, 46vw);
+  width:min(520px,46vw);
   height:44px;
   padding:0 44px 0 14px;
   border-radius:999px;
   border:1px solid #cfd6e4;
-  outline:none;
-  background:#fff;
-  color:var(--text);
   font-size:15px;
-  box-shadow:0 8px 18px rgba(15,23,42,.06);
+  outline:none;
 }
 #search:focus{
   border-color:#8bb7e0;
-  box-shadow:0 10px 22px rgba(31,118,189,.15);
 }
 
 .search-clear{
   position:absolute;
   right:10px;
-  height:30px;
-  width:30px;
-  border:none;
-  background:#fff;
-  border-radius:999px;
+  background:none;
+  border:0;
+  font-size:18px;
   cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#64748b;
 }
 
 .search-results{
   position:absolute;
   top:54px;
   right:0;
-  width:min(560px, 78vw);
-  max-height:320px;
-  overflow:auto;
+  width:min(560px,78vw);
   background:#fff;
   border:1px solid var(--line);
   border-radius:16px;
   box-shadow:var(--shadow);
-  padding:10px;
+  max-height:320px;
+  overflow:auto;
   display:none;
+  padding:10px;
 }
 .search-results.is-open{ display:block; }
 
-.search-results .sr-title{
-  font-weight:800;
-  font-size:14px;
-  color:var(--muted);
-  padding:8px 10px;
-}
 .search-results a{
   display:block;
-  padding:10px 10px;
+  padding:10px;
   border-radius:12px;
-  color:var(--text);
-  text-decoration:none;
-  text-align:left;
 }
 .search-results a:hover{ background:#f1f5fb; }
 .search-results small{ color:#64748b; }
@@ -170,62 +143,60 @@ a:hover{ text-decoration:underline; }
   min-height:calc(100vh - var(--topbar-h));
 }
 
-/* Sidebar: flex para que el version quede abajo */
+/* ================= SIDEBAR ================= */
 .sidebar{
   width:var(--sidebar-w);
   background:var(--blue);
   color:#fff;
   padding:18px 14px;
-
   display:flex;
   flex-direction:column;
 }
 
-/* Menú */
 .menu{
   display:flex;
   flex-direction:column;
   gap:10px;
-  flex:1; /* empuja el version hacia abajo */
+  flex:1;
 }
 
 .menu a{
-  display:block;
-  padding:16px 16px;
+  padding:16px;
   border-radius:16px;
-  color:#fff;
   font-weight:800;
-  text-decoration:none;
 }
-.menu a.active{ background:rgba(255,255,255,.22); }
-.menu a.sub{ padding-left:40px; }
+.menu a.active{
+  background:rgba(255,255,255,.22);
+}
+.menu a.sub{
+  padding-left:40px;
+}
 .menu a:hover{
   background:rgba(255,255,255,.18);
-  text-decoration:none;
 }
 
-/* Versionamiento (bonito, abajo) */
+/* ===== Versionamiento automático ===== */
 .site-version{
   margin-top:18px;
   padding:12px 14px;
   border-radius:16px;
   background:rgba(255,255,255,.18);
   text-align:center;
-  color:#fff;
 }
 .site-version .version-title{
   font-size:12px;
-  opacity:.92;
-  margin-bottom:6px;
+  opacity:.9;
 }
 .site-version .version-date{
   font-size:14px;
   font-weight:900;
-  letter-spacing:.4px;
 }
 
-/* Main */
-.main{ flex:1; padding:26px 26px 42px; }
+/* ================= MAIN ================= */
+.main{
+  flex:1;
+  padding:26px 26px 42px;
+}
 
 .card{
   background:var(--card);
@@ -234,92 +205,96 @@ a:hover{ text-decoration:underline; }
   padding:26px;
 }
 
-.card h1, .card .h1{
-  margin:0 0 10px 0;
+.card h1{
   font-size:36px;
-  letter-spacing:-.4px;
+  margin:0 0 10px;
 }
-.card p, .card .lead{
-  margin:0;
-  margin-top:10px;
+.card p.lead{
   color:var(--muted);
   font-size:16px;
-  line-height:1.6;
 }
 
-/* Botón */
+/* ================= BOTONES ================= */
 .btn{
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:10px;
+  gap:8px;
   height:44px;
   padding:0 18px;
   border-radius:14px;
-  font-weight:800;
   background:var(--blue);
   color:#fff !important;
-  text-decoration:none !important;
-  border:0;
-  cursor:pointer;
-  white-space:nowrap;
+  font-weight:800;
 }
 .btn:hover{ background:var(--blue-dark); }
-.btn:active{ transform:scale(.99); }
-.btn .ico{ font-size:16px; }
 
-/* Tablas */
+/* ================= TABLAS ================= */
 .doc-table{
-  width:100%;
   margin-top:18px;
   border:1px solid var(--line);
   border-radius:18px;
   background:#fff;
-  overflow:hidden;
   overflow-x:auto;
 }
 .doc-table table{
   width:100%;
   min-width:720px;
-  border-spacing:0;
 }
-.doc-table thead th{
+.doc-table th{
   background:#f4f7fb;
-  border-bottom:1px solid var(--line);
-  padding:16px 18px;
+  padding:16px;
   font-size:13px;
-  letter-spacing:.6px;
   text-transform:uppercase;
-  color:#1f2937;
-  white-space:nowrap;
 }
-.doc-table tbody td{
+.doc-table td{
   padding:18px;
   border-bottom:1px solid #edf1f7;
-  vertical-align:middle;
   font-size:15px;
-  color:var(--text);
 }
-.doc-table tbody tr:last-child td{ border-bottom:none; }
-
+.doc-table tr:last-child td{ border-bottom:none; }
 .doc-table th:nth-child(n+2),
-.doc-table td:nth-child(n+2){ text-align:center; }
+.doc-table td:nth-child(n+2){
+  text-align:center;
+}
 
-.doc-table.doc-table-left th,
-.doc-table.doc-table-left td{ text-align:left !important; }
+/* ================= ANEXOS TECNICOS ================= */
+.annex-grid{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
 
-.doc-table td b,
-.doc-table td strong{ font-weight:400 !important; }
+.annex-card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  padding:16px;
+  box-shadow:0 8px 18px rgba(15,23,42,.06);
+}
 
-/* Overlay */
+.annex-top{
+  margin-bottom:8px;
+}
+
+.annex-pill{
+  font-weight:900;
+  color:#000;
+}
+
+.annex-card p{
+  margin:0;
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* ================= OVERLAY ================= */
 .overlay{
   position:fixed;
   inset:0;
-  background:rgba(15,23,42,.40);
+  background:rgba(15,23,42,.4);
   opacity:0;
   pointer-events:none;
-  transition:.2s ease;
-  z-index:55;
 }
 body.menu-open .overlay{
   opacity:1;
@@ -327,14 +302,8 @@ body.menu-open .overlay{
 }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 980px){
-  :root{ --sidebar-w: 300px; }
-
-  .burger{ display:flex; }
-  .brand img{ height:48px; }
-  .brand .brand-title{ font-size:16px; }
-
-  #search{ width:min(520px, 58vw); }
+@media (max-width:980px){
+  .burger{ display:block; }
 
   .sidebar{
     position:fixed;
@@ -344,28 +313,16 @@ body.menu-open .overlay{
     transform:translateX(-105%);
     transition:.22s ease;
     z-index:58;
-    overflow:auto;
   }
-  body.menu-open .sidebar{ transform:translateX(0); }
+  body.menu-open .sidebar{
+    transform:translateX(0);
+  }
 
   .shell{ display:block; }
   .main{ padding:18px; }
-  .card{ padding:18px; }
-  .card h1, .card .h1{ font-size:30px; }
 }
 
-@media (max-width: 520px){
-  :root{ --topbar-h: 78px; }
-
-  .topbar{ padding:12px 14px; }
-  .brand{ min-width:0; }
-
-  /* ✅ En celular mostramos el título (no desaparece) */
-  .brand .brand-title{
-    display:block;
-    font-size:14px;
-    font-weight:800;
-  }
-
+@media (max-width:520px){
+  .brand-title{ font-size:14px; }
   #search{ width:62vw; }
 }
