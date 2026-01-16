@@ -15,6 +15,13 @@
   }
   if (overlay) overlay.addEventListener("click", closeMenu);
 
+  // Cierra menú al navegar (móvil)
+  document.querySelectorAll(".menu a").forEach(a => {
+    a.addEventListener("click", () => {
+      if (window.matchMedia("(max-width: 980px)").matches) closeMenu();
+    });
+  });
+
   // ===== ACTIVO EN MENU =====
   const current = location.pathname.split("/").pop();
   document.querySelectorAll(".menu a").forEach(a => {
@@ -24,7 +31,22 @@
 
   // ===== VERSIONAMIENTO AUTOMATICO (ULTIMO COMMIT) =====
   (function () {
-    const el = document.getElementById("siteVersion");
+    const sidebar = document.querySelector(".sidebar");
+    if (!sidebar) return;
+
+    // Si el bloque no existe, lo insertamos al final del sidebar
+    let box = sidebar.querySelector(".site-version");
+    if (!box) {
+      box = document.createElement("div");
+      box.className = "site-version";
+      box.innerHTML = `
+        <div class="version-title">Última actualización</div>
+        <div class="version-date" id="siteVersion">—</div>
+      `;
+      sidebar.appendChild(box);
+    }
+
+    const el = sidebar.querySelector("#siteVersion");
     if (!el) return;
 
     const owner = "yuly0917";
@@ -55,12 +77,12 @@
       });
   })();
 
-  // ===== BUSCADOR GLOBAL (estable) =====
+  // ===== BUSCADOR GLOBAL =====
   const input = document.getElementById("search");
   const clearBtn = document.querySelector(".search-clear") || document.querySelector(".clear-btn");
   const resultsBox = document.getElementById("searchResults") || document.querySelector(".search-results");
 
-  // Si una página no tiene buscador, NO cortamos todo el script
+  // Si una página no tiene buscador, no hacemos nada más
   if (!input || !resultsBox) return;
 
   const inPaginas = location.pathname.includes("/paginas/");
@@ -69,7 +91,6 @@
   const HOME_URL    = inPaginas ? "../index.html" : "index.html";
 
   const STATIC_DOCS = [
-    // Páginas
     { title:"Inicio", section:"Página", url: HOME_URL, keywords:"inicio home" },
     { title:"Convenio de Adhesión", section:"Página", url: PAGE_PREFIX + "convenio.html", keywords:"convenio adhesion" },
 
@@ -78,15 +99,10 @@
     { title:"Anexos de Consumo de Datos", section:"Página", url: PAGE_PREFIX + "anexos-consumo-datos.html", keywords:"consumo datos consumidor anexo 3 anexo 4 ips dt suseso sp" },
 
     { title:"Reglas de Uso", section:"Página", url: PAGE_PREFIX + "reglas-uso.html", keywords:"reglas uso" },
-
     { title:"Datos disponibles", section:"Página", url: PAGE_PREFIX + "datos-disponibles.html", keywords:"datos disponibles sets catalogo ips dt suseso sp fase 1" },
-    { title:"Documentos Nodo", section:"Página", url: PAGE_PREFIX + "documentos-nodo.html", keywords:"documentos nodo manual procedimiento soporte" },
-
-    // PDFs
-    { title:"Sets de datos disponibles (4 OAEs) – Fase 1", section:"PDF", url: DOC_PREFIX + "Sets_datos_disponibles_4_OAEs_Fase1.pdf", keywords:"sets datos disponibles dt ips suseso sp fase 1" }
+    { title:"Documentos Nodo", section:"Página", url: PAGE_PREFIX + "documentos-nodo.html", keywords:"documentos nodo reportes presentaciones" }
   ];
 
-  // Indexa también el menú (y sus data-keywords)
   const menuDocs = Array.from(document.querySelectorAll(".menu a")).map(a => {
     const title = (a.textContent || "").trim();
     const url = a.getAttribute("href") || "#";
@@ -123,8 +139,8 @@
     const hits = DOCS.filter(d => norm(d.title + " " + d.section + " " + d.keywords).includes(q));
 
     const head = `<div class="sr-title">Resultados para <b>${qRaw}</b> (${hits.length})</div>`;
-    const rows = hits.slice(0, 20).map(it => {
-      const isPdf = it.url.toLowerCase().endsWith(".pdf");
+    const rows = hits.slice(0, 25).map(it => {
+      const isPdf = (it.url || "").toLowerCase().endsWith(".pdf");
       const target = isPdf ? ` target="_blank" rel="noopener"` : "";
       return `<a href="${it.url}"${target}><b>${it.title}</b><br><small>${it.section}</small></a>`;
     }).join("");
