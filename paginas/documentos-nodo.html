@@ -4,12 +4,16 @@
   <meta charset="utf-8">
   <title>Documentos Nodo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/style.css?v=1001">
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="../assets/style.css?v=1003">
 </head>
 <body>
 
 <header class="topbar">
-  <button class="burger" type="button" aria-label="Abrir menú"><span>≡</span></button>
+  <button class="burger" type="button" aria-label="Abrir menú">
+    <span>≡</span>
+  </button>
 
   <div class="brand">
     <img src="../assets/img/Logo.png" alt="Logo Nodo Laboral y Previsional">
@@ -18,8 +22,18 @@
 
   <div class="searchwrap">
     <span class="icon">🔎</span>
-    <input id="search" type="search" placeholder="Buscar (ej: soporte, manual, procedimiento)" />
-    <button class="search-clear clear-btn" type="button" aria-label="Limpiar búsqueda" style="display:none;">×</button>
+    <input
+      id="search"
+      type="search"
+      placeholder="Buscar documentos del Nodo"
+    >
+    <button
+      class="search-clear clear-btn"
+      type="button"
+      aria-label="Limpiar búsqueda"
+      style="display:none;"
+    >×</button>
+
     <div id="searchResults" class="search-results"></div>
   </div>
 </header>
@@ -27,13 +41,15 @@
 <div class="overlay"></div>
 
 <div class="shell">
+  <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar">
     <nav class="menu">
       <a href="../index.html" data-keywords="inicio home">Inicio</a>
-
       <a href="convenio.html" data-keywords="convenio adhesion">Convenio de Adhesión</a>
 
-      <a href="anexos-tecnicos.html" data-keywords="anexos tecnicos anexo 1 anexo 2 anexo 3 anexo 4">Anexos Técnicos</a>
+      <a href="anexos-tecnicos.html" data-keywords="anexos tecnicos anexo 1 anexo 2 anexo 3 anexo 4">
+        Anexos Técnicos
+      </a>
       <a class="sub" href="anexos-provision-datos.html" data-keywords="provision datos proveedor anexo 1 anexo 2 ips dt suseso sp">
         Anexos de Provisión de Datos
       </a>
@@ -42,17 +58,24 @@
       </a>
 
       <a href="reglas-uso.html" data-keywords="reglas uso">Reglas de Uso</a>
-
-      <a href="datos-disponibles.html" data-keywords="datos disponibles sets ips dt suseso sp fase 1">Datos disponibles</a>
-      <a href="documentos-nodo.html" data-keywords="documentos nodo manual soporte procedimiento">Documentos Nodo</a>
+      <a href="datos-disponibles.html" data-keywords="datos disponibles sets ips dt suseso sp fase 1">
+        Datos disponibles
+      </a>
+      <a href="documentos-nodo.html" class="active" data-keywords="documentos nodo reportes presentaciones">
+        Documentos Nodo
+      </a>
     </nav>
   </aside>
 
+  <!-- ================= CONTENIDO ================= -->
   <main class="main">
     <section class="card">
       <h1 class="h1">Documentos Nodo</h1>
-      <p class="lead">En esta sección se encuentran documentos transversales asociados a la operación y gestión del Nodo.</p>
+      <p class="lead">
+        Documentación relevante asociada al Nodo Laboral y Previsional.
+      </p>
 
+      <!-- TABLA DOCUMENTOS -->
       <div class="doc-table">
         <table>
           <thead>
@@ -61,18 +84,34 @@
               <th>ACCIÓN</th>
             </tr>
           </thead>
+
           <tbody>
             <tr>
-              <td>Procedimiento de soporte operativo</td>
-              <td><span class="dash">—</span></td>
+              <td>Lanzamiento – Nodo Laboral y Previsional (V3)</td>
+              <td>
+                <a
+                  class="btn"
+                  href="../docs/251214_Lanzamiento_NODO_LP_V3.pdf"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="ico">📄</span> Abrir
+                </a>
+              </td>
             </tr>
+
             <tr>
-              <td>Carta Gantt / Planificación</td>
-              <td><span class="dash">—</span></td>
-            </tr>
-            <tr>
-              <td>Manual / Guía</td>
-              <td><span class="dash">—</span></td>
+              <td>Reporte de Avances OAEs – Nodo L&amp;P (13-ene-26)</td>
+              <td>
+                <a
+                  class="btn"
+                  href="../docs/260113_Reporte_de_Avance_OAEs.pdf"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="ico">📄</span> Abrir
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -82,6 +121,7 @@
   </main>
 </div>
 
-<script src="../assets/app.js?v=1001"></script>
+<!-- JS -->
+<script src="../assets/app.js?v=1003"></script>
 </body>
 </html>
