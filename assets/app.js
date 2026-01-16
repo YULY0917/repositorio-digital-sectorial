@@ -1,9 +1,9 @@
 (function () {
   const body = document.body;
 
-  /* =====================================================
+  /* =========================
      MENU MOVIL
-     ===================================================== */
+     ========================= */
   const burger = document.querySelector(".burger");
   const overlay = document.querySelector(".overlay");
 
@@ -17,31 +17,30 @@
   }
   if (overlay) overlay.addEventListener("click", closeMenu);
 
-  // Cierra menú al navegar en móvil
   document.querySelectorAll(".menu a").forEach(a => {
     a.addEventListener("click", () => {
       if (window.matchMedia("(max-width: 980px)").matches) closeMenu();
     });
   });
 
-  /* =====================================================
+  /* =========================
      ITEM ACTIVO EN MENU
-     ===================================================== */
+     ========================= */
   const current = location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".menu a").forEach(a => {
     const href = (a.getAttribute("href") || "").split("/").pop();
     if (href && href === current) a.classList.add("active");
   });
 
-  /* =====================================================
-     VERSIONAMIENTO AUTOMATICO (ULTIMO COMMIT)
-     FECHA + HORA (Chile)
-     ===================================================== */
+  /* =========================
+     VERSIONAMIENTO (FECHA+HORA)
+     Fuente 1: assets/version.json (AUTOMATICO por GitHub Actions)
+     Fuente 2: GitHub API (fallback)
+     ========================= */
   (function () {
     const sidebar = document.querySelector(".sidebar");
     if (!sidebar) return;
 
-    // Insertar bloque si no existe
     let box = sidebar.querySelector(".site-version");
     if (!box) {
       box = document.createElement("div");
@@ -56,46 +55,55 @@
     const el = sidebar.querySelector("#siteVersion");
     if (!el) return;
 
-    const owner  = "yuly0917";
-    const repo   = "repositorio-digital-sectorial";
-    const branch = "main";
+    const inPaginas = location.pathname.includes("/paginas/");
+    const VERSION_URL = (inPaginas ? "../" : "") + "assets/version.json?v=" + Date.now();
 
-    fetch(`https://api.github.com/repos/${owner}/${repo}/commits/${branch}`, {
-      cache: "no-store"
-    })
-      .then(r => r.json())
-      .then(data => {
-        const iso = data?.commit?.committer?.date;
-        if (!iso) {
-          el.textContent = "No disponible";
+    // 1) Preferido: version.json (SIN rate limits)
+    fetch(VERSION_URL, { cache: "no-store" })
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(v => {
+        if (v && v.label) {
+          el.textContent = v.label;
           return;
         }
-
-        const date = new Date(iso);
-
-        const fecha = date.toLocaleDateString("es-CL", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-          timeZone: "America/Santiago"
-        });
-
-        const hora = date.toLocaleTimeString("es-CL", {
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZone: "America/Santiago"
-        });
-
-        el.textContent = `${fecha} · ${hora}`;
+        throw new Error("no label");
       })
       .catch(() => {
-        el.textContent = "No disponible";
+        // 2) Fallback: GitHub API (puede rate-limitar)
+        const owner  = "yuly0917";
+        const repo   = "repositorio-digital-sectorial";
+        const branch = "main";
+
+        fetch(`https://api.github.com/repos/${owner}/${repo}/commits/${branch}`, { cache: "no-store" })
+          .then(r => r.json())
+          .then(data => {
+            const iso = data?.commit?.committer?.date;
+            if (!iso) { el.textContent = "No disponible"; return; }
+
+            const date = new Date(iso);
+            const fecha = date.toLocaleDateString("es-CL", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+              timeZone: "America/Santiago"
+            });
+            const hora = date.toLocaleTimeString("es-CL", {
+              hour: "2-digit",
+              minute: "2-digit",
+              timeZone: "America/Santiago"
+            });
+
+            el.textContent = `${fecha} · ${hora}`;
+          })
+          .catch(() => {
+            el.textContent = "No disponible";
+          });
       });
   })();
 
-  /* =====================================================
+  /* =========================
      BUSCADOR GLOBAL
-     ===================================================== */
+     ========================= */
   const input =
     document.getElementById("search") ||
     document.querySelector('input[type="search"]');
@@ -108,7 +116,6 @@
     document.querySelector(".search-clear") ||
     document.querySelector(".clear-btn");
 
-  // Si una página no tiene buscador, no hacemos nada más
   if (!input || !resultsBox) return;
 
   const inPaginas = location.pathname.includes("/paginas/");
@@ -118,7 +125,6 @@
 
   const DOCS = [];
 
-  /* ---------- PAGINAS ---------- */
   DOCS.push(
     { title:"Inicio", section:"Página", url: HOME_URL, keywords:"inicio home repositorio" },
     { title:"Convenio de Adhesión", section:"Página", url: PAGE_PREFIX + "convenio.html", keywords:"convenio adhesion" },
@@ -127,26 +133,12 @@
     { title:"Anexos de Consumo de Datos", section:"Página", url: PAGE_PREFIX + "anexos-consumo-datos.html", keywords:"consumo datos consumidor ips dt suseso sp" },
     { title:"Reglas de Uso", section:"Página", url: PAGE_PREFIX + "reglas-uso.html", keywords:"reglas uso" },
     { title:"Datos disponibles", section:"Página", url: PAGE_PREFIX + "datos-disponibles.html", keywords:"datos disponibles catalogo sets" },
-    { title:"Documentos Nodo", section:"Página", url: PAGE_PREFIX + "documentos-nodo.html", keywords:"documentos nodo reportes presentaciones" }
+    { title:"Documentos Nodo", section:"Página", url: PAGE_PREFIX + "documentos-nodo.html", keywords:"documentos nodo reportes presentaciones" },
+
+    { title:"Lanzamiento – Nodo Laboral y Previsional (V3)", section:"PDF", url: DOC_PREFIX + "251214_Lanzamiento_NODO_L%26P_V3.pdf", keywords:"lanzamiento nodo v3 pdf" },
+    { title:"Reporte de Avance OAEs (13-01-2026)", section:"PDF", url: DOC_PREFIX + "260113_Reporte_de_Avance_OAEs.pdf", keywords:"reporte avance oaes 2026 pdf" }
   );
 
-  /* ---------- DOCUMENTOS NODO (PDF) ---------- */
-  DOCS.push(
-    {
-      title:"Lanzamiento – Nodo Laboral y Previsional",
-      section:"PDF",
-      url: DOC_PREFIX + "251214_Lanzamiento_NODO_LP_V3.pdf",
-      keywords:"lanzamiento nodo v3 pdf"
-    },
-    {
-      title:"Reporte de Avance OAEs",
-      section:"PDF",
-      url: DOC_PREFIX + "260113_Reporte_de_Avance_OAEs.pdf",
-      keywords:"reporte avance oaes 2026 pdf"
-    }
-  );
-
-  /* ---------- ANEXOS POR OAE ---------- */
   ["SP","SUSESO","DT","IPS"].forEach(oae => {
     ["1","2","3","4"].forEach(n => {
       DOCS.push({
@@ -158,7 +150,6 @@
     });
   });
 
-  /* ---------- INDEXA MENU (fallback) ---------- */
   document.querySelectorAll(".menu a").forEach(a => {
     const title = (a.textContent || "").trim();
     const url = a.getAttribute("href");
@@ -172,13 +163,8 @@
     }
   });
 
-  // Eliminar duplicados por URL
   const seen = new Set();
-  const INDEX = DOCS.filter(d => {
-    if (!d.url || seen.has(d.url)) return false;
-    seen.add(d.url);
-    return true;
-  });
+  const INDEX = DOCS.filter(d => d.url && !seen.has(d.url) && (seen.add(d.url), true));
 
   function norm(s){
     return (s || "")
