@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Anexos de Provisión de Datos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/style.css?v=999">
+  <link rel="stylesheet" href="../assets/style.css?v=1001">
 </head>
 <body>
 
@@ -17,9 +17,9 @@
   </div>
 
   <div class="searchwrap">
-    <span class="search-icon">🔎</span>
-    <input id="search" type="search" placeholder="Buscar (ej: suseso, anexo 2, provisión)" />
-    <button class="search-clear" type="button" aria-label="Limpiar búsqueda">×</button>
+    <span class="icon">🔎</span>
+    <input id="search" type="search" placeholder="Buscar (ej: IPS, DT, SUSESO, SP, anexo 2)" />
+    <button class="search-clear clear-btn" type="button" aria-label="Limpiar búsqueda" style="display:none;">×</button>
     <div id="searchResults" class="search-results"></div>
   </div>
 </header>
@@ -29,82 +29,82 @@
 <div class="shell">
   <aside class="sidebar">
     <nav class="menu">
-      <a href="../index.html">Inicio</a>
-      <a href="convenio.html">Convenio de Adhesión</a>
+      <a href="../index.html" data-keywords="inicio home">Inicio</a>
 
-      <a href="datos-disponibles.html">Datos disponibles</a>
-      <a href="documentos-nodo.html">Documentos Nodo</a>
+      <a href="convenio.html" data-keywords="convenio adhesion">Convenio de Adhesión</a>
 
-      <a href="anexos-tecnicos.html">Anexos Técnicos</a>
-      <a class="sub" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
-      <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
+      <a href="anexos-tecnicos.html" data-keywords="anexos tecnicos anexo 1 anexo 2 anexo 3 anexo 4">Anexos Técnicos</a>
+      <a class="sub" href="anexos-provision-datos.html" data-keywords="provision datos proveedor anexo 1 anexo 2 ips dt suseso sp">
+        Anexos de Provisión de Datos
+      </a>
+      <a class="sub" href="anexos-consumo-datos.html" data-keywords="consumo datos consumidor anexo 3 anexo 4 ips dt suseso sp">
+        Anexos de Consumo de Datos
+      </a>
 
-      <a href="reglas-uso.html">Reglas de Uso</a>
+      <a href="reglas-uso.html" data-keywords="reglas uso">Reglas de Uso</a>
+
+      <a href="datos-disponibles.html" data-keywords="datos disponibles sets ips dt suseso sp fase 1">Datos disponibles</a>
+      <a href="documentos-nodo.html" data-keywords="documentos nodo manual soporte procedimiento">Documentos Nodo</a>
     </nav>
   </aside>
 
   <main class="main">
     <section class="card">
       <h1 class="h1">Anexos de Provisión de Datos</h1>
-      <p class="lead">En esta sección se encuentran disponibles los anexos asociados a la provisión de datos del Nodo Laboral y Previsional.</p>
+      <p class="lead">Documentos asociados a la provisión de datos (Anexo 1 y Anexo 2) por OAE.</p>
 
-      <div class="table-wrap">
+      <div class="doc-table">
+        <table>
+          <thead>
+            <tr>
+              <th>OAE</th>
+              <th>ANEXO 1</th>
+              <th>ANEXO 2</th>
+              <th>RES. SPS</th>
+              <th>RES. OAE</th>
+            </tr>
+          </thead>
 
-        <!-- ✅ FIX: .doc-table debe ser CONTENEDOR, no clase de la tabla -->
-        <div class="doc-table">
-          <table>
-            <thead>
-              <tr>
-                <th class="cell-left">OAE</th>
-                <th class="cell-center">ANEXO 1</th>
-                <th class="cell-center">ANEXO 2</th>
-                <th class="cell-center">RES. EXENTA SPS</th>
-                <th class="cell-center">RES. EXENTA OAE</th>
-              </tr>
-            </thead>
+          <tbody>
+            <tr>
+              <td><b>SP</b></td>
+              <td><a class="btn" href="../docs/SP_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><a class="btn" href="../docs/SP_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
 
-            <tbody>
-              <tr>
-                <td class="cell-left oae-name">SUPERINTENDENCIA DE PENSIONES (SP)</td>
-                <td class="cell-center"><a class="btn" href="../docs/SP_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><a class="btn" href="../docs/SP_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-              </tr>
+            <tr>
+              <td><b>SUSESO</b></td>
+              <td><a class="btn" href="../docs/SUSESO_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><a class="btn" href="../docs/SUSESO_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
 
-              <tr>
-                <td class="cell-left oae-name">SUPERINTENDENCIA DE SEGURIDAD SOCIAL (SUSESO)</td>
-                <td class="cell-center"><a class="btn" href="../docs/SUSESO_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><a class="btn" href="../docs/SUSESO_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-              </tr>
+            <tr>
+              <td><b>DT</b></td>
+              <td><a class="btn" href="../docs/DT_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><a class="btn" href="../docs/DT_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
 
-              <tr>
-                <td class="cell-left oae-name">DIRECCIÓN DEL TRABAJO (DT)</td>
-                <td class="cell-center"><a class="btn" href="../docs/DT_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><a class="btn" href="../docs/DT_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-              </tr>
-
-              <tr>
-                <td class="cell-left oae-name">INSTITUTO DE PREVISIÓN SOCIAL (IPS)</td>
-                <td class="cell-center"><a class="btn" href="../docs/IPS_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><a class="btn" href="../docs/IPS_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-                <td class="cell-center"><span class="dash">—</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- ✅ FIN FIX -->
-
+            <tr>
+              <td><b>IPS</b></td>
+              <td><a class="btn" href="../docs/IPS_Anexo1.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><a class="btn" href="../docs/IPS_Anexo2.pdf" target="_blank" rel="noopener"><span class="ico">📄</span>Abrir</a></td>
+              <td><span class="dash">—</span></td>
+              <td><span class="dash">—</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
     </section>
   </main>
 </div>
 
-<script src="../assets/app.js?v=999"></script>
+<script src="../assets/app.js?v=1001"></script>
 </body>
 </html>
