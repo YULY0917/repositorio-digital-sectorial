@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Repositorio Digital Sectorial</title>
+  <title>Convenio de Adhesión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/style.css?v=999">
+  <link rel="stylesheet" href="style.css?v=1001">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 
   <div class="searchwrap">
     <span class="search-icon">🔎</span>
-    <input id="search" type="search" placeholder="Buscar (ej: suseso, anexo 2, consumo)" />
+    <input id="search" type="search" placeholder="Buscar (ej: convenio, reglas, IPS)" />
     <button class="search-clear" type="button" aria-label="Limpiar búsqueda">×</button>
     <div id="searchResults" class="search-results"></div>
   </div>
@@ -28,35 +28,57 @@
 
 <div class="shell">
   <aside class="sidebar">
+
+    <div class="sidebrand">
+      <div class="sidebrand-logo">
+        <img src="assets/img/Logo.png" alt="Logo Nodo L&P">
+      </div>
+      <div class="sidebrand-title">Repositorio Digital Sectorial</div>
+    </div>
+
     <nav class="menu">
-      <a href="index.html">Inicio</a>
-
-      <a href="paginas/convenio.html">Convenio de Adhesión</a>
-
-      <a href="paginas/datos-disponibles.html">Datos disponibles</a>
-      <a href="paginas/documentos-nodo.html">Documentos Nodo</a>
-
-      <a href="paginas/anexos-tecnicos.html">Anexos Técnicos</a>
-      <a class="sub" href="paginas/anexos-provision-datos.html">Anexos de Provisión de Datos</a>
-      <a class="sub" href="paginas/anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
-
-      <a href="paginas/reglas-uso.html">Reglas de Uso</a>
+      <a href="index.html" data-keywords="inicio home">Inicio</a>
+      <a href="convenio.html" data-keywords="convenio adhesión">Convenio de Adhesión</a>
+      <a href="datos-disponibles.html" data-keywords="datos disponibles sets catalogo ips dt suseso sp fase 1">Datos disponibles</a>
+      <a href="documentos-nodo.html" data-keywords="documentos nodo manuales procedimientos presentaciones soporte">Documentos Nodo</a>
+      <a href="anexos-tecnicos.html" data-keywords="anexos técnicos">Anexos Técnicos</a>
+      <a class="sub" href="anexos-provision-datos.html" data-keywords="anexos provisión datos entrega">Anexos de Provisión de Datos</a>
+      <a class="sub" href="anexos-consumo-datos.html" data-keywords="anexos consumo datos consulta">Anexos de Consumo de Datos</a>
+      <a href="reglas-uso.html" data-keywords="reglas uso">Reglas de Uso</a>
     </nav>
+
   </aside>
 
   <main class="main">
     <section class="card">
-      <h1 class="h1">Inicio</h1>
-      <p class="lead">
-        Repositorio Digital Sectorial del Nodo Laboral y Previsional (L&amp;P).
-      </p>
-      <p class="lead" style="font-size:18px;margin-top:-6px;">
-        Este espacio centraliza la documentación oficial asociada al convenio, anexos técnicos y reglas de uso del repositorio.
-      </p>
+      <h1 class="h1">Convenio de Adhesión</h1>
+      <p class="lead">En esta sección se encuentra disponible el documento oficial del Nodo Laboral y Previsional.</p>
+
+      <div class="table-wrap">
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th class="cell-center">DOCUMENTO</th>
+              <th class="cell-center">ACCIÓN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="cell-left">Convenio Sectorial Nodo Laboral y Previsional</td>
+              <td class="cell-center">
+                <a class="btn" href="docs/Convenio-Sectorial-Nodo.pdf" target="_blank" rel="noopener">
+                  <span class="ico">📄</span> Abrir
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
   </main>
 </div>
 
-<script src="assets/app.js?v=999"></script>
+<script src="app.js?v=1001"></script>
 </body>
 </html>
