@@ -133,13 +133,13 @@
   /* ---------- DOCUMENTOS NODO (PDF) ---------- */
   DOCS.push(
     {
-      title:"Lanzamiento – Nodo Laboral y Previsional (V3)",
+      title:"Lanzamiento – Nodo Laboral y Previsional",
       section:"PDF",
-      url: DOC_PREFIX + "251214_Lanzamiento_NODO_L%26P_V3.pdf",
+      url: DOC_PREFIX + "251214_Lanzamiento_NODO_LP_V3.pdf",
       keywords:"lanzamiento nodo v3 pdf"
     },
     {
-      title:"Reporte de Avance OAEs (13-01-2026)",
+      title:"Reporte de Avance OAEs",
       section:"PDF",
       url: DOC_PREFIX + "260113_Reporte_de_Avance_OAEs.pdf",
       keywords:"reporte avance oaes 2026 pdf"
