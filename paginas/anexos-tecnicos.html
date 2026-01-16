@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Anexos Técnicos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../assets/style.css?v=2001">
+  <link rel="stylesheet" href="../assets/style.css?v=3001">
 </head>
 <body>
 
@@ -17,8 +17,7 @@
   </div>
 
   <div class="searchwrap">
-    <span class="icon">🔎</span>
-    <input id="search" type="search" placeholder="Buscar (ej: IPS, DT, SUSESO, SP, anexo 2)" />
+    <input id="search" type="search" placeholder="Buscar (ej: IPS, DT, SUSESO, SP, anexo 2)">
     <button class="search-clear clear-btn" type="button" aria-label="Limpiar búsqueda" style="display:none;">×</button>
     <div id="searchResults" class="search-results"></div>
   </div>
@@ -29,60 +28,59 @@
 <div class="shell">
   <aside class="sidebar">
     <nav class="menu">
-      <a href="../index.html" data-keywords="inicio home">Inicio</a>
-      <a href="convenio.html" data-keywords="convenio adhesion">Convenio de Adhesión</a>
-
-      <a href="anexos-tecnicos.html" data-keywords="anexos tecnicos anexo 1 anexo 2 anexo 3 anexo 4">Anexos Técnicos</a>
-      <a class="sub" href="anexos-provision-datos.html" data-keywords="provision datos proveedor anexo 1 anexo 2 ips dt suseso sp">Anexos de Provisión de Datos</a>
-      <a class="sub" href="anexos-consumo-datos.html" data-keywords="consumo datos consumidor anexo 3 anexo 4 ips dt suseso sp">Anexos de Consumo de Datos</a>
-
-      <a href="reglas-uso.html" data-keywords="reglas uso">Reglas de Uso</a>
-      <a href="datos-disponibles.html" data-keywords="datos disponibles sets ips dt suseso sp fase 1">Datos disponibles</a>
-      <a href="documentos-nodo.html" data-keywords="documentos nodo manual soporte">Documentos Nodo</a>
+      <a href="../index.html">Inicio</a>
+      <a href="convenio.html">Convenio de Adhesión</a>
+      <a href="anexos-tecnicos.html">Anexos Técnicos</a>
+      <a class="sub" href="anexos-provision-datos.html">Anexos de Provisión de Datos</a>
+      <a class="sub" href="anexos-consumo-datos.html">Anexos de Consumo de Datos</a>
+      <a href="reglas-uso.html">Reglas de Uso</a>
+      <a href="datos-disponibles.html">Datos disponibles</a>
+      <a href="documentos-nodo.html">Documentos Nodo</a>
     </nav>
+    <!-- La “Última actualización” se inserta por JS al final del sidebar -->
   </aside>
 
   <main class="main">
     <section class="card">
-      <h1 class="h1">Anexos Técnicos</h1>
+      <h1>Anexos Técnicos</h1>
       <p class="lead">
         En esta sección se encuentran los Anexos Técnicos correspondientes al Convenio de Adhesión del Nodo Laboral y Previsional.
       </p>
 
-      <div class="annex-grid">
-        <article class="annex-card">
-          <div class="annex-top">
-            <span class="annex-pill">Anexo 1</span>
-          </div>
-          <p>Incorporación a la Plataforma de Interoperabilidad del Sector Trabajo y Previsión Social en calidad de Proveedor de Datos.</p>
-        </article>
+      <div class="annex-list">
+        <div class="annex-item">
+          <div class="annex-title">Anexo 1</div>
+          <p class="annex-desc">
+            Incorporación a la Plataforma de Interoperabilidad del Sector Trabajo y Previsión Social en calidad de Proveedor de Datos.
+          </p>
+        </div>
 
-        <article class="annex-card">
-          <div class="annex-top">
-            <span class="annex-pill">Anexo 2</span>
-          </div>
-          <p>Datos habilitados por Proveedor, considerando autorizaciones, condiciones y restricciones para la provisión de información.</p>
-        </article>
+        <div class="annex-item">
+          <div class="annex-title">Anexo 2</div>
+          <p class="annex-desc">
+            Datos habilitados por Proveedor, considerando autorizaciones, condiciones y restricciones para la provisión de información.
+          </p>
+        </div>
 
-        <article class="annex-card">
-          <div class="annex-top">
-            <span class="annex-pill">Anexo 3</span>
-          </div>
-          <p>Define procedimiento y requerimientos necesarios para el acceso a la información disponible.</p>
-        </article>
+        <div class="annex-item">
+          <div class="annex-title">Anexo 3</div>
+          <p class="annex-desc">
+            Define procedimiento y requerimientos necesarios para el acceso a la información disponible.
+          </p>
+        </div>
 
-        <article class="annex-card">
-          <div class="annex-top">
-            <span class="annex-pill">Anexo 4</span>
-          </div>
-          <p>Describe conjuntos de datos accesibles y sus características generales para consumo.</p>
-        </article>
+        <div class="annex-item">
+          <div class="annex-title">Anexo 4</div>
+          <p class="annex-desc">
+            Describe conjuntos de datos accesibles y sus características generales para consumo.
+          </p>
+        </div>
       </div>
 
     </section>
   </main>
 </div>
 
-<script src="../assets/app.js?v=2001"></script>
+<script src="../assets/app.js?v=3001"></script>
 </body>
 </html>
