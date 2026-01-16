@@ -1,10 +1,10 @@
 /* =========================================================
-   REPOSITORIO DIGITAL SECTORIAL – STYLE (ESTABLE)
-   - Botones .btn bonitos
-   - Anexos Técnicos en tarjetas
-   - Títulos más chicos
-   - Menú móvil no tapa Inicio/Convenio
-   - Buscador bien
+   REPOSITORIO DIGITAL SECTORIAL – STYLE FINAL ESTABLE
+   - Menú móvil estable (no tapa Inicio/Convenio)
+   - Botones bonitos
+   - Anexos técnicos en tarjetas
+   - Títulos más pequeños
+   - Buscador OK en móvil + FIX solo escritorio
    ========================================================= */
 
 :root{
@@ -31,7 +31,7 @@
 
 /* ================= RESET CONTROLADO ================= */
 *{ box-sizing:border-box; }
-html,body{ height:100%; }
+html, body{ height:100%; }
 
 body{
   margin:0;
@@ -126,7 +126,7 @@ a:hover{ text-decoration:underline; }
   box-shadow:0 10px 22px rgba(31,118,189,.15);
 }
 
-/* Botón X (tu HTML usa .search-clear) */
+/* Botón X */
 .search-clear{
   position:absolute;
   right:10px;
@@ -144,7 +144,7 @@ a:hover{ text-decoration:underline; }
 }
 .search-clear:hover{ background:#f8fafc; }
 
-/* Resultados (tu HTML usa #searchResults y class="search-results") */
+/* Resultados */
 .search-results,
 #searchResults{
   position:absolute;
@@ -207,7 +207,6 @@ a:hover{ text-decoration:underline; }
   flex-direction:column;
   gap:10px;
 }
-
 .menu a{
   display:block;
   padding:16px 16px;
@@ -247,7 +246,7 @@ a:hover{ text-decoration:underline; }
 .h1,
 .card h1{
   margin:0 0 12px 0;
-  font-size:34px;          /* antes muy grande */
+  font-size:34px;
   letter-spacing:-.4px;
 }
 
@@ -266,7 +265,6 @@ a:hover{ text-decoration:underline; }
   display:grid;
   gap:12px;
 }
-
 .anexo-item{
   background:#fff;
   border:1px solid #e6ecf5;
@@ -274,7 +272,6 @@ a:hover{ text-decoration:underline; }
   padding:16px 18px;
   box-shadow:0 6px 14px rgba(15,23,42,.05);
 }
-
 .anexo-tag{
   display:inline-block;
   font-weight:900;
@@ -285,7 +282,6 @@ a:hover{ text-decoration:underline; }
   color:#0b4f86;
   margin-bottom:10px;
 }
-
 .anexo-desc{
   color:#334155;
   font-size:15px;
@@ -390,12 +386,12 @@ body.menu-open .overlay{
   /* Sidebar off-canvas: FIX definitivo (NO tapa Inicio/Convenio) */
   .sidebar{
     position:fixed;
-    top:0 !important;                 /* 🔑 no depende del alto variable del header */
+    top:0 !important;                 /* no depende del alto variable del header */
     left:0;
     height:100vh !important;
     transform:translateX(-105%);
     transition:.22s ease;
-    z-index:80 !important;            /* 🔑 por encima del topbar (50) */
+    z-index:80 !important;            /* por encima del topbar (50) */
     padding-top:calc(env(safe-area-inset-top) + 16px);
   }
 
@@ -472,4 +468,33 @@ body.menu-open .overlay{
 
 @media (max-width: 520px){
   .brand-title{ display:none; }
+}
+
+/* =========================================================
+   FIX BUSCADOR SOLO ESCRITORIO (NO toca móvil)
+   ========================================================= */
+@media (min-width: 641px){
+  .topbar{
+    align-items:center;
+    padding-right:26px;
+  }
+
+  .searchwrap{
+    margin-left:auto !important;
+    width:auto !important;
+    max-width:620px !important;
+    flex:0 1 620px !important;
+    justify-content:flex-end !important;
+  }
+
+  #search{
+    width:520px !important;
+    max-width:520px !important;
+    min-width:360px !important;
+  }
+
+  #searchResults{
+    width:520px !important;
+    right:0 !important;
+  }
 }
