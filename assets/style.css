@@ -1,6 +1,6 @@
 /* ===============================
    REPOSITORIO DIGITAL SECTORIAL
-   Style estable (no rompe tablas)
+   CSS ESTABLE + MOBILE OK + VERSION
    =============================== */
 
 :root{
@@ -12,22 +12,20 @@
 
   --blue:#1f76bd;
   --blue-dark:#175f98;
-  --blue-soft:#4b8fc9;
 
   --shadow:0 10px 28px rgba(15,23,42,.08);
 
   --radius:22px;
-  --radius-sm:14px;
-
   --topbar-h:86px;
   --sidebar-w:320px;
 
   --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* ===== Reset básico (no agresivo) ===== */
 *{ box-sizing:border-box; }
 html, body{ height:100%; }
+html{ scrollbar-gutter: stable; }
+
 body{
   margin:0;
   font-family:var(--font);
@@ -36,10 +34,8 @@ body{
   line-height:1.45;
 }
 
-/* Evitar que estilos globales destruyan tablas */
 table{ border-collapse:separate; border-spacing:0; }
 
-/* Links */
 a{ color:inherit; text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
@@ -47,7 +43,7 @@ a:hover{ text-decoration:underline; }
 .topbar{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:60;
   height:var(--topbar-h);
   background:#fff;
   border-bottom:1px solid var(--line);
@@ -57,7 +53,6 @@ a:hover{ text-decoration:underline; }
   padding:14px 22px;
 }
 
-/* Botón hamburguesa: SOLO móvil */
 .burger{
   appearance:none;
   border:1px solid var(--line);
@@ -65,43 +60,34 @@ a:hover{ text-decoration:underline; }
   height:40px;
   width:44px;
   border-radius:12px;
-  display:none; /* desktop off */
+  display:none;
   align-items:center;
   justify-content:center;
   cursor:pointer;
   box-shadow:0 4px 10px rgba(15,23,42,.06);
 }
 .burger:active{ transform:scale(.98); }
-.burger span{
-  font-size:20px;
-  line-height:1;
-}
+.burger span{ font-size:20px; line-height:1; }
 
-/* Brand */
 .brand{
   display:flex;
   align-items:center;
   gap:14px;
-  min-width: 260px;
+  min-width:260px;
 }
-
 .brand img{
   height:56px;
   width:auto;
   display:block;
   object-fit:contain;
 }
-.brand .title,
 .brand .brand-title{
   font-weight:800;
-  font-size:22px;
+  font-size:20px;
   letter-spacing:.2px;
   color:var(--text);
   white-space:nowrap;
 }
-
-/* Spacer */
-.spacer{ flex:1; }
 
 /* ================= BUSCADOR ================= */
 .searchwrap{
@@ -111,16 +97,8 @@ a:hover{ text-decoration:underline; }
   gap:10px;
   position:relative;
 }
+.searchwrap .icon{ font-size:18px; color:#64748b; }
 
-.searchwrap .icon,
-.searchwrap .search-icon{
-  font-size:18px;
-  color:#64748b;
-}
-
-/* input de búsqueda */
-.searchwrap input[type="search"],
-.searchwrap input[type="text"],
 #search{
   width:min(520px, 46vw);
   height:44px;
@@ -133,14 +111,12 @@ a:hover{ text-decoration:underline; }
   font-size:15px;
   box-shadow:0 8px 18px rgba(15,23,42,.06);
 }
-.searchwrap input:focus{
+#search:focus{
   border-color:#8bb7e0;
   box-shadow:0 10px 22px rgba(31,118,189,.15);
 }
 
-/* botón limpiar */
-.searchwrap .clear-btn,
-.searchwrap .search-clear{
+.search-clear{
   position:absolute;
   right:10px;
   height:30px;
@@ -155,14 +131,12 @@ a:hover{ text-decoration:underline; }
   color:#64748b;
 }
 
-/* Resultados */
-.search-results,
-#search-results{
+.search-results{
   position:absolute;
   top:54px;
   right:0;
   width:min(560px, 78vw);
-  max-height: 320px;
+  max-height:320px;
   overflow:auto;
   background:#fff;
   border:1px solid var(--line);
@@ -171,28 +145,24 @@ a:hover{ text-decoration:underline; }
   padding:10px;
   display:none;
 }
-.search-results.is-open,
-#search-results.is-open{ display:block; }
+.search-results.is-open{ display:block; }
 
-.search-results .sr-title,
-#search-results .sr-title{
+.search-results .sr-title{
   font-weight:800;
   font-size:14px;
   color:var(--muted);
   padding:8px 10px;
 }
-.search-results a,
-#search-results a{
+.search-results a{
   display:block;
   padding:10px 10px;
   border-radius:12px;
   color:var(--text);
   text-decoration:none;
+  text-align:left;
 }
-.search-results a:hover,
-#search-results a:hover{
-  background:#f1f5fb;
-}
+.search-results a:hover{ background:#f1f5fb; }
+.search-results small{ color:#64748b; }
 
 /* ================= LAYOUT ================= */
 .shell{
@@ -200,12 +170,15 @@ a:hover{ text-decoration:underline; }
   min-height:calc(100vh - var(--topbar-h));
 }
 
-/* Sidebar */
+/* Sidebar: flex para que el version quede abajo */
 .sidebar{
   width:var(--sidebar-w);
   background:var(--blue);
   color:#fff;
   padding:18px 14px;
+
+  display:flex;
+  flex-direction:column;
 }
 
 /* Menú */
@@ -213,6 +186,7 @@ a:hover{ text-decoration:underline; }
   display:flex;
   flex-direction:column;
   gap:10px;
+  flex:1; /* empuja el version hacia abajo */
 }
 
 .menu a{
@@ -223,56 +197,57 @@ a:hover{ text-decoration:underline; }
   font-weight:800;
   text-decoration:none;
 }
-
-/* Activo */
-.menu a.active{
-  background:rgba(255,255,255,.22);
-}
-
-/* Subitems: indent fijo */
-.menu a.sub{
-  font-weight:800;
-  opacity:.98;
-  padding-left:40px;
-}
-
-/* Hover */
+.menu a.active{ background:rgba(255,255,255,.22); }
+.menu a.sub{ padding-left:40px; }
 .menu a:hover{
   background:rgba(255,255,255,.18);
   text-decoration:none;
 }
 
-/* Main */
-.main{
-  flex:1;
-  padding:26px 26px 42px;
+/* Versionamiento (bonito, abajo) */
+.site-version{
+  margin-top:18px;
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.18);
+  text-align:center;
+  color:#fff;
+}
+.site-version .version-title{
+  font-size:12px;
+  opacity:.92;
+  margin-bottom:6px;
+}
+.site-version .version-date{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:.4px;
 }
 
-/* Card */
+/* Main */
+.main{ flex:1; padding:26px 26px 42px; }
+
 .card{
   background:var(--card);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding:26px 26px;
+  padding:26px;
 }
 
-/* Headings */
-.card h1,
-.card .h1{
-  margin:0 0 12px 0;
-  font-size:44px;
-  letter-spacing:-.6px;
+.card h1, .card .h1{
+  margin:0 0 10px 0;
+  font-size:36px;
+  letter-spacing:-.4px;
 }
-.card p,
-.card .lead{
+.card p, .card .lead{
   margin:0;
   margin-top:10px;
   color:var(--muted);
-  font-size:18px;
-  line-height:1.55;
+  font-size:16px;
+  line-height:1.6;
 }
 
-/* ================= BOTONES ================= */
+/* Botón */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -293,17 +268,19 @@ a:hover{ text-decoration:underline; }
 .btn:active{ transform:scale(.99); }
 .btn .ico{ font-size:16px; }
 
-/* ================= TABLAS ================= */
+/* Tablas */
 .doc-table{
   width:100%;
   margin-top:18px;
   border:1px solid var(--line);
   border-radius:18px;
-  overflow:hidden;
   background:#fff;
+  overflow:hidden;
+  overflow-x:auto;
 }
 .doc-table table{
   width:100%;
+  min-width:720px;
   border-spacing:0;
 }
 .doc-table thead th{
@@ -314,62 +291,27 @@ a:hover{ text-decoration:underline; }
   letter-spacing:.6px;
   text-transform:uppercase;
   color:#1f2937;
+  white-space:nowrap;
 }
 .doc-table tbody td{
   padding:18px;
   border-bottom:1px solid #edf1f7;
   vertical-align:middle;
-  font-size:16px;
+  font-size:15px;
   color:var(--text);
 }
 .doc-table tbody tr:last-child td{ border-bottom:none; }
 
-/* 👇 ESTA REGLA CENTRA COLUMNAS 2+ (la dejamos, y hacemos override SOLO en anexos técnicos) */
 .doc-table th:nth-child(n+2),
-.doc-table td:nth-child(n+2){
-  text-align:center;
-}
+.doc-table td:nth-child(n+2){ text-align:center; }
 
-.matrix-table{
-  width:100%;
-  margin-top:18px;
-  border:1px solid var(--line);
-  border-radius:18px;
-  overflow:hidden;
-  background:#fff;
-}
-.matrix-table table{
-  width:100%;
-  border-spacing:0;
-}
-.matrix-table thead th{
-  background:#f4f7fb;
-  border-bottom:1px solid var(--line);
-  padding:16px 14px;
-  font-size:13px;
-  letter-spacing:.6px;
-  text-transform:uppercase;
-  color:#1f2937;
-}
-.matrix-table tbody td{
-  padding:18px 14px;
-  border-bottom:1px solid #edf1f7;
-  vertical-align:middle;
-  font-size:15px;
-}
-.matrix-table tbody tr:last-child td{ border-bottom:none; }
-.matrix-table th:nth-child(1),
-.matrix-table td:nth-child(1){
-  text-align:left;
-  font-weight:800;
-}
-.matrix-table th:nth-child(n+2),
-.matrix-table td:nth-child(n+2){
-  text-align:center;
-}
-.dash{ color:#94a3b8; font-weight:700; }
+.doc-table.doc-table-left th,
+.doc-table.doc-table-left td{ text-align:left !important; }
 
-/* ================= OVERLAY + MOBILE MENU ================= */
+.doc-table td b,
+.doc-table td strong{ font-weight:400 !important; }
+
+/* Overlay */
 .overlay{
   position:fixed;
   inset:0;
@@ -377,9 +319,8 @@ a:hover{ text-decoration:underline; }
   opacity:0;
   pointer-events:none;
   transition:.2s ease;
-  z-index:40;
+  z-index:55;
 }
-
 body.menu-open .overlay{
   opacity:1;
   pointer-events:auto;
@@ -388,16 +329,12 @@ body.menu-open .overlay{
 /* ================= RESPONSIVE ================= */
 @media (max-width: 980px){
   :root{ --sidebar-w: 300px; }
+
   .burger{ display:flex; }
   .brand img{ height:48px; }
-  .brand .title,
-  .brand .brand-title{ font-size:18px; }
+  .brand .brand-title{ font-size:16px; }
 
-  .searchwrap input[type="search"],
-  .searchwrap input[type="text"],
-  #search{
-    width:min(520px, 58vw);
-  }
+  #search{ width:min(520px, 58vw); }
 
   .sidebar{
     position:fixed;
@@ -406,78 +343,29 @@ body.menu-open .overlay{
     height:calc(100vh - var(--topbar-h));
     transform:translateX(-105%);
     transition:.22s ease;
-    z-index:45;
+    z-index:58;
+    overflow:auto;
   }
-  body.menu-open .sidebar{
-    transform:translateX(0);
-  }
+  body.menu-open .sidebar{ transform:translateX(0); }
+
   .shell{ display:block; }
   .main{ padding:18px; }
-  .card h1, .card .h1{ font-size:34px; }
-  .card p, .card .lead{ font-size:16px; }
+  .card{ padding:18px; }
+  .card h1, .card .h1{ font-size:30px; }
 }
 
 @media (max-width: 520px){
+  :root{ --topbar-h: 78px; }
+
   .topbar{ padding:12px 14px; }
-  .brand{ min-width: 0; }
-  .brand .title,
-  .brand .brand-title{ display:none; }
-  .searchwrap input[type="search"],
-  #search{ width: 62vw; }
-}
+  .brand{ min-width:0; }
 
-/* ==========================================================
-   FIXES que pediste (NO rompen el resto)
-   ========================================================== */
-
-/* 1) Anexos Técnicos: NO centrado */
-.doc-table.doc-table-left th,
-.doc-table.doc-table-left td{
-  text-align:left !important;
-}
-.doc-table.doc-table-left td:first-child{
-  width:180px;
-  white-space:nowrap;
-}
-
-/* 2) Títulos demasiado grandes */
-.card h1,
-.card .h1{
-  font-size:36px !important;
-}
-@media (max-width: 980px){
-  .card h1,
-  .card .h1{
-    font-size:30px !important;
+  /* ✅ En celular mostramos el título (no desaparece) */
+  .brand .brand-title{
+    display:block;
+    font-size:14px;
+    font-weight:800;
   }
-}
 
-/* 3) Resultados del buscador alineados a la izquierda */
-.search-results a{
-  text-align:left !important;
-}
-.search-results small{
-  color:#64748b;
-}
-
-/* ================= VERSIONAMIENTO (SIDEBAR) ================= */
-.site-version{
-  margin-top:26px;
-  padding:12px 14px;
-  border-radius:16px;
-  background:rgba(255,255,255,.18);
-  text-align:center;
-  color:#fff;
-}
-
-.site-version .version-title{
-  font-size:12px;
-  opacity:.92;
-  margin-bottom:6px;
-}
-
-.site-version .version-date{
-  font-size:14px;
-  font-weight:900;
-  letter-spacing:.4px;
+  #search{ width:62vw; }
 }
